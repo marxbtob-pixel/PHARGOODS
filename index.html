@@ -1459,13 +1459,12 @@ function renderQAList(){
   if(!c)return;
   c.innerHTML='';
   var srch=document.getElementById('qaSearch')?document.getElementById('qaSearch').value.trim().toLowerCase():'';
-  // 追蹤：有關鍵字時才記錄（防抖：延遲500ms避免每次輸入都記錄）
-  if(srch&&srch.length>=2){
-    if(window._qaTrackTimer)clearTimeout(window._qaTrackTimer);
-    window._qaTrackTimer=setTimeout(function(){
-      trackUsage('AI問答-產品QA','Q：'+srch);
-    },800);
+  // 追蹤：有關鍵字時立即記錄（防重複：同一關鍵字不重複送出）
+  if(srch&&srch!==window._lastQATrack){
+    window._lastQATrack=srch;
+    trackUsage('AI問答-產品QA','Q：'+srch);
   }
+  if(!srch)window._lastQATrack='';
   var total=0;
   var sheets=currentQASheet?[currentQASheet]:Object.keys(EXCEL_QA);
   sheets.forEach(function(key){
