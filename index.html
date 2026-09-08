@@ -405,7 +405,7 @@ window.addEventListener('load',function(){
       </div>
       <div style="display:flex;gap:8px;align-items:center">
         <input id="qaSearch" type="text" placeholder="搜尋問題或關鍵字..."
-          oninput="renderQAList()" onkeydown="if(event.key==='Enter'&&this.value.trim()){renderQAList();trackUsage('AI問答-產品QA','Q：'+this.value.trim());}"
+          oninput="renderQAList()"
           style="flex:1;padding:8px 14px;border:1.5px solid var(--brand-100);border-radius:20px;font-size:14px;font-family:var(--font);outline:none">
         <button onclick="document.getElementById('qaSearch').value='';renderQAList()"
           style="padding:7px 14px;background:var(--gray100);border:none;border-radius:14px;cursor:pointer;font-size:13px;font-family:var(--font)">清除</button>
@@ -1459,6 +1459,13 @@ function renderQAList(){
   if(!c)return;
   c.innerHTML='';
   var srch=document.getElementById('qaSearch')?document.getElementById('qaSearch').value.trim().toLowerCase():'';
+  // 追蹤：有關鍵字時才記錄（防抖：延遲500ms避免每次輸入都記錄）
+  if(srch&&srch.length>=2){
+    if(window._qaTrackTimer)clearTimeout(window._qaTrackTimer);
+    window._qaTrackTimer=setTimeout(function(){
+      trackUsage('AI問答-產品QA','Q：'+srch);
+    },800);
+  }
   var total=0;
   var sheets=currentQASheet?[currentQASheet]:Object.keys(EXCEL_QA);
   sheets.forEach(function(key){
