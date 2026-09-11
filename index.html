@@ -903,7 +903,7 @@ function formatAnswer(text){
     var part=parts[pi].trim();
     if(!part)continue;
     // Render each line (▲ treated as plain text, no special styling)
-    var lines=part.replace(/\r/g,'').split('\n');
+    var lines=String(part||'').replace(/\r/g,'').split('\n');
     for(var li=0;li<lines.length;li++){
       var line=lines[li].trim();
       if(!line)continue;
@@ -923,7 +923,7 @@ function findQA(question){
 var results=[];
 // Strip punctuation for scoring
 var punctuation='？?！!。，,.、\s()（）～~';
-var q=question.toLowerCase();
+var q=String(question||'').toLowerCase();
 var qClean=q;
 for(var pi=0;pi<punctuation.length;pi++){qClean=qClean.split(punctuation[pi]).join('');}
 for(var i=0;i<QA_DATABASE.length;i++){
@@ -954,7 +954,7 @@ function appendMsg(role,txt,isHtml){
   var c=document.getElementById('chatMsgs');
   var d=document.createElement('div');
   d.className='msg '+role;
-  var bubContent=isHtml?txt:txt.replace(/\n/g,'<br>');
+  var bubContent=isHtml?String(txt||''):String(txt||'').replace(/\n/g,'<br>');
   d.innerHTML='<div class="m-av">'+(role==='bot'?'藥':'我')+'</div><div><div class="m-bub" style="max-width:100%;line-height:1.7">'+bubContent+'</div><div class="m-time">'+getT()+'</div></div>';
   c.appendChild(d);c.scrollTop=c.scrollHeight;
 }
@@ -989,7 +989,7 @@ async function sendMessage(){
     for(var gi=0;gi<genericWords.length-1;gi++){genericList.push(genericWords.substring(gi,gi+2));}
 
     var nameMatch=PRODUCTS.filter(function(p){
-      var pureName=p.name.replace(/[A-Za-z0-9\s·．]/g,'');
+      var pureName=String(p.name||'').replace(/[A-Za-z0-9\s·．]/g,'');
       var nameLow=p.name.toLowerCase();
 
       // Strong match A: alnum product code (D3, EPA70...) found specifically in product NAME
