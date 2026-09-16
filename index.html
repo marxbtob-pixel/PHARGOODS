@@ -405,17 +405,20 @@ window.addEventListener('load',function(){
       </div>
       <div style="display:flex;gap:8px;align-items:center">
         <input id="qaSearch" type="text" placeholder="搜尋問題或關鍵字..."
-          oninput="renderQAList()"
+          oninput="renderQAList2()"
           style="flex:1;padding:8px 14px;border:1.5px solid var(--brand-100);border-radius:20px;font-size:14px;font-family:var(--font);outline:none">
         <button onclick="document.getElementById('qaSearch').value='';renderQAList()"
           style="padding:7px 14px;background:var(--gray100);border:none;border-radius:14px;cursor:pointer;font-size:13px;font-family:var(--font)">清除</button>
       </div>
     </div>
     <!-- 產品選單 -->
-    <div style="display:flex;gap:6px;padding:8px 16px 0;flex-wrap:wrap">
-      <button onclick="filterQACat('symptom')" id="qa-cat-symptom"
+    <!-- 第二層分類 -->
+    <div style="display:flex;gap:6px;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--gray100)">
+      <button onclick="filterSubCat('general')" id="qa-sub-general"
+        style="padding:5px 13px;border-radius:14px;border:none;cursor:pointer;font-size:13px;font-family:var(--font);font-weight:700;background:var(--brand);color:#fff;white-space:nowrap">通用QA</button>
+      <button onclick="filterSubCat('symptom')" id="qa-sub-symptom"
         style="padding:5px 13px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🩺 常見症狀與配方</button>
-      <button onclick="filterQACat('ingredient')" id="qa-cat-ingredient"
+      <button onclick="filterSubCat('ingredient')" id="qa-sub-ingredient"
         style="padding:5px 13px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🔬 常見成分解析</button>
     </div>
     <div id="qaSheetTabs" style="display:flex;gap:6px;padding:8px 16px 10px;overflow-x:auto;border-bottom:1px solid var(--gray100);background:#f9fafb;flex-wrap:wrap"></div>
@@ -1429,7 +1432,7 @@ function filterQACat(cat){
   renderQASheetTabs();renderQAList();
 }
 
-function initQAPanel(){renderQASheetTabs();renderQAList();}
+function initQAPanel(){currentSubCat='general';renderQASheetTabs2();renderQAList2();}
 
 function renderQASheetTabs(){
   var c=document.getElementById('qaSheetTabs');
@@ -1644,6 +1647,104 @@ function switchNutrient(key){
     }
   });
 }
+
+// ===== 第二層分類 =====
+var currentSubCat = 'general';
+function filterSubCat(sub){
+  currentSubCat = sub;
+  ['general','symptom','ingredient'].forEach(function(s){
+    var btn = document.getElementById('qa-sub-'+s);
+    if(!btn) return;
+    if(s === sub){
+      btn.style.background='var(--brand)'; btn.style.color='#fff'; btn.style.border='none'; btn.style.fontWeight='700';
+    } else {
+      btn.style.background='#fff'; btn.style.color='var(--brand)'; btn.style.border='2px solid var(--brand-100)'; btn.style.fontWeight='400';
+    }
+  });
+  // Update sheet tabs visibility and rerender
+  renderQASheetTabs2();
+  renderQAList2();
+}
+
+function renderQASheetTabs2(){
+  var c = document.getElementById('qaSheetTabs');
+  if(!c) return;
+  c.innerHTML = '';
+  // Only show product tabs for adult/kids sub-cat (managed by top filterQACat)
+  // For general/symptom/ingredient, hide product tabs row
+  if(currentSubCat !== 'general' && currentSubCat !== 'symptom' && currentSubCat !== 'ingredient'){
+    renderQASheetTabs();
+  }
+}
+
+function renderQAList2(){
+  var c = document.getElementById('qaListArea');
+  if(!c){ return; }
+  c.innerHTML = '';
+  var srch = document.getElementById('qaSearch') ? document.getElementById('qaSearch').value.trim().toLowerCase() : '';
+  if(srch && srch.length > 0){
+    console.log('QA Log sending:', srch);
+    trackUsage('AI問答-產品QA','Q：'+srch);
+  }
+  var total = 0;
+  Object.keys(EXCEL_QA).forEach(function(key){
+    var sheet = EXCEL_QA[key];
+    if(!sheet) return;
+    var show = false;
+    if(currentSubCat === 'general') show = (sheet.cat === 'general');
+    else if(currentSubCat === 'symptom') show = (sheet.cat === 'symptom');
+    else if(currentSubCat === 'ingredient') show = (sheet.cat === 'ingredient');
+    if(!show) return;
+    var items = sheet.items.filter(function(item){
+      if(!srch) return true;
+      return (item.q||'').toLowerCase().indexOf(srch)>=0 || (item.a||'').toLowerCase().indexOf(srch)>=0;
+    });
+    if(!items.length) return;
+    total += items.length;
+    var wrapper = document.createElement('div');
+    wrapper.style.marginBottom = '16px';
+    var hdr = document.createElement('div');
+    hdr.style.cssText = 'font-weight:800;font-size:15px;color:var(--brand-dark);margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid var(--brand-pale)';
+    hdr.textContent = sheet.label;
+    wrapper.appendChild(hdr);
+    items.forEach(function(item){
+      var card = document.createElement('div');
+      card.style.cssText = 'border:1px solid var(--gray200);border-radius:10px;margin-bottom:8px;overflow:hidden';
+      var qRow = document.createElement('div');
+      qRow.style.cssText = 'padding:11px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;background:#fafafa';
+      var qText = document.createElement('div');
+      qText.style.cssText = 'font-size:14px;font-weight:600;color:var(--gray900);line-height:1.5';
+      qText.textContent = 'Q：' + String(item.q||'');
+      var ico = document.createElement('span');
+      ico.style.cssText = 'flex-shrink:0;color:var(--brand);font-size:16px;margin-top:2px';
+      ico.innerHTML = '&#9660;';
+      qRow.appendChild(qText); qRow.appendChild(ico);
+      var aPanel = document.createElement('div');
+      aPanel.style.cssText = 'display:none;padding:12px 14px;background:#fff;border-top:1px solid var(--gray100)';
+      var aText = document.createElement('div');
+      aText.style.cssText = 'font-size:14px;color:var(--gray700);line-height:1.8;white-space:pre-wrap';
+      aText.textContent = String(item.a||'');
+      aPanel.appendChild(aText);
+      qRow.onclick = function(){
+        var _q = String(item.q||'');
+        console.log('QA click:', _q);
+        trackUsage('AI問答-產品QA','Q：'+_q.substring(0,120));
+        var open = aPanel.style.display !== 'none';
+        aPanel.style.display = open ? 'none' : 'block';
+        ico.innerHTML = open ? '&#9660;' : '&#9650;';
+      };
+      card.appendChild(qRow); card.appendChild(aPanel);
+      wrapper.appendChild(card);
+    });
+    c.appendChild(wrapper);
+  });
+  if(!total){
+    var empty = document.createElement('div');
+    empty.style.cssText = 'text-align:center;color:var(--gray400);padding:40px;font-size:14px';
+    empty.textContent = currentSubCat === 'symptom' ? '常見症狀與配方 QA 建置中' : currentSubCat === 'ingredient' ? '常見成分解析 QA 建置中' : (srch ? '找不到相關QA' : '');
+    c.appendChild(empty);
+  }
+}
 </script>
 
 <!-- API 金鑰設定頁面 -->
@@ -1768,20 +1869,33 @@ function switchNutrient(key){
         <!-- 維生素B群 -->
         <div id="ntable-vitb" style="display:none">
           <div style="font-size:13px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
-          <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <div style="background:#fff3e0;border-radius:8px;padding:8px 12px;font-size:12px;color:#e65100;margin-bottom:12px">AI=足夠攝取量｜RDA=建議攝取量（無標註者）<br>B1、B2、泛酸(B5)、生物素(B7)、B12 目前未訂定 UL</div>
+          <div style="font-weight:700;color:#4a148c;font-size:14px;margin-bottom:8px">📋 每日建議攝取量（RDA / AI）</div>
+          <div style="overflow-x:auto;margin-bottom:20px"><table style="width:100%;border-collapse:collapse;font-size:12px;min-width:700px">
             <thead><tr style="background:#4a148c;color:#fff">
-              <th style="padding:8px 10px;text-align:left;white-space:nowrap">年齡/族群</th>
-              <th style="padding:8px 10px;text-align:center">B1 RDA (mg)</th>
-              <th style="padding:8px 10px;text-align:center">B2 RDA (mg)</th>
-              <th style="padding:8px 10px;text-align:center">B6 RDA (mg)</th>
-              <th style="padding:8px 10px;text-align:center">B6 UL (mg)</th>
-              <th style="padding:8px 10px;text-align:center">B12 RDA (μg)</th>
-              <th style="padding:8px 10px;text-align:center">葉酸 RDA (μg)</th>
-              <th style="padding:8px 10px;text-align:center">菸鹼素 RDA (mg)</th>
-              <th style="padding:8px 10px;text-align:center">菸鹼素 UL (mg)</th>
+              <th style="padding:8px;text-align:left;white-space:nowrap">年齡/族群</th>
+              <th style="padding:8px 6px;text-align:center">性別</th>
+              <th style="padding:8px 6px;text-align:center">B1 (mg)</th>
+              <th style="padding:8px 6px;text-align:center">B2 (mg)</th>
+              <th style="padding:8px 6px;text-align:center">B3菸鹼素 (mgNE)</th>
+              <th style="padding:8px 6px;text-align:center">B5泛酸 (mg)</th>
+              <th style="padding:8px 6px;text-align:center">B6 (mg)</th>
+              <th style="padding:8px 6px;text-align:center">B7生物素 (μg)</th>
+              <th style="padding:8px 6px;text-align:center">B9葉酸 (μg)</th>
+              <th style="padding:8px 6px;text-align:center">B12 (μg)</th>
             </tr></thead>
-            <tbody id="vitb-tbody"><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0-6 個月</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.3(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.3(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.7(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.1(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">5.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">70(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.4(AI)</td></tr><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">7-12 個月</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">男女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">0.3(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">0.4(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">4(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.8(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">0.3(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">6.5(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">85(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">0.6(AI)</td></tr><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1-3 歲</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.6</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.7</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">9</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.5</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">9.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">170</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.9</td></tr><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">4-6 歲</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">男/女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">0.9/0.8</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.0/0.9</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">12/11</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">2.5(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">0.6</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">12.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">200</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.2</td></tr><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">7-9 歲</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男/女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.0/0.9</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.2/1.0</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">14/12</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">3.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.8</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">16.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">250</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.5</td></tr><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">10-12 歲</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">男/女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.1/1.1</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.3/1.2</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">15/15</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">4.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.3</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">20.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">300</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">2.0/2.2</td></tr><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">13-15 歲</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男/女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.3/1.1</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.5/1.3</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">18/15</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">4.5(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.4/1.3</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">25.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">400</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.4</td></tr><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">16-18 歲</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">男/女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.4/1.1</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.6/1.2</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">18/15</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">5.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.5/1.3</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">27.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">400</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">2.4</td></tr><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">19歲以上</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男/女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.2/0.9</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.3/1.0</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">16/14</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">5.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.5/1.5</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">30.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">400</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.4</td></tr><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">懷孕（第一期）</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">0.9</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.0</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">14</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">5.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.5</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">30.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">600</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">2.6</td></tr><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">懷孕（第二三期）</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.1</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.2</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">16</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">6.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.9</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">30.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">600</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.6</td></tr><tr><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">哺乳期</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">女</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.2</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.4</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">18</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">7.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">1.9</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">35.0(AI)</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">500</td><td style="padding:7px 10px;border-bottom:1px solid #e5e7eb;">2.8</td></tr></tbody>
-          </table>
+            <tbody id="vitb-tbody"><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0–6 個月</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.3 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.3 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.7 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.1 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">5.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">70 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.4 (AI)</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">7–12 個月</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">男女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.3 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.4 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">4 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.8 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.3 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">6.5 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">85 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.6 (AI)</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1–3 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.6</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.7</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.5</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">9.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">170</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.9</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">4–6 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.9/0.8</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.0/0.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">12/11</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">2.5 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.6</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">12.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">200</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.2</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">7–9 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.0/0.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.2/1.0</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">14/12</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">3.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.8</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">16.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">250</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.5</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">10–12 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.1/1.1</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.3/1.2</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">15/15</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">4.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.3</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">20.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">300</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">2.0/2.2</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">13–15 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.3/1.1</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.5/1.3</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">18/15</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">4.5 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.4/1.3</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">25.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">400</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.4</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">16–18 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.4/1.1</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.6/1.2</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">18/15</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">5.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.5/1.3</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">27.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">400</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">2.4</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">19歲以上</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.2/0.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.3/1.0</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">16/14</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">5.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.5/1.5</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">30.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">400</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.4</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">懷孕（第一期）</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.0</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">14</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">5.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.5</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">30.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">600</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">2.6</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">懷孕（第二、三期）</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.1</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.2</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">16</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">6.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">30.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">600</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.6</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">哺乳期</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.2</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.4</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">18</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">7.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">35.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">500</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">2.8</td></tr></tbody>
+          </table></div>
+          <div style="font-weight:700;color:#b71c1c;font-size:14px;margin-bottom:8px">⚠️ 上限攝取量（UL）— 有訂定者</div>
+          <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px;min-width:400px">
+            <thead><tr style="background:#b71c1c;color:#fff">
+              <th style="padding:8px 10px;text-align:left;white-space:nowrap">年齡/族群</th>
+              <th style="padding:8px 10px;text-align:center">B6 UL</th>
+              <th style="padding:8px 10px;text-align:center">B3菸鹼素 UL</th>
+              <th style="padding:8px 10px;text-align:center">B9葉酸 UL</th>
+            </tr></thead>
+            <tbody><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1–3 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">30 mg</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">10 mg NE</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">300 μg</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">4–6 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">40 mg</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">15 mg NE</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">400 μg</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">7–9 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">40 mg</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">20 mg NE</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">500 μg</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">10–12 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">60 mg</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">25 mg NE</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">700 μg</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">13–15 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">80 mg</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">30 mg NE</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">800 μg</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">16–18 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">80 mg</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">35 mg NE</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">900 μg</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">19歲以上</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">80 mg</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">35 mg NE</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1,000 μg</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">懷孕期</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">80 mg</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">35 mg NE</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1,000 μg</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">哺乳期</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">80 mg</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">35 mg NE</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1,000 μg</td></tr></tbody>
+          </table></div>
         </div>
         <!-- 鈣 -->
         <div id="ntable-ca" style="display:none">
