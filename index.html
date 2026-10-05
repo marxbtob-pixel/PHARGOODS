@@ -413,7 +413,7 @@ window.addEventListener('load',function(){
     </div>
     <!-- 產品選單 -->
     <!-- 第二層分類 -->
-    <div style="display:flex;gap:6px;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--gray100)">
+    <div id="qa-sub-row" style="display:flex;gap:6px;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--gray100)">
       <button onclick="filterSubCat('general')" id="qa-sub-general"
         style="padding:5px 13px;border-radius:14px;border:none;cursor:pointer;font-size:13px;font-family:var(--font);font-weight:700;background:var(--brand);color:#fff;white-space:nowrap">通用QA</button>
       <button onclick="filterSubCat('symptom')" id="qa-sub-symptom"
@@ -1432,16 +1432,40 @@ function switchChatMode(mode){
 
 function filterQACat(cat){
   currentQACat=cat;currentQASheet='';
+  // Reset sub-cat when switching top layer
+  if(cat==='adult'||cat==='kids'){
+    currentSubCat='_product'; // special: show product tabs directly
+  } else {
+    currentSubCat='general';
+  }
   ['general','adult','kids','symptom','ingredient'].forEach(function(c){
     var btn=document.getElementById('qa-cat-'+c);
     if(!btn)return;
     if(c===cat){btn.style.background='var(--brand)';btn.style.color='#fff';btn.style.border='none';}
     else{btn.style.background='#fff';btn.style.color='var(--brand)';btn.style.border='2px solid var(--brand-100)';}
   });
-  renderQASheetTabs();renderQAList();
+  // Show/hide second-layer sub buttons
+  var subRow=document.getElementById('qa-sub-row');
+  if(subRow){subRow.style.display=(cat==='adult'||cat==='kids')?'none':'flex';}
+  if(cat==='adult'||cat==='kids'){
+    renderQASheetTabs();renderQAList();
+  } else {
+    ['general','symptom','ingredient'].forEach(function(s){
+      var b=document.getElementById('qa-sub-'+s);
+      if(!b)return;
+      if(s===currentSubCat){b.style.background='var(--brand)';b.style.color='#fff';b.style.border='none';b.style.fontWeight='700';}
+      else{b.style.background='#fff';b.style.color='var(--brand)';b.style.border='2px solid var(--brand-100)';b.style.fontWeight='400';}
+    });
+    renderQASheetTabs2();renderQAList2();
+  }
 }
 
-function initQAPanel(){currentSubCat='general';renderQASheetTabs2();renderQAList2();}
+function initQAPanel(){
+  currentSubCat='general';
+  var subRow=document.getElementById('qa-sub-row');
+  if(subRow)subRow.style.display='flex';
+  renderQASheetTabs2();renderQAList2();
+}
 
 function renderQASheetTabs(){
   var c=document.getElementById('qaSheetTabs');
