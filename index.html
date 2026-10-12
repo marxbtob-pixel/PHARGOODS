@@ -334,7 +334,7 @@ function checkEntry(){
     document.getElementById('entryOverlay').style.display='none';
     showFeedbackBtn();
     showUserGreeting(nameVal);
-    setTimeout(showChangelog,300);
+    setTimeout(function(){checkSiteUpdate(true);},300);
   } else {
     document.getElementById('entryErr').style.display='block';
     document.getElementById('entryInput').value='';
@@ -3336,6 +3336,66 @@ function bindSearchTracking(inputId,actionType,buildTarget){
 }
 bindSearchTracking('qaSearch','AI問答-產品QA',function(v){return 'Q：'+v.substring(0,120);});
 bindSearchTracking('objSearchInput','異議神助手-搜尋',function(v){return v.substring(0,100);});
+</script>
+
+<script>
+// ==================== 自動偵測更新（不需要手動改版本號）====================
+// 原理：每次登入（以及切回此頁面時），到伺服器抓一份最新的 index.html，與「上次已確認的版本指紋」比對。
+// 只要檔案有任何更動，就會跳出提醒；同仁按「重新載入」後記下新指紋，之後不再重複提醒。
+function siteHash(str){
+  var h=5381;
+  for(var i=0;i<str.length;i++){h=((h<<5)+h+str.charCodeAt(i))|0;}
+  return (h>>>0).toString(36)+'-'+str.length;
+}
+var _updLast=0;
+function checkSiteUpdate(force){
+  try{
+    if(document.getElementById('updateNoticeOverlay'))return;
+    if(location.protocol==='file:')return;
+    var now=Date.now();
+    if(!force&&now-_updLast<300000)return;      // 切回頁面時最多每 5 分鐘檢查一次
+    _updLast=now;
+    fetch(location.origin+location.pathname,{cache:'no-store'}).then(function(r){
+      if(!r.ok)throw new Error('http '+r.status);
+      var lm=r.headers.get('Last-Modified');
+      return r.text().then(function(t){return {t:t,lm:lm};});
+    }).then(function(x){
+      var hash=siteHash(x.t),stored=localStorage.getItem('siteHash');
+      if(stored===hash)return;
+      if(!stored){
+        // 第一次使用的新同仁：只記錄，不打擾；舊使用者（已有使用紀錄）則提醒
+        var returning=localStorage.getItem('pharbot_uid')||localStorage.getItem('lastSeenVersion');
+        if(!returning){localStorage.setItem('siteHash',hash);return;}
+      }
+      showUpdateNotice(hash,x.lm);
+    }).catch(function(){});
+  }catch(e){}
+}
+function showUpdateNotice(hash,lastModified){
+  if(document.getElementById('updateNoticeOverlay'))return;
+  var when='';
+  if(lastModified){try{when=new Date(lastModified).toLocaleString('zh-TW',{hour12:false});}catch(e){}}
+  var ov=document.createElement('div');
+  ov.id='updateNoticeOverlay';
+  ov.style.cssText='position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px';
+  ov.innerHTML='<div style="background:#fff;border-radius:20px;padding:28px;width:100%;max-width:420px;box-shadow:0 24px 64px rgba(0,0,0,.3);font-family:var(--font);text-align:center">'
+    +'<div style="font-size:40px;margin-bottom:8px">\ud83c\udf89</div>'
+    +'<div style="font-size:20px;font-weight:800;color:#1a5c38;margin-bottom:8px">\u7cfb\u7d71\u5df2\u66f4\u65b0\u70ba\u6700\u65b0\u7248\u672c</div>'
+    +'<div style="font-size:14px;color:#374151;line-height:1.8;margin-bottom:6px">\u7522\u54c1\u8cc7\u6599\u3001\u8a71\u8853\u6216\u529f\u80fd\u5df2\u6709\u66f4\u65b0\uff0c<br>\u8acb\u6309\u4e0b\u65b9\u6309\u9215\u8f09\u5165\u6700\u65b0\u5167\u5bb9\u3002</div>'
+    +(when?'<div style="font-size:12px;color:#9ca3af;margin-bottom:6px">\u66f4\u65b0\u6642\u9593\uff1a'+when+'</div>':'')
+    +'<button id="updReloadBtn" style="margin-top:14px;width:100%;padding:12px;background:linear-gradient(135deg,#3aab6d,#2d8a56);color:#fff;border:none;border-radius:10px;font-size:15px;font-family:var(--font);font-weight:700;cursor:pointer">\ud83d\udd04 \u91cd\u65b0\u8f09\u5165\uff0c\u4f7f\u7528\u6700\u65b0\u7248\u672c</button>'
+    +'<div id="updLaterBtn" style="margin-top:12px;font-size:13px;color:#9ca3af;cursor:pointer;text-decoration:underline">\u7a0d\u5f8c\u518d\u8aaa</div></div>';
+  document.body.appendChild(ov);
+  document.getElementById('updReloadBtn').onclick=function(){
+    try{localStorage.setItem('siteHash',hash);}catch(e){}
+    location.reload();
+  };
+  document.getElementById('updLaterBtn').onclick=function(){ov.remove();};
+}
+window.addEventListener('focus',function(){
+  var ent=document.getElementById('entryOverlay');
+  if(ent&&ent.style.display==='none')checkSiteUpdate(false);   // 已登入的同仁切回頁面時也會檢查
+});
 </script>
 
 <!-- API 金鑰設定頁面 -->
