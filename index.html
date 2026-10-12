@@ -354,6 +354,23 @@ function saveApiKey(){
   document.getElementById('apiKeyOverlay').style.display='none';
   showToast('✅ AI 金鑰設定成功！PharBot 已就緒');
 }
+// 更新後按「重新載入」→ 免再輸入姓名密碼（一次性，只對同一分頁、60 秒內有效）
+(function(){
+  try{
+    var raw=sessionStorage.getItem('autoLogin');
+    if(!raw)return;
+    sessionStorage.removeItem('autoLogin');
+    var o=JSON.parse(raw);
+    if(!o||!o.name||!o.t||Date.now()-o.t>60000)return;
+    localStorage.setItem('userName',o.name);
+    var ov=document.getElementById('entryOverlay');
+    if(ov)ov.style.display='none';
+    document.addEventListener('DOMContentLoaded',function(){
+      if(typeof showFeedbackBtn==='function')showFeedbackBtn();
+      if(typeof showUserGreeting==='function')showUserGreeting(o.name);
+    });
+  }catch(e){}
+})();
 window.addEventListener('load',function(){
   var inp=document.getElementById('entryInput');
   if(inp) inp.focus();
@@ -3402,7 +3419,11 @@ function showUpdateNotice(hash,lastModified){
     +'<div id="updLaterBtn" style="margin-top:12px;font-size:13px;color:#9ca3af;cursor:pointer;text-decoration:underline">\u7a0d\u5f8c\u518d\u8aaa</div></div>';
   document.body.appendChild(ov);
   document.getElementById('updReloadBtn').onclick=function(){
-    try{localStorage.setItem('siteHash',hash);}catch(e){}
+    try{
+      localStorage.setItem('siteHash',hash);
+      var nm=localStorage.getItem('userName');
+      if(nm)sessionStorage.setItem('autoLogin',JSON.stringify({name:nm,t:Date.now()}));
+    }catch(e){}
     location.reload();
   };
   document.getElementById('updLaterBtn').onclick=function(){ov.remove();};
