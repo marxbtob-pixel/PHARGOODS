@@ -1134,19 +1134,34 @@ for(var i=0;i<QA_DATABASE.length;i++){
 results.sort(function(a,b){return b.score-a.score;});
 return results.slice(0,5).map(function(r){return r.qa;});}
 // 專屬解答優先：顧問的問題與某則 QA 的「問題」高度吻合時（≥60% 的 2 字詞命中），直接回覆該 QA
-function findQAStrong(question){
+function findQAStrong(question,tokens){
   var punct='？?！!。，,.、 \t()（）～~：:';
   function clean(s){s=String(s||'').toLowerCase();for(var i=0;i<punct.length;i++){s=s.split(punct[i]).join('');}return s;}
-  var q=clean(question),grams={},total=0;
-  for(var j=0;j<q.length-1;j++){var g=q.substring(j,j+2);if(!grams[g]){grams[g]=1;total++;}}
-  if(total<4)return [];
+  function grams(s){var g={},n=0;for(var j=0;j<s.length-1;j++){var k=s.substring(j,j+2);if(!g[k]){g[k]=1;n++;}}return {g:g,n:n};}
+  var qOrig=clean(question);
+  // 「鈣鎂力／鎂鈣力」也視同「鈣片」比對（例如「鈣鎂力可以跟魚油一起吃嗎」→「魚油和鈣片可以一起吃嗎」）
+  var qSyn=qOrig.replace(/鈣鎂力|鎂鈣力|鈣鎂|鎂鈣/g,'鈣片');
+  var variants=[qOrig];if(qSyn!==qOrig)variants.push(qSyn);
+  // 搜尋範圍：問答資料庫 ＋ 各產品自己的常見問答
+  var pool=QA_DATABASE.slice();
+  PRODUCTS.forEach(function(p){(p.qa||[]).forEach(function(i){pool.push({q:i.q,a:i.a});});});
+  var tok=(tokens||[]).map(clean).filter(Boolean),tokG={};
+  tok.forEach(function(t){for(var j=0;j<t.length-1;j++)tokG[t.substr(j,2)]=1;});
   var res=[],seen={};
-  for(var i=0;i<QA_DATABASE.length;i++){
-    var item=QA_DATABASE[i],qt=clean(item.q),hit=0;
-    for(var k in grams){if(qt.indexOf(k)>=0)hit++;}
-    var ratio=hit/total;
-    var key=clean(item.q)+'|'+clean(item.a).substring(0,40);
-    if(hit>=3&&ratio>=0.6&&!seen[key]){seen[key]=1;res.push({qa:item,ratio:ratio});}
+  for(var i=0;i<pool.length;i++){
+    var item=pool[i],qt=clean(item.q),best=0;
+    var nameHit=tok.some(function(t){return qt.indexOf(t)>=0;});
+    variants.forEach(function(q){
+      var G=grams(q);if(G.n<4)return;
+      var hit=0,nonName=0;
+      for(var k in G.g){if(qt.indexOf(k)>=0){hit++;if(!tokG[k])nonName++;}}
+      var ratio=hit/G.n;
+      // 一般：問題字詞 ≥60% 命中；同一產品且有其他關鍵字命中時，放寬到 45%（例如「顏色變深」≈「顏色偏深」）
+      var ok=(hit>=3&&ratio>=0.6)||(nameHit&&hit>=3&&nonName>=1&&ratio>=0.45);
+      if(ok&&ratio>best)best=ratio;
+    });
+    var key=qt+'|'+clean(item.a).substring(0,40);
+    if(best>0&&!seen[key]){seen[key]=1;res.push({qa:item,ratio:best});}
   }
   res.sort(function(a,b){return b.ratio-a.ratio;});
   return res.slice(0,3).map(function(r){return r.qa;});
@@ -1214,7 +1229,7 @@ async function sendMessage(){
       var r=bestCommon(normName(p.name),qNorm);
       var ok=r.len>=3||(r.len>=2&&/[a-z0-9]/.test(r.str));
       if(!ok)return;
-      scored.push({p:p,len:r.len});
+      scored.push({p:p,len:r.len,str:r.str});
       if(r.len>maxLen)maxLen=r.len;
     });
     var nameSpecific=scored.filter(function(s){return s.len===maxLen;}).map(function(s){return s.p;});
@@ -1291,7 +1306,7 @@ async function sendMessage(){
 
     // Step 3: QA 搜尋
     var qaMatched=findQA(txt);
-    var qaStrong=findQAStrong(txt);
+    var qaStrong=findQAStrong(txt,scored.filter(function(s){return s.len===maxLen;}).map(function(s){return s.str;}));
     // 只輸入產品名稱（如「兒童益生菌」）時，顯示產品資料，不用 QA 蓋掉
     var qPure=qNorm.replace(/[？?！!。，,.、：:~～]/g,'');
     if(nameSpecific.length>0&&qPure.length<=maxLen+1)qaStrong=[];
