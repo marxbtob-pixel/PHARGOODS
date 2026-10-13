@@ -500,9 +500,9 @@ window.addEventListener('load',function(){
       </div>
       <div style="display:flex;gap:8px;align-items:center">
         <input id="qaSearch" type="text" placeholder="搜尋問題或關鍵字..."
-          oninput="renderQAList2()"
+          oninput="qaOnSearchInput()"
           style="flex:1;padding:8px 14px;border:1.5px solid var(--brand-100);border-radius:20px;font-size:14px;font-family:var(--font);outline:none">
-        <button onclick="document.getElementById('qaSearch').value='';renderQAList()"
+        <button onclick="qaClearSearch()"
           style="padding:7px 14px;background:var(--gray100);border:none;border-radius:14px;cursor:pointer;font-size:13px;font-family:var(--font)">清除</button>
       </div>
     </div>
@@ -638,7 +638,8 @@ const EXCEL_QA={
     {group:'',q:'藥健所有的明膠來源都是豬嗎?',a:'目前產品中小魚球以及EPA70魚油為牛，其餘為豬～'},
     {group:'',q:'為什麼你們要添加香料/人工色素/XXX這些成分呢?',a:'媽媽我們知道您的疑慮和擔心,希望給小孩最有效,安全的補充,我們會添加的這些成分/香料/色素無非是為了增加小孩補充的意願,如果小孩不願意補充或是因飲食來源不足,而影響成長,那是非常可惜的,況且這些含量都不高,全數符合衛福部規定的範圍內,小孩成長只有一次,我們跟您一樣重視,除了您眼睛看的到這些成分,我們更重視您眼睛看不到~像是塑化劑,重金屬,農藥殘留,西藥殘留..等等,這些遠比香料/色素來的更重要許多,影響更大,所以我們的商品除出廠檢驗過以外,我們都會自主2家以上的第三方檢驗,確保送到您手上的商品安全無虞.所以請媽媽放心\n▲商品有問題或是瑕疵時---你該試著了解以下問題\n1.購買日期?\n2.一開封就有問題?或是開封多久才出現問題?\n3.儲存環境?放在哪裡?\n4.乾燥劑/棉花團/塑膠紙有丟掉嗎?\n5.提供批號或是製造日期/保存期限\n6.提供問題商品照片'},
     {group:'',q:'健康食品(小綠人標章)就一定比較健康嗎？我該吃健康食品嗎？與一般保健食品的差別是?',a:'由於小綠人標章是針對產品的功效及安全性審查，不會特別分析成分組成，因此健康食品也可能含有糖分、香料、化學合成原料等成分，長期補充可能造成代謝負擔。因此無論是補充健康食品、保健食品或是一般食品，都一定要仔細查看營養標示，選擇化學添加少、成分天然和有提供多個安全檢驗報告的產品，才能吃得健康。\n藥師健生活每一批產品除了原廠的檢驗報告，另外都還會再自主送往第三方單位進行檢驗，相關原料也是採用大廠有相關醫療期刊的品牌原料，配方更是經由藥師設計，讓您吃的安心也放心\n\n▲標章有期限\n健康食品許可證有效期為 5 年，若未展延即失效，並非永久有效'},
-    {group:'',q:'公司有哪些保健品最熱銷?',a:'400IU維生素D3、葡聚醣、兒童益生菌、兒童鈣鎂成長配方、30而力、EPA70高純度魚油、DHA70高純度魚油、天然酵母鋅、每日B、五百益生菌'}
+    {group:'',q:'公司有哪些保健品最熱銷?',a:'400IU維生素D3、葡聚醣、兒童益生菌、兒童鈣鎂成長配方、30而力、EPA70高純度魚油、DHA70高純度魚油、天然酵母鋅、每日B、五百益生菌'},
+    {group:'',q:'小孩 / 大人 一天要補充多少水份？',a:'1. 0-6個月新生兒:正常餵食的新生兒不必額外喝水。因母奶有將近90%的含水量，六個月以下純母乳哺餵的嬰兒不需要再另外補充水份。\n\n2. 6-12個月嬰兒:開始吃副食品後，一歲以前除了正常的飲食之外，可以每天給予約50~100ml的水，可視情況增加（如便秘、尿量少、天氣熱、流汗等等）。\n▲例如5公斤的嬰兒，每天的喝水量就不建議超過5×30CC= 150毫升\n\n3. 10公斤以下的幼兒：基本上每公斤要喝100毫升的水\n▲例如9公斤的孩子，每天就至少飲用9×100=900毫升。\n\n4. 10～20公斤的孩子：基本量為1000毫升，體重每超過1公斤，水量要再加50毫升\n▲例如15公斤的孩子，喝水量為1000（基本量）+5×50（=250）=1250毫升。\n\n5. 20～40公斤的孩子：基本量為1500毫升，體重每超過1公斤，水量要再加20毫升\n▲例如30kg的孩子，喝水量為1500（基本量）+10×20（=200）=1700毫升。\n\n6. 成人或40kg以上的孩子：基本量為體重的30～40CC\n▲例如70公斤的成人，每天就至少喝到70×30(無食用保健品)～40(有食用保健品)=2100～2800毫升。'}
   ]},
   '兒童鈣鎂':{label:'兒童鈣鎂成長配方',cat:'kids',items:[
     {group:'兒童鈣鎂成長配方',q:'兒童鈣鎂成長配方~草莓牛奶/鳳梨檸檬有人工色素嗎?',a:'草莓牛奶/鳳梨檸檬沒有另外加入人工色素,而草莓果汁粉/鳳梨\n\n果汁粉中有天然的色素'},
@@ -772,6 +773,7 @@ const QA_DATABASE=[{q:'藥健所有的明膠來源都是豬嗎?',a:'A:目前產�
 {q:'咖好力可以睡前跟鎂鈣力／益生菌一起吃嗎？',a:'A:您好，可以的，不會有衝突，可以安心補充唷！ P.S.咖好力含薑黃,薑黃本身有抗菌效果,可以跟益生菌一起吃嗎?另薑黃也有提神效果,適合睡前吃嗎? A:可以，薑黃的劑量非常低，且是未定量薑黃素的原料，薑黃的定位為行銷訴求，所以可以不必太擔心，關鍵咖好力的抗發炎主要是橄欖果萃取',cat:'咖好力'},{q:'咖好力葡萄糖胺萃取來源是?',a:'A:葡萄糖胺萃取自蝦蟹殼',cat:'咖好力'},{q:'小莓好為何吃起來有些微苦味呢?',a:'A:苦味來源是「前花青素」，因其本身為一種多酚類化合物的特性，如許多蔬菜水果的苦味來源一樣。 所以特別搭配蔓越莓減緩苦味的感受。',cat:'小莓好'},{q:'罐裝大豆蛋白粉是否為非基因改造,成分中的大豆產地是哪個國家？（非指產品製造地台灣）',a:'A:為非基改！產地是美國',cat:'蛋白粉'},{q:'哥吉拉乳清蛋白,有乳糖不耐症的人可以喝嗎?',a:'A:哥吉拉乳清蛋白是一般的乳清蛋白,乳糖不耐症者較不適合喔~',cat:'蛋白粉'},{q:'為何吃哥吉拉乳清蛋白，都會拉肚子呢?',a:'A:哥吉拉乳清蛋白除了乳清蛋白外也含有乳醣,若您對乳清蛋白敏感或是乳糖不耐就比較不適合喔~建議您可以購買我們的植物性蛋白質~大豆蛋白,不含乳糖,一樣可以補充您所需的蛋白質喔~',cat:'蛋白粉'},{q:'請問大豆蛋白沖泡粉, 是否含有雌激素呢? 顧客本身有子宮肌瘤詢問是否能喝?',a:'A:關於大豆蛋白與子宮肌瘤的疑慮，請不用擔心。我們的大豆蛋白沖泡粉含有的是天然的植物雌激素（大豆異黃酮），它的作用非常微弱，且根據多項營養學研究顯示，適量飲用大豆製品並不會直接導致子宮肌瘤的生成或長大。 但因為每個人的體質與肌瘤狀況不同，若您的主治醫師有特別交代要避開特定飲食，建議您仍以醫師的醫囑為準！',cat:'蛋白粉'},{q:'請問哥吉拉乳清蛋白用冷水或冰水不易泡開易有結塊，尤其是烏龍奶茶這一款更容易結塊，但我用一樣的方式、別牌乳清蛋白不會結塊，想請問新上市哥吉拉乳清蛋白否有更換過配方?',a:'A:您好~哥吉拉乳清沒有更換配方。因為我們是濃縮乳清，會保留較多牛乳中天然營養，因此粉末在遇到水時，親水性會稍受油脂包覆影響，容易形成結塊。建議先加水再加乳清，並使用搖搖球喔~謝謝您',cat:'蛋白粉'},
 {q:'請問乳清蛋白只能加水嗎?',a:'A:您好~可加水、牛奶、豆漿、咖啡、燕麥，加水不帶多餘熱量，其餘液體都含有熱量，若有嚴格控制熱量的需求，就要注意熱量計算喔~謝謝您',cat:'蛋白粉'},
 {q:'乳清蛋白可以加咖啡嗎？會影響吸收嗎？',a:'A:您好~答案是可以，而且咖啡因並不會影響蛋白質的腸道吸收率——這也是台灣國健署衛教資訊已澄清的常見迷思（[health99.hpa.gov.tw 保健闢謠](https://health99.hpa.gov.tw/rumor/576)）。牛奶蛋白質與咖啡多酚結合後，還能形成複合物、提升飲品的抗氧化穩定性（[Journal of Dairy Science, 2025](https://pubmed.ncbi.nlm.nih.gov/40945776/)）。唯一要注意的是沖泡順序：黑咖啡須先降溫至常溫或冰涼狀態，再與乳清蛋白混合，避免高溫破壞蛋白質結構。謝謝您~',cat:'蛋白粉'},
+{q:'小孩 / 大人 一天要補充多少水份？',a:'1. 0-6個月新生兒:正常餵食的新生兒不必額外喝水。因母奶有將近90%的含水量，六個月以下純母乳哺餵的嬰兒不需要再另外補充水份。\n\n2. 6-12個月嬰兒:開始吃副食品後，一歲以前除了正常的飲食之外，可以每天給予約50~100ml的水，可視情況增加（如便秘、尿量少、天氣熱、流汗等等）。\n▲例如5公斤的嬰兒，每天的喝水量就不建議超過5×30CC= 150毫升\n\n3. 10公斤以下的幼兒：基本上每公斤要喝100毫升的水\n▲例如9公斤的孩子，每天就至少飲用9×100=900毫升。\n\n4. 10～20公斤的孩子：基本量為1000毫升，體重每超過1公斤，水量要再加50毫升\n▲例如15公斤的孩子，喝水量為1000（基本量）+5×50（=250）=1250毫升。\n\n5. 20～40公斤的孩子：基本量為1500毫升，體重每超過1公斤，水量要再加20毫升\n▲例如30kg的孩子，喝水量為1500（基本量）+10×20（=200）=1700毫升。\n\n6. 成人或40kg以上的孩子：基本量為體重的30～40CC\n▲例如70公斤的成人，每天就至少喝到70×30(無食用保健品)～40(有食用保健品)=2100～2800毫升。',cat:'ALL'},
 {q:'請問米餅上的黑點是異常嗎?',a:'A:米餅表面黑點為烘烤時米粒自然焦化所致，屬正常現象，非異物或品質異常，可安心食用。',cat:'米餅'},{q:'請問哥吉拉聯名PR能量飲-葡萄風味&熱帶風味的牛磺酸含量是多少?',a:'A:您好~經與廠商詢問,能量飲的原料配方內容是未公開的,但依規定有提供營養標示的部分供參考.若您是擔心牛磺酸攝取量,目前我國衛福部、美國 FDA 都沒有針對牛磺酸制定建議攝取量，而根據 NIH 提供的資料顯示，成人每日口服 3～6g 牛磺酸，持續一年沒有出現不良影響，因此建議每天不要攝取超過 6g 牛磺酸。總結來說，成年人的牛磺酸建議攝取量為每天 3～6g。謝謝您~',cat:'能量飲'},{q:'請問兒童牙膏.漱口水蠶豆症可以使用嗎？',a:'A:我們的牙膏跟漱口水的成分裡面都沒有添加薄荷腦，但還是建議將產品成份表提供給專業醫師做確認，最為安全喔～',cat:'齒護系列'},
 {q:'D3是素的嗎？400IU維生素D3是素的嗎？',a:'藥師健生活維生素D3來源為羊毛脂萃取，蛋奶素可食用！羊毛脂取自綿羊身上剪下的毛，在洗毛過程中，透過精煉方式從羊毛中提取出脂肪和油脂！',cat:'D3'},
 {q:'D3白天使用還是晚上好呢？什麼時候吃D3？',a:'白天或晚上食用影響不大，建議可以飯後或加入食物內隨餐補充；比起補充時間，更重要的是長期穩定補充！',cat:'D3'},
@@ -1152,13 +1154,18 @@ results.sort(function(a,b){return b.score-a.score;});
 return results.slice(0,5).map(function(r){return r.qa;});}
 // 專屬解答優先：顧問的問題與某則 QA 的「問題」高度吻合時（≥60% 的 2 字詞命中），直接回覆該 QA
 function findQAStrong(question,tokens){
-  var punct='？?！!。，,.、 \t()（）～~：:';
+  var punct='？?！!。，,.、 \t()（）～~：:/／';
   function clean(s){s=String(s||'').toLowerCase();for(var i=0;i<punct.length;i++){s=s.split(punct[i]).join('');}return s;}
   function grams(s){var g={},n=0;for(var j=0;j<s.length-1;j++){var k=s.substring(j,j+2);if(!g[k]){g[k]=1;n++;}}return {g:g,n:n};}
   var qOrig=clean(question);
   // 「鈣鎂力／鎂鈣力」也視同「鈣片」比對（例如「鈣鎂力可以跟魚油一起吃嗎」→「魚油和鈣片可以一起吃嗎」）
   var qSyn=qOrig.replace(/鈣鎂力|鎂鈣力|鈣鎂|鎂鈣/g,'鈣片');
   var variants=[qOrig];if(qSyn!==qOrig)variants.push(qSyn);
+  // 口語說法對應：去掉體重／年齡數字，並把「寶寶／嬰兒／孩子」「成人」「每天」「喝水」統一成 QA 常用寫法（例如「10公斤的小孩一天喝多少水」）
+  var qW=qOrig.replace(/\d+(?:\.\d+)?(?:公斤|kg|歲|個月大|個月)的?/g,'')
+    .replace(/寶寶|嬰兒|幼兒|小朋友|孩子|兒童/g,'小孩').replace(/成人|爸爸|媽媽/g,'大人')
+    .replace(/每天/g,'一天').replace(/喝多少水|喝水量|喝多少|需要喝水|要喝水|喝水|飲水量/g,'補充多少水份');
+  if(qW!==qOrig&&variants.indexOf(qW)<0)variants.push(qW);
   // 搜尋範圍：問答資料庫 ＋ 各產品自己的常見問答
   var pool=QA_DATABASE.slice();
   PRODUCTS.forEach(function(p){(p.qa||[]).forEach(function(i){pool.push({q:i.q,a:i.a});});});
@@ -1689,6 +1696,7 @@ function switchChatMode(mode){
 }
 
 function filterQACat(cat){
+  qaExitSearchForNav();
   currentQACat=cat;currentQASheet='';
   // Reset sub-cat when switching top layer
   if(cat==='adult'||cat==='kids'){
@@ -1749,7 +1757,7 @@ else show=((sheet.cat===currentQACat||sheet.cat==='both')&&sheet.cat!=='general'
   });
   if(!found){var sp=document.createElement('span');sp.style.cssText='color:var(--gray400);font-size:13px';sp.textContent='此分類暫無資料';c.appendChild(sp);}
 }
-function selectQASheet(key){currentQASheet=key;renderQASheetTabs();renderQAList();}
+function selectQASheet(key){qaExitSearchForNav();currentQASheet=key;renderQASheetTabs();renderQAList();}
 
 function hlSearch(text,search){
   if(!text)return '';
@@ -1763,6 +1771,7 @@ function hlSearch(text,search){
 function renderQAList(){
   var c=document.getElementById('qaListArea');
   if(!c)return;
+  if(QA_SEARCH_ACTIVE){renderQASearchResults(document.getElementById('qaSearch').value.trim());return;}
   c.innerHTML='';
   var srch=document.getElementById('qaSearch')?document.getElementById('qaSearch').value.trim().toLowerCase():'';
   var total=0;
@@ -1945,6 +1954,7 @@ function switchNutrient(key){
 // ===== 第二層分類 =====
 var currentSubCat = 'general';
 function filterSubCat(sub){
+  qaExitSearchForNav();
   currentSubCat = sub;
   ['general','symptom','ingredient'].forEach(function(s){
     var btn = document.getElementById('qa-sub-'+s);
@@ -1971,11 +1981,301 @@ function renderQASheetTabs2(){
   }
 }
 
+
+// ==================== 產品QA查詢：跨系列搜尋 ====================
+// 輸入關鍵字 → 同時搜尋「通用QA／成人系列／兒童系列／常見症狀與配方／常見成分解析」
+// 清空搜尋 → 回到搜尋前的分頁與選取狀態
+var QA_SEARCH_ACTIVE=false,QA_SAVED=null,QA_SEARCH_FILTER='';
+var QA_SERIES=[['general','📚 通用QA'],['adult','💊 成人系列'],['kids','👶 兒童系列'],['symptom','🩺 常見症狀與配方'],['ingredient','🔬 常見成分解析']];
+function qaTokens(s){return String(s||'').toLowerCase().split(/[\s\u3000]+/).filter(Boolean);}
+function qaHl(text,toks){
+  text=String(text||'');
+  if(!toks.length)return escH(text);
+  var re=new RegExp('('+toks.map(function(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}).join('|')+')','gi');
+  return text.split(re).map(function(p,i){return i%2?'<mark style="background:#fef08a;border-radius:3px">'+escH(p)+'</mark>':escH(p);}).join('');
+}
+function qaOnSearchInput(){
+  var q=document.getElementById('qaSearch').value.trim();
+  if(q){
+    if(!QA_SEARCH_ACTIVE){
+      QA_SAVED={cat:currentQACat,sub:currentSubCat,sheet:currentQASheet};   // 記住搜尋前的狀態
+      QA_SEARCH_ACTIVE=true;QA_SEARCH_FILTER='';
+      qaEnterSearchUI();
+    }
+    renderQASearchResults(q);
+  }else if(QA_SEARCH_ACTIVE){
+    qaRestoreView();
+  }
+}
+function qaClearSearch(){var el=document.getElementById('qaSearch');if(el)el.value='';qaOnSearchInput();}
+function qaEnterSearchUI(){
+  var subRow=document.getElementById('qa-sub-row');if(subRow)subRow.style.display='none';
+  var tabs=document.getElementById('qaSheetTabs');if(tabs)tabs.innerHTML='';
+  ['general','adult','kids'].forEach(function(c){
+    var b=document.getElementById('qa-cat-'+c);if(!b)return;
+    b.style.background='#fff';b.style.color='var(--brand)';b.style.border='2px solid var(--brand-100)';
+  });
+}
+function qaRestoreView(){
+  var s=QA_SAVED;QA_SEARCH_ACTIVE=false;QA_SAVED=null;QA_SEARCH_FILTER='';
+  if(!s){filterQACat('general');return;}
+  filterQACat(s.cat);
+  if(s.cat==='general'&&s.sub&&s.sub!=='general')filterSubCat(s.sub);
+  if((s.cat==='adult'||s.cat==='kids')&&s.sheet)selectQASheet(s.sheet);
+}
+// 使用者在搜尋中改點分頁／子分類：直接離開搜尋模式，照點選的位置瀏覽
+function qaExitSearchForNav(){
+  if(!QA_SEARCH_ACTIVE)return;
+  var el=document.getElementById('qaSearch');if(el)el.value='';
+  QA_SEARCH_ACTIVE=false;QA_SAVED=null;QA_SEARCH_FILTER='';
+}
+function qaGoIngredient(){
+  var el=document.getElementById('qaSearch');if(el)el.value='';
+  QA_SEARCH_ACTIVE=false;QA_SAVED=null;QA_SEARCH_FILTER='';
+  filterQACat('general');filterSubCat('ingredient');
+}
+function qaSearchCard(item,toks,open){
+  var card=document.createElement('div');
+  card.style.cssText='border:1px solid var(--gray200);border-radius:10px;margin-bottom:8px;overflow:hidden';
+  var qRow=document.createElement('div');
+  qRow.style.cssText='padding:11px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;background:#fafafa';
+  var qText=document.createElement('div');
+  qText.style.cssText='font-size:14px;font-weight:600;color:var(--gray900);line-height:1.5';
+  qText.innerHTML='Q：'+qaHl(item.q,toks);
+  var ico=document.createElement('span');
+  ico.style.cssText='flex-shrink:0;color:var(--brand);font-size:16px;margin-top:2px';
+  ico.innerHTML=open?'&#9650;':'&#9660;';
+  qRow.appendChild(qText);qRow.appendChild(ico);
+  var aPanel=document.createElement('div');
+  aPanel.style.cssText='display:'+(open?'block':'none')+';padding:12px 14px;background:#fff;border-top:1px solid var(--gray100)';
+  var aText=document.createElement('div');
+  aText.style.cssText='font-size:14px;color:var(--gray700);line-height:1.8;white-space:pre-wrap';
+  var rawA=String(item.a||'');
+  var cleanA=rawA.replace(/\[BTN(\d+):([^:]+):([^\]]+)\]/g,'').replace(/\n+$/,'').trim();
+  aText.innerHTML=linkify(escH(cleanA));
+  aPanel.appendChild(aText);
+  aPanel.insertAdjacentHTML('beforeend',qaCopyBtnHtml(cleanA));
+  var btns=[],m,tmpR=/\[BTN(\d+):([^:]+):([^\]]+)\]/g;
+  while((m=tmpR.exec(rawA))!==null)btns.push({label:m[2],content:m[3]});
+  if(btns.length){
+    var row=document.createElement('div');
+    row.style.cssText='display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid var(--gray100)';
+    btns.forEach(function(b){
+      var w=document.createElement('div');w.style.cssText='width:100%';
+      var bb=document.createElement('button');
+      bb.style.cssText='padding:6px 14px;background:var(--brand-pale);color:var(--brand);border:1.5px solid var(--brand-100);border-radius:10px;cursor:pointer;font-size:13px;font-family:var(--font);font-weight:600;text-align:left;width:auto';
+      bb.textContent='▶ '+b.label;
+      var bc=document.createElement('div');
+      bc.style.cssText='display:none;background:#f0faf4;border-radius:8px;padding:12px 14px;margin-top:8px;font-size:13px;color:#374151;line-height:1.8;white-space:pre-wrap;border:1px solid var(--brand-100)';
+      bc.textContent=b.content;
+      bb.onclick=function(e){e.stopPropagation();var o=bc.style.display!=='none';bc.style.display=o?'none':'block';bb.textContent=(o?'▶ ':'▼ ')+b.label;};
+      w.appendChild(bb);w.appendChild(bc);row.appendChild(w);
+    });
+    aPanel.appendChild(row);
+  }
+  qRow.onclick=function(){
+    trackUsage('AI問答-產品QA','Q：'+String(item.q||'').substring(0,120));
+    var o=aPanel.style.display!=='none';
+    aPanel.style.display=o?'none':'block';
+    ico.innerHTML=o?'&#9660;':'&#9650;';
+  };
+  card.appendChild(qRow);card.appendChild(aPanel);
+  return card;
+}
+function renderQASearchResults(q){
+  var c=document.getElementById('qaListArea');if(!c)return;
+  c.innerHTML='';
+  var toks=qaTokens(q),groups={},counts={},total=0;
+  Object.keys(EXCEL_QA).forEach(function(key){
+    var sheet=EXCEL_QA[key];
+    if(!sheet||!sheet.items)return;
+    sheet.items.forEach(function(item){
+      var hay=((item.q||'')+' '+(item.a||'')+' '+(item.group||'')+' '+(sheet.label||'')).toLowerCase();
+      if(!toks.every(function(t){return hay.indexOf(t)>=0;}))return;
+      (groups[sheet.cat]=groups[sheet.cat]||[]).push({sheet:sheet,item:item});
+      counts[sheet.cat]=(counts[sheet.cat]||0)+1;total++;
+    });
+  });
+  // 常見成分解析（對比表模組）
+  var ingPlain=ING_MODULE_HTML.replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').toLowerCase();
+  var ingHit=toks.every(function(t){return ingPlain.indexOf(t)>=0;});
+  if(ingHit){counts.ingredient=1;total++;}
+  // 摘要列：各系列命中數，可點選只看某個系列
+  var bar=document.createElement('div');
+  bar.style.cssText='display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--gray100)';
+  var lbl=document.createElement('span');
+  lbl.style.cssText='font-size:13px;color:var(--gray500);margin-right:4px';
+  lbl.textContent='搜尋「'+q+'」共 '+total+' 則：';
+  bar.appendChild(lbl);
+  function chip(label,key,n){
+    var on=(QA_SEARCH_FILTER===key);
+    var b=document.createElement('button');
+    b.style.cssText='padding:4px 12px;border-radius:14px;cursor:pointer;font-size:13px;font-family:var(--font);'+(on?'border:none;background:var(--brand);color:#fff;font-weight:700':'border:2px solid var(--brand-100);background:#fff;color:var(--brand);font-weight:500');
+    b.textContent=label+'（'+n+'）';
+    b.onclick=function(){QA_SEARCH_FILTER=key;renderQASearchResults(q);};
+    bar.appendChild(b);
+  }
+  if(total){
+    chip('全部','',total);
+    QA_SERIES.forEach(function(s){if(counts[s[0]])chip(s[1],s[0],counts[s[0]]);});
+  }
+  c.appendChild(bar);
+  if(!total){
+    var empty=document.createElement('div');
+    empty.style.cssText='text-align:center;color:var(--gray400);padding:40px;font-size:14px;line-height:1.8';
+    empty.innerHTML='找不到「'+escH(q)+'」相關的QA<br>已搜尋：通用QA、成人系列、兒童系列、常見症狀與配方、常見成分解析';
+    c.appendChild(empty);return;
+  }
+  var open=(total<=6);   // 結果不多時，答案直接展開
+  QA_SERIES.forEach(function(s){
+    var key=s[0];
+    if(QA_SEARCH_FILTER&&QA_SEARCH_FILTER!==key)return;
+    if(!counts[key])return;
+    var head=document.createElement('div');
+    head.style.cssText='font-weight:800;font-size:15px;color:#fff;background:var(--brand-dark);border-radius:8px;padding:6px 12px;margin:14px 0 8px';
+    head.textContent=s[1]+'（'+counts[key]+' 則）';
+    c.appendChild(head);
+    if(key==='ingredient'){
+      var card=document.createElement('div');
+      card.style.cssText='border:1px solid var(--brand-100);background:var(--brand-50);border-radius:10px;padding:12px 14px;cursor:pointer;font-size:14px;color:var(--brand-dark);font-weight:600';
+      card.textContent='「常見成分解析」裡有相符的內容，點此前往查看 →';
+      card.onclick=qaGoIngredient;
+      c.appendChild(card);return;
+    }
+    var lastSheet=null;
+    groups[key].forEach(function(g){
+      if(g.sheet!==lastSheet){
+        var sh=document.createElement('div');
+        sh.style.cssText='font-weight:700;font-size:13px;color:var(--brand);margin:8px 0 4px;padding:3px 10px;background:var(--brand-pale);border-radius:8px';
+        sh.textContent=g.sheet.label;
+        c.appendChild(sh);lastSheet=g.sheet;
+      }
+      c.appendChild(qaSearchCard(g.item,toks,open));
+    });
+  });
+}
+
+// ==================== 常見成分解析模組 ====================
+var ING_MODULE_HTML=`<!-- 常見成分解析 模組開始 -->
+<div id="ingredient-section" style="padding: 20px; background-color: #ffffff; border-radius: 12px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+  <p style="font-size: 13px; color: #666; margin: 0 0 12px 0; font-weight: 500;">點選標題即可展開／收合內容：</p>
+  <div id="ingredient-detail-container" style="display: flex; flex-direction: column; gap: 12px;">
+
+    <!-- 1. 初乳蛋白 vs 乳鐵蛋白 vs 藻精蛋白 vs β-葡聚醣（預設收合） -->
+    <div class="ing-item">
+      <button onclick="switchIngredientTab('protein-compare')" id="tab-protein-compare" class="ing-tab-btn" aria-expanded="false" style="width: 100%; padding: 12px 16px; border: 1px solid #e0e0e0; background-color: #f9f9f9; color: #555; border-radius: 8px; font-weight: 500; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; text-align: left; transition: all 0.2s;"><span>📊 初乳蛋白 vs 乳鐵蛋白 vs 藻精蛋白 vs β-葡聚醣</span><span class="ing-arrow" style="font-size: 12px; flex-shrink: 0;">▶</span></button>
+      <div id="detail-protein-compare" class="ing-detail-block" style="display: none; margin-top: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+        <span style="background-color: #e3f2fd; color: #1565c0; font-size: 12px; font-weight: bold; padding: 3px 8px; border-radius: 4px;">免疫保養橫向對比</span>
+        <h3 style="margin: 0; font-size: 18px; color: #333; font-weight: 700;">初乳蛋白 vs 乳鐵蛋白 vs 藻精蛋白 vs β-葡聚醣</h3>
+      </div>
+
+      <!-- 比較表格 -->
+      <div style="overflow-x: auto; border: 1px solid #e0e0e0; border-radius: 8px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;">
+          <thead>
+            <tr style="background-color: #f5f5f5; border-bottom: 2px solid #e0e0e0; color: #424242;">
+              <th style="padding: 12px 16px; width: 14%; min-width: 90px;">項目</th>
+              <th style="padding: 12px 16px; width: 21.5%;">初乳蛋白</th>
+              <th style="padding: 12px 16px; width: 21.5%;">乳鐵蛋白</th>
+              <th style="padding: 12px 16px; width: 21.5%;">藻精蛋白</th>
+              <th style="padding: 12px 16px; width: 21.5%;">β-葡聚醣</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 12px 16px; font-weight: bold; background-color: #fafafa; color: #333;">來源</td>
+              <td style="padding: 12px 16px;">哺乳動物剛分娩3天內產生的第一道乳汁（初乳）</td>
+              <td style="padding: 12px 16px;">屬於初乳當中一個珍貴的關鍵成分</td>
+              <td style="padding: 12px 16px;">萃取自藻類，主要來自螺旋藻（藍藻）</td>
+              <td style="padding: 12px 16px;">新鮮營養酵母</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 12px 16px; font-weight: bold; background-color: #fafafa; color: #333;">主要成分</td>
+              <td style="padding: 12px 16px;">乳白蛋白、免疫球蛋白(IgG)、乳鐵蛋白、生長因子、溶菌酶</td>
+              <td style="padding: 12px 16px;">初乳中最獨特的防禦蛋白</td>
+              <td style="padding: 12px 16px;">異藻藍素(APC)、藻藍素(CPC)、藍藻精(SGF)</td>
+              <td style="padding: 12px 16px;">β-葡聚醣</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 12px 16px; font-weight: bold; background-color: #fafafa; color: #333;">核心機轉</td>
+              <td style="padding: 12px 16px;">像國王派來的援軍(IgG)，增加我方士兵數量</td>
+              <td style="padding: 12px 16px;">
+                • <b>抗菌：</b>搶走細菌的鐵，減少細菌繁殖<br>
+                • <b>抗病毒：</b>減少病毒與細胞結合，降低感染風險
+              </td>
+              <td style="padding: 12px 16px;">像我方軍隊的殺手，減少對方增援（抑制病毒複製）</td>
+              <td style="padding: 12px 16px;">
+                • <b>第一道防線：</b>強化黏膜(增加分泌型免疫球蛋白A的水平)<br>
+                • <b>第二道防線：</b>增強體內各種白血球(巨噬細胞/中性粒細胞/自然殺手細胞)
+              </td>
+            </tr>
+            <tr style="background-color: #f1f8e9;">
+              <td style="padding: 12px 16px; font-weight: bold; color: #2e7d32; background-color: #e8f5e9;">建議使用時機</td>
+              <td style="padding: 12px 16px; font-weight: bold; color: #2e7d32;">
+                預防小朋友生病<br>
+                <span style="font-size: 12px; font-weight: normal; color: #555;">(預防 ＞ 初乳蛋白)</span>
+              </td>
+              <td style="padding: 12px 16px; font-weight: bold; color: #c62828;">
+                小朋友已經生病時<br>
+                <span style="font-size: 12px; font-weight: normal; color: #555;">(病中 ＞ 首選補充)</span>
+              </td>
+              <td style="padding: 12px 16px; font-weight: bold; color: #c62828;">
+                小朋友已經生病時<br>
+                <span style="font-size: 12px; font-weight: normal; color: #555;">(病中 ＞ 首選補充)</span>
+              </td>
+              <td style="padding: 12px 16px; font-weight: bold; color: #1565c0;">
+                預防 或 病中皆可<br>
+                <span style="font-size: 12px; font-weight: normal; color: #555;">(有助於縮短生病天數)</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+
+    <!-- 2. 妙利散（預設收合） -->
+    <div class="ing-item">
+      <button onclick="switchIngredientTab('miarisan')" id="tab-miarisan" class="ing-tab-btn" aria-expanded="false" style="width: 100%; padding: 12px 16px; border: 1px solid #e0e0e0; background-color: #f9f9f9; color: #555; border-radius: 8px; font-weight: 500; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px; text-align: left; transition: all 0.2s;"><span>💊 妙利散 &amp; 阿德比</span><span class="ing-arrow" style="font-size: 12px; flex-shrink: 0;">▶</span></button>
+      <div id="detail-miarisan" class="ing-detail-block" style="display: none; margin-top: 12px;"><div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;"><span style="background-color: #e8f5e9; color: #2e7d32; font-size: 12px; font-weight: bold; padding: 3px 8px; border-radius: 4px;">益生菌 / 藥用益生菌</span><h3 style="margin: 0; font-size: 18px; color: #333; font-weight: 700;">妙利散 &amp; 阿德比</h3></div><div style="margin: 20px 0 10px 0; padding: 8px 12px; background-color: #e8f5e9; border-left: 4px solid #2e7d32; border-radius: 0 6px 6px 0; font-weight: 700; font-size: 14px; color: #1b5e20;">一.當客戶說醫生開妙利散給小孩吃時，你可以詢問以下問題~</div><div style="margin: 0 0 4px 8px; font-size: 13px; color: #444; line-height: 1.8;">1.是什麼情況去看醫師?拉肚子?便秘?腹痛?.......</div><div style="margin: 0 0 4px 8px; font-size: 13px; color: #444; line-height: 1.8;">2.改善效果如何?</div><div style="margin: 0 0 4px 8px; font-size: 13px; color: #444; line-height: 1.8;">3.醫生建議吃多久?醫生有說一直吃嗎?</div><div style="margin: 20px 0 10px 0; padding: 8px 12px; background-color: #e8f5e9; border-left: 4px solid #2e7d32; border-radius: 0 6px 6px 0; font-weight: 700; font-size: 14px; color: #1b5e20;">二.妙利散、阿德比是什麼?</div><p style="margin: 0 0 8px 0; font-size: 13px; color: #444; line-height: 1.8;">是大家比較熟悉,也常在醫院診所會拿到的藥用益生菌，因為有被證實療效，它們都有藥物字號</p><div style="background-color: #fff8e1; border-left: 4px solid #ffb300; padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 10px 0; font-size: 13px; color: #5d4037; line-height: 1.7;">👉 但它依舊是益生菌</div><p style="margin: 0 0 8px 0; font-size: 13px; color: #444; line-height: 1.8;">只是有部分療效被研究證實，不含藥物，用法和其他功效，其實和一般益生菌沒什麼太大不同</p><div style="margin: 20px 0 10px 0; padding: 8px 12px; background-color: #e8f5e9; border-left: 4px solid #2e7d32; border-radius: 0 6px 6px 0; font-weight: 700; font-size: 14px; color: #1b5e20;">三.妙利散、阿德比的功效分別是什麼？</div><div style="background-color: #f1f8e9; border: 1px solid #c5e1a5; padding: 10px 14px; border-radius: 8px; margin-bottom: 10px;"><div style="font-weight: 700; font-size: 13px; color: #33691e; margin-bottom: 6px;">1.妙利散(菌株 CBM588) 有證實的療效是</div><div style="margin: 0 0 4px 0px; font-size: 13px; color: #444; line-height: 1.8;">．改善「抗生素」引起的腹瀉或其他腸胃副作用</div><div style="margin: 0 0 4px 0px; font-size: 13px; color: #444; line-height: 1.8;">．改善「混合型腸躁症」引起的便秘或腹瀉</div></div><div style="background-color: #f1f8e9; border: 1px solid #c5e1a5; padding: 10px 14px; border-radius: 8px; margin-bottom: 10px;"><div style="font-weight: 700; font-size: 13px; color: #33691e; margin-bottom: 6px;">2.阿德比(菌株 Lcr35)的實證功效是</div><div style="margin: 0 0 4px 0px; font-size: 13px; color: #444; line-height: 1.8;">．改善10歲以下兒童「慢性便秘」</div><div style="margin: 0 0 4px 0px; font-size: 13px; color: #444; line-height: 1.8;">．改善兒童的「急性腹瀉」</div><div style="margin: 0 0 4px 0px; font-size: 13px; color: #444; line-height: 1.8;">．緩解腹瀉型腸躁症導致的「腹痛」問題</div></div><div style="background-color: #fff8e1; border-left: 4px solid #ffb300; padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 10px 0; font-size: 13px; color: #5d4037; line-height: 1.7;">👉 主要都是和真正的消化問題有關</div><div style="margin: 20px 0 10px 0; padding: 8px 12px; background-color: #e8f5e9; border-left: 4px solid #2e7d32; border-radius: 0 6px 6px 0; font-weight: 700; font-size: 14px; color: #1b5e20;">四.常見QA</div><div style="border: 1px solid #eee; background-color: #fdfdfd; padding: 12px; border-radius: 8px; margin-bottom: 10px;"><p style="margin: 0 0 6px 0; font-weight: bold; font-size: 13px; color: #333; line-height: 1.7;">Q:什麼情況下醫師會開這個給我吃？</p><div style="font-size: 13px; color: #444; font-weight: 600; margin-bottom: 4px;">A:</div><div style="margin: 0 0 4px 0px; font-size: 13px; color: #444; line-height: 1.8;">1.最常使用在有消化不良、腸胃炎、急性腹瀉和使用抗生素的時候</div><div style="margin: 0 0 4px 0px; font-size: 13px; color: #444; line-height: 1.8;">2.吃抗生素容易腹瀉的人</div><div style="margin: 0 0 4px 16px; font-size: 13px; color: #444; line-height: 1.8;">搭配益生菌吃有可能減少腹瀉的情況</div><div style="margin: 0 0 4px 0px; font-size: 13px; color: #444; line-height: 1.8;">3.一般益生菌建議要和抗生素間隔兩個小時，減少益菌一吃下去就被抗生素影響的機會</div><div style="margin: 0 0 4px 0px; font-size: 13px; color: #444; line-height: 1.8;">4.而這兩隻菌很特別，不怕抗生素,可以和抗生素同時吃</div><div style="background-color: #fff8e1; border-left: 4px solid #ffb300; padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 10px 0; font-size: 13px; color: #5d4037; line-height: 1.7;">👉 所以它們也很常出現在有抗生素的藥單裡</div></div><div style="border: 1px solid #eee; background-color: #fdfdfd; padding: 12px; border-radius: 8px; margin-bottom: 10px;"><p style="margin: 0 0 6px 0; font-weight: bold; font-size: 13px; color: #333; line-height: 1.7;">Q:聽說有些益生菌是藥品不能常吃，對身體負擔大，真的嗎?那平常可以拿來保養？還是最好有症狀再吃呢？</p><div style="margin: 0 0 4px 0px; font-size: 13px; color: #444; line-height: 1.8;">A:它們就是益生菌，當然平常也可以用,通常沒什麼壞處</div><div style="margin: 0 0 4px 0px; font-size: 13px; color: #444; line-height: 1.8;">主要看你希望的效果是什麼，如果你所想要的「保養」是為了其他目的，像是鼻過敏、異膚等等，其實還有其他更相關的菌株可以選擇</div></div></div>
+    </div>
+
+  </div>
+</div>
+<!-- 常見成分解析 模組結束 -->`;
+function switchIngredientTab(tabName){
+  var detail=document.getElementById('detail-'+tabName);
+  var btn=document.getElementById('tab-'+tabName);
+  if(!detail||!btn)return;
+  var willOpen=(detail.style.display==='none'||detail.style.display==='');
+  detail.style.display=willOpen?'block':'none';
+  var arrow=btn.querySelector('.ing-arrow');
+  if(arrow)arrow.textContent=willOpen?'▼':'▶';
+  btn.setAttribute('aria-expanded',willOpen?'true':'false');
+  if(willOpen){
+    btn.style.borderColor='#00a86b';btn.style.backgroundColor='#e8f8f2';btn.style.color='#006644';btn.style.fontWeight='600';btn.classList.add('active');
+  }else{
+    btn.style.borderColor='#e0e0e0';btn.style.backgroundColor='#f9f9f9';btn.style.color='#555';btn.style.fontWeight='500';btn.classList.remove('active');
+  }
+}
+
 function renderQAList2(){
   var c = document.getElementById('qaListArea');
   if(!c){ return; }
+  if(QA_SEARCH_ACTIVE){ renderQASearchResults(document.getElementById('qaSearch').value.trim()); return; }
   c.innerHTML = '';
   var srch = document.getElementById('qaSearch') ? document.getElementById('qaSearch').value.trim().toLowerCase() : '';
+  // 「常見成分解析」：改為顯示成分對比模組（取代原本的「QA 建置中」）
+  if(currentSubCat === 'ingredient'){
+    var plain = ING_MODULE_HTML.replace(/<[^>]+>/g,'').replace(/\s+/g,'').toLowerCase();
+    if(srch && plain.indexOf(srch.replace(/\s+/g,'')) < 0){
+      c.innerHTML = '<div style="text-align:center;color:var(--gray400);padding:40px;font-size:14px">找不到相關內容</div>';
+    } else {
+      c.innerHTML = ING_MODULE_HTML;
+    }
+    return;
+  }
   var total = 0;
   Object.keys(EXCEL_QA).forEach(function(key){
     var sheet = EXCEL_QA[key];
@@ -2068,7 +2368,7 @@ function renderQAList2(){
   if(!total){
     var empty = document.createElement('div');
     empty.style.cssText = 'text-align:center;color:var(--gray400);padding:40px;font-size:14px';
-    empty.textContent = currentSubCat === 'symptom' ? '常見症狀與配方 QA 建置中' : currentSubCat === 'ingredient' ? '常見成分解析 QA 建置中' : (srch ? '找不到相關QA' : '');
+    empty.textContent = currentSubCat === 'symptom' ? '常見症狀與配方 QA 建置中' : (srch ? '找不到相關QA' : '');
     c.appendChild(empty);
   }
 }
