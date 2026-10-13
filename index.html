@@ -2253,6 +2253,8 @@ function switchIngredientTab(tabName){
   var arrow=btn.querySelector('.ing-arrow');
   if(arrow)arrow.textContent=willOpen?'▼':'▶';
   btn.setAttribute('aria-expanded',willOpen?'true':'false');
+  // 點擊「展開」妙利散 & 阿德比時記錄（收合不記錄）
+  if(willOpen&&tabName==='miarisan'){try{trackUsage('AI問答-產品QA','妙利散 & 阿德比');}catch(e){}}
   if(willOpen){
     btn.style.borderColor='#00a86b';btn.style.backgroundColor='#e8f8f2';btn.style.color='#006644';btn.style.fontWeight='600';btn.classList.add('active');
   }else{
