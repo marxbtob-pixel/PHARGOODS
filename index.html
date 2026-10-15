@@ -1609,6 +1609,7 @@ function getUserId(){
 }
 function trackUsage(actionType,targetContent){
   try{
+    try{console.log('[track]',actionType,targetContent);}catch(e){}
     var uid=getUserId();
     var formUrl='https://docs.google.com/forms/d/e/1FAIpQLSeoCVxbrxto_H1RUEcNRa7qY7WCHKrJkA6JaW4HMdJIAhjnQg/formResponse';
     var body=new URLSearchParams();
@@ -2253,8 +2254,15 @@ function switchIngredientTab(tabName){
   var arrow=btn.querySelector('.ing-arrow');
   if(arrow)arrow.textContent=willOpen?'▼':'▶';
   btn.setAttribute('aria-expanded',willOpen?'true':'false');
-  // 點擊「展開」妙利散 & 阿德比時記錄（收合不記錄）
-  if(willOpen&&tabName==='miarisan'){try{trackUsage('AI問答-產品QA','妙利散 & 阿德比');}catch(e){}}
+  // 點擊「展開」任何一個成分標題都會記錄（收合不記錄）：動作類型＝AI問答-產品QA、目標內容＝標題文字
+  // 日後新增的成分只要沿用同樣結構（button id="tab-XXX" class="ing-tab-btn"，第一個 <span> 放標題），就會自動記錄
+  if(willOpen){
+    try{
+      var tEl=btn.querySelector('span'),title=(tEl?tEl.textContent:'')||tabName;
+      title=title.replace(/^[\s\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\u{FE0F}]+/u,'').trim()||tabName;
+      trackUsage('AI問答-產品QA',title);
+    }catch(e){}
+  }
   if(willOpen){
     btn.style.borderColor='#00a86b';btn.style.backgroundColor='#e8f8f2';btn.style.color='#006644';btn.style.fontWeight='600';btn.classList.add('active');
   }else{
