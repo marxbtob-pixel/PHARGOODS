@@ -292,6 +292,27 @@ table, th, td, .card, .m-bub, .msg {
 .qa-copy-btn{padding:4px 12px;border-radius:14px;border:1.5px solid var(--brand-100);background:#fff;color:var(--brand-dark);font-size:15px;font-family:var(--font);font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap}
 .qa-copy-btn:hover{background:var(--brand-50);border-color:var(--brand-mid)}
 .qa-copy-btn.done{background:#dcfce7;color:#15803d;border-color:#86efac}
+/* ===== 考核內容 ===== */
+.exam-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.exam-card{background:#fff;border:1px solid var(--gray200);border-radius:var(--r);box-shadow:var(--sh-xs);overflow:hidden;min-width:0}
+.exam-card-hd{padding:14px 18px;background:linear-gradient(135deg,#ede9fe,#ddd6fe);border-bottom:1px solid #c4b5fd}
+.exam-title{font-size:20px;font-weight:700;color:#4c1d95}
+.exam-sub{font-size:15px;color:#6d28d9;margin-top:2px;font-weight:600}
+.exam-scroll{overflow-x:auto}
+.exam-table{width:100%;border-collapse:collapse;font-size:16px}
+.exam-table th{background:#4c1d95;color:#fff;padding:10px 8px;font-size:16px;font-weight:700;text-align:center;white-space:nowrap}
+.exam-table th.exam-q{text-align:left;padding-left:14px}
+.exam-table td{padding:10px 8px;border-bottom:1px solid var(--gray100);color:var(--gray700);line-height:1.6;word-break:break-word}
+.exam-table td.exam-q{padding-left:14px;text-align:left;min-width:180px}
+.exam-table td.exam-c{text-align:center;width:64px;white-space:nowrap}
+.exam-table tbody tr:nth-child(even) td{background:#faf9ff}
+.exam-star{color:#f39c12;font-size:20px;line-height:1}
+.exam-table tr.exam-time td{font-weight:700;background:#fff8ec;color:#92400e}
+.exam-items{padding:14px 18px;border-top:1px solid var(--gray200);background:#f9fafb}
+.exam-items-lbl{font-size:15px;font-weight:700;color:var(--gray500);margin-bottom:8px}
+.exam-chips{display:flex;gap:8px;flex-wrap:wrap}
+.exam-chip{padding:5px 14px;border-radius:16px;background:var(--brand-pale);border:1px solid var(--brand-100);color:var(--brand-dark);font-size:16px;font-weight:600}
+@media(max-width:900px){.exam-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -396,7 +417,7 @@ window.addEventListener('load',function(){
     <button class="nav-btn" onclick="switchPage('voice')">🎬 影音教案</button>
     <button class="nav-btn" onclick="switchPage('objection')">🛡️ 異議神助手</button>
     <button class="nav-btn locked" onclick="requireAuth('quiz')">🔒 測驗</button>
-    <button class="nav-btn locked" onclick="requireAuth('exam')">🔒 考核</button>
+    <button class="nav-btn" id="nav-exam" onclick="switchTab('exam')">📋 考核</button>
     <button class="nav-btn locked" onclick="requireAuth('score')">🔒 成績</button>
     <button class="nav-btn" onclick="switchPage('guide')">使用說明</button>
   </nav>
@@ -579,15 +600,10 @@ window.addEventListener('load',function(){
 
 <!-- EXAM -->
 <div class="page" id="page-exam">
-  <div style="margin-bottom:18px"><div class="pg-t">🎯 正式考核</div><div class="pg-s">季度產品知識正式考核，成績計入個人檔案</div></div>
-  <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:28px">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px">
-      <div style="background:var(--brand-50);border-radius:10px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:var(--brand)">Q2</div><div style="font-size:14px;color:var(--gray500);margin-top:3px">2025 第二季考核</div></div>
-      <div style="background:var(--accent-pale);border-radius:10px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:var(--accent)">25題</div><div style="font-size:14px;color:var(--gray500);margin-top:3px">考題數量</div></div>
-      <div style="background:var(--purple-pale);border-radius:10px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:var(--purple)">45分鐘</div><div style="font-size:14px;color:var(--gray500);margin-top:3px">限時作答</div></div>
-    </div>
-    <div style="background:var(--amberbg);border:1px solid #f5d882;border-radius:8px;padding:13px;font-size:15px;color:#7a5c00;margin-bottom:18px;line-height:1.7">⚠️ <strong>注意：</strong>考核每季僅限一次機會，作答中途不可離開頁面，結束後成績立即計入個人紀錄。及格分數 80 分。</div>
-    <button onclick="startExam()" style="padding:11px 28px;background:var(--purple);color:#fff;border:none;border-radius:24px;font-size:16px;font-family:var(--font);font-weight:600;cursor:pointer">🎯 開始本季考核</button>
+  <div style="margin-bottom:18px"><div class="pg-t">📋 考核內容</div><div class="pg-s">藥師健生活考核標準，請依考核品項準備</div></div>
+  <div class="exam-grid">
+<div class="exam-card"><div class="exam-card-hd"><div class="exam-title">藥師健生活考核標準-1</div><div class="exam-sub">可翻資料 (在自己座位線上考核)</div></div><div class="exam-scroll"><table class="exam-table"><thead><tr><th class="exam-q">考核題目</th><th>3★</th><th>4★</th><th>5★</th></tr></thead><tbody><tr><td class="exam-q">1.作用(吃甚麼)</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">2.成分有哪些</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">3.商品劑量/黃金比例</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">4.每日建議劑量(幾顆?/食用年紀/最多吃幾顆?)</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">5.使用時機(何時吃?列出所有可食用的時間)</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">6.適合那些族群使用</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">7.勿一起食用品項/或不能食用的族群/或注意事項</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">8.所有成分含功效</td><td class="exam-c"></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">9.常見Q&A</td><td class="exam-c"></td><td class="exam-c"></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr class="exam-time"><td class="exam-q">10.所需時間(時間內完成) / 分</td><td class="exam-c">45分</td><td class="exam-c">50分</td><td class="exam-c">50分</td></tr></tbody></table></div><div class="exam-items"><div class="exam-items-lbl">考核品項</div><div class="exam-chips"><span class="exam-chip">兒童系列*5</span><span class="exam-chip">五百益生菌</span><span class="exam-chip">葉黃素</span><span class="exam-chip">30而力</span><span class="exam-chip">30而力 PRO</span><span class="exam-chip">莓日C</span></div></div></div>
+<div class="exam-card"><div class="exam-card-hd"><div class="exam-title">藥師健生活考核標準-2</div><div class="exam-sub">可翻資料 (在自己座位線上考核)</div></div><div class="exam-scroll"><table class="exam-table"><thead><tr><th class="exam-q">考核題目</th><th>3★</th><th>4★</th><th>5★</th></tr></thead><tbody><tr><td class="exam-q">1.作用(吃甚麼)</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">2.成分有哪些</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">3.商品劑量/黃金比例</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">4.每日建議劑量(幾顆?/食用年紀/最多吃幾顆?)</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">5.使用時機(何時吃?列出所有可食用的時間)</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">6.適合那些族群使用</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">7.勿一起食用品項/或不能食用的族群/或注意事項</td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">8.所有成分含功效</td><td class="exam-c"></td><td class="exam-c"><span class="exam-star">★</span></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr><td class="exam-q">9.常見Q&A</td><td class="exam-c"></td><td class="exam-c"></td><td class="exam-c"><span class="exam-star">★</span></td></tr><tr class="exam-time"><td class="exam-q">10.所需時間(時間內完成) / 分</td><td class="exam-c">45分</td><td class="exam-c">50分</td><td class="exam-c">50分</td></tr></tbody></table></div><div class="exam-items"><div class="exam-items-lbl">考核品項</div><div class="exam-chips"><span class="exam-chip">魚油*3</span><span class="exam-chip">咖好力</span><span class="exam-chip">鎂鈣力</span><span class="exam-chip">每日B</span><span class="exam-chip">小莓好</span><span class="exam-chip">發泡C</span><span class="exam-chip">鋅</span><span class="exam-chip">挪威葡聚醣</span></div></div></div>
   </div>
 </div>
 
@@ -618,7 +634,7 @@ window.addEventListener('load',function(){
     <div class="g-card"><div class="g-n">02</div><div class="g-t">AI 問答</div><div class="g-p">PharBot 熟悉所有產品，可回答成分、功效、禁忌</div><div class="g-step"><div class="g-sn">1</div><span>點選「AI 問答」分頁</span></div><div class="g-step"><div class="g-sn">2</div><span>直接輸入問題或點左側建議</span></div><div class="g-step"><div class="g-sn">3</div><span>按 Enter 即可獲得即時回答</span></div></div>
     <div class="g-card"><div class="g-n">03</div><div class="g-t">語音教案</div><div class="g-p">蔡藥師錄製語音，隨時聆聽學習產品知識</div><div class="g-step"><div class="g-sn">1</div><span>點選「語音教案」分頁</span></div><div class="g-step"><div class="g-sn">2</div><span>選擇想聆聽的教案主題</span></div><div class="g-step"><div class="g-sn">3</div><span>點擊播放按鈕開始學習</span></div></div>
     <div class="g-card"><div class="g-n">04</div><div class="g-t">測驗 🔒</div><div class="g-p">隨時練習，驗證對產品知識的掌握程度</div><div class="g-step"><div class="g-sn">🔑</div><span>需輸入授權密碼才可存取</span></div><div class="g-step"><div class="g-sn">1</div><span>10 題、隨機出題、即時解析</span></div><div class="g-step"><div class="g-sn">2</div><span>70 分及格，可重複作答</span></div></div>
-    <div class="g-card"><div class="g-n">05</div><div class="g-t">考核 🔒</div><div class="g-p">季度正式考核，成績計入個人檔案</div><div class="g-step"><div class="g-sn">🔑</div><span>需輸入授權密碼才可存取</span></div><div class="g-step"><div class="g-sn">1</div><span>25 題、45 分鐘限時、每季一次</span></div><div class="g-step"><div class="g-sn">2</div><span>80 分及格，成績送主管審閱</span></div></div>
+    <div class="g-card"><div class="g-n">05</div><div class="g-t">考核</div><div class="g-p">查看藥師健生活考核標準與各梯次的考核品項</div><div class="g-step"><div class="g-sn">1</div><span>點選上方「考核」分頁</span></div><div class="g-step"><div class="g-sn">2</div><span>左右兩張表為考核標準 1、2（手機自動上下排列）</span></div><div class="g-step"><div class="g-sn">3</div><span>★ 為各分數需考核的題目，下方列出考核品項</span></div></div>
     <div class="g-card"><div class="g-n">06</div><div class="g-t">成績 🔒</div><div class="g-p">查看個人歷次測驗與考核成績紀錄</div><div class="g-step"><div class="g-sn">🔑</div><span>需輸入授權密碼才可存取</span></div><div class="g-step"><div class="g-sn">1</div><span>顯示平均分數、次數統計</span></div><div class="g-step"><div class="g-sn">2</div><span>可篩選測驗或考核記錄</span></div></div>
     <div class="g-card"><div class="g-n">07</div><div class="g-t">異議神助手</div><div class="g-p">客戶提出異議時，快速查詢四步對話與 LINE 話術</div><div class="g-step"><div class="g-sn">1</div><span>選擇異議分類，再點選客戶的拒絕詞</span></div><div class="g-step"><div class="g-sn">2</div><span>左欄看口語四步對話與心法</span></div><div class="g-step"><div class="g-sn">3</div><span>右欄按「一鍵複製」貼到 LINE</span></div></div>
   </div>
@@ -943,6 +959,12 @@ function switchPage(id){
   if(idx>=0) document.querySelectorAll('.nav-btn')[idx].classList.add('active');
   if(id==='score') renderScores();
   if(id==='objection') initObjection();
+}
+// 導覽按鈕使用的切換函式；切到「考核」時，用系統原本的 trackUsage 送出紀錄到統計表單
+// （欄位：動作類型＝考核、目標內容＝藥師健生活考核標準、姓名＝登入同仁；trackUsage 同時會在 Console 印出 [track] 考核 藥師健生活考核標準）
+function switchTab(id){
+  switchPage(id);
+  if(id==='exam'){ try{ trackUsage('考核','藥師健生活考核標準'); }catch(e){} }
 }
 
 function requireAuth(page){
