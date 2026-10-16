@@ -27,9 +27,9 @@ header{background:var(--brand-dark);padding:8px 24px;min-height:64px;display:fle
 .logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--brand-light),var(--brand));border:2px solid rgba(255,255,255,.25);border-radius:10px;display:flex;align-items:center;justify-content:center;}
 .logo-icon svg{width:19px;height:19px;fill:#fff}
 .logo-cn{font-size:17px;font-weight:700;color:#fff;letter-spacing:.04em;white-space:nowrap}
-.logo-en{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:.08em;margin-top:1px}
+.logo-en{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.08em;margin-top:1px}
 .logo-divider{width:1px;height:26px;background:rgba(255,255,255,.2);margin:0 6px}
-.logo-tag{font-size:12px;color:rgba(255,255,255,.55);white-space:nowrap}
+.logo-tag{font-size:14px;color:rgba(255,255,255,.55);white-space:nowrap}
 
 nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
 .nav-btn{padding:8px 16px;border-radius:20px;font-size:16px;font-weight:600;white-space:nowrap;font-family:var(--font);cursor:pointer;border:1.5px solid rgba(255,255,255,.14);transition:all .2s;color:#fff;background:rgba(0,0,0,.22);display:flex;align-items:center;gap:5px;line-height:1.3}
@@ -38,7 +38,7 @@ nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-
 .nav-btn.active:hover{background:#ffb02e;border-color:#fff;transform:none}
 .nav-btn.locked{color:rgba(255,255,255,.72)}
 .nav-btn.locked:hover{color:#fff}
-@media(max-width:760px){.nav-btn{padding:7px 12px;font-size:15px}}
+@media(max-width:760px){.nav-btn{padding:7px 12px;font-size:16px}}
 
 main{flex:1;padding:22px 28px;max-width:1180px;width:100%;margin:0 auto}
 .page{display:none}.page.active{display:block}
@@ -48,95 +48,95 @@ main{flex:1;padding:22px 28px;max-width:1180px;width:100%;margin:0 auto}
 .hero::after{content:'';position:absolute;right:60px;bottom:-60px;width:160px;height:160px;background:rgba(255,255,255,.03);border-radius:50%;}
 .hero-left h1{font-size:28px;font-weight:700;color:#fff;margin-bottom:5px}
 .hero-left p{font-size:16px;color:rgba(255,255,255,.7);line-height:1.6;max-width:460px}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 13px;margin-top:11px;font-size:13.5px;color:rgba(255,255,255,.85);}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 13px;margin-top:11px;font-size:15px;color:rgba(255,255,255,.85);}
 .hero-badge svg{width:12px;height:12px;fill:var(--accent)}
 .hero-stats{display:flex;gap:22px;flex-shrink:0;z-index:1}
 .stat{text-align:center}
 .stat-num{font-size:20px;font-weight:700;color:var(--accent)}
-.stat-lbl{font-size:13px;color:rgba(255,255,255,.6);margin-top:2px}
+.stat-lbl{font-size:15px;color:rgba(255,255,255,.6);margin-top:2px}
 
 .search-row{display:flex;gap:10px;margin-bottom:14px}
 .search-input{flex:1;padding:10px 17px;border:1.5px solid var(--brand-100);border-radius:24px;font-size:17px;font-family:var(--font);outline:none;background:#fff;transition:border .2s,box-shadow .2s;}
 .search-input:focus{border-color:var(--brand-mid);box-shadow:0 0 0 3px rgba(74,190,128,.12)}
-.btn-search{padding:10px 20px;background:var(--brand);color:#fff;border:none;border-radius:24px;font-size:15px;font-family:var(--font);font-weight:600;cursor:pointer;transition:background .18s;}
+.btn-search{padding:10px 20px;background:var(--brand);color:#fff;border:none;border-radius:24px;font-size:16px;font-family:var(--font);font-weight:600;cursor:pointer;transition:background .18s;}
 .btn-search:hover{background:var(--brand-dark)}
 
 .series-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
-.series-chip{padding:5px 14px;border-radius:14px;font-size:15px;font-family:var(--font);cursor:pointer;border:1.5px solid var(--brand-100);background:#fff;color:var(--gray500);transition:all .18s;font-weight:500;}
+.series-chip{padding:5px 14px;border-radius:14px;font-size:16px;font-family:var(--font);cursor:pointer;border:1.5px solid var(--brand-100);background:#fff;color:var(--gray500);transition:all .18s;font-weight:500;}
 .series-chip:hover,.series-chip.on{background:var(--brand-dark);border-color:var(--brand-dark);color:#fff;font-weight:600;}
 .series-chip.veg-chip:hover,.series-chip.veg-chip.on{background:#15803d;border-color:#15803d;color:#fff;}
 
 .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
-.chip{padding:5px 13px;border-radius:14px;font-size:15px;font-family:var(--font);cursor:pointer;border:1.5px solid var(--brand-100);background:#fff;color:var(--gray500);transition:all .18s;}
+.chip{padding:5px 13px;border-radius:14px;font-size:16px;font-family:var(--font);cursor:pointer;border:1.5px solid var(--brand-100);background:#fff;color:var(--gray500);transition:all .18s;}
 .chip:hover,.chip.on{background:var(--brand-50);border-color:var(--brand-mid);color:var(--brand);font-weight:600;}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:13px}
 .card-sold-out{opacity:0.7;filter:grayscale(30%)}
 .card{background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:17px;cursor:pointer;transition:all .2s;box-shadow:var(--sh-xs);display:flex;flex-direction:column;}
 .card:hover{border-color:var(--brand-200);box-shadow:var(--sh-md);transform:translateY(-2px)}
-.card-series{font-size:12px;color:var(--gray400);font-weight:500;letter-spacing:.06em;margin-bottom:3px;text-transform:uppercase}
+.card-series{font-size:14px;color:var(--gray400);font-weight:500;letter-spacing:.06em;margin-bottom:3px;text-transform:uppercase}
 .card-name{font-size:20px;font-weight:700;color:var(--brand-dark);margin-bottom:3px;line-height:1.4}
 .card-sub{font-size:16px;color:var(--brand-mid);font-weight:500;margin-bottom:6px}
 .card-desc{font-size:16px;color:var(--gray400);line-height:1.65;flex:1;margin-bottom:10px}
 .card-foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--gray100);padding-top:8px}
-.badge{display:inline-block;padding:2px 9px;border-radius:8px;font-size:11px;font-weight:600}
+.badge{display:inline-block;padding:2px 9px;border-radius:8px;font-size:13px;font-weight:600}
 .b-adult{background:#e8f5e9;color:#1b5e20}.b-kids{background:#e3f2fd;color:#0d47a1}
 .b-women{background:#fce4ec;color:#880e4f}.b-sport{background:#f3e5f5;color:#4a148c}
 .b-other{background:#fff3e0;color:#e65100}
-.card-more{font-size:13px;color:var(--brand-mid)}
+.card-more{font-size:15px;color:var(--brand-mid)}
 
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;align-items:center;justify-content:center;padding:20px}
 .overlay.open{display:flex}
 .modal{background:#fff;border-radius:16px;width:620px;max-width:100%;max-height:88vh;overflow-y:auto;padding:28px;position:relative;box-shadow:var(--sh-lg)}
-.modal-close{position:absolute;top:15px;right:15px;width:28px;height:28px;background:var(--gray100);border:none;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;color:var(--gray500);}
+.modal-close{position:absolute;top:15px;right:15px;width:28px;height:28px;background:var(--gray100);border:none;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--gray500);}
 .modal-close:hover{background:var(--gray200)}
 .modal-title{font-size:28px;font-weight:700;color:var(--brand-dark);margin-bottom:2px}
 .modal-sub{font-size:20px;color:var(--brand-mid);font-weight:500;margin-bottom:14px}
 .modal-desc{font-size:17px;color:var(--gray500);line-height:1.8;margin-bottom:14px;padding:14px;background:var(--brand-50);border-radius:8px;border-left:3px solid var(--brand-mid)}
 .info-block{margin-bottom:13px}
-.info-lbl{font-size:13px;font-weight:700;color:var(--brand);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.info-lbl{font-size:15px;font-weight:700;color:var(--brand);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
 .info-val{font-size:17px;color:var(--gray700);line-height:1.75}
 .info-warn{color:#d97706;font-size:17px;line-height:1.75}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{padding:4px 11px;background:var(--brand-pale);color:var(--brand);border-radius:8px;font-size:16px;font-weight:500}
 .modal-actions{display:flex;gap:10px;margin-top:18px;padding-top:15px;border-top:1px solid var(--gray200)}
-.btn-outline{flex:1;padding:10px;border:1.5px solid var(--brand-mid);color:var(--brand);background:transparent;border-radius:8px;font-size:13px;font-family:var(--font);cursor:pointer;font-weight:500}
+.btn-outline{flex:1;padding:10px;border:1.5px solid var(--brand-mid);color:var(--brand);background:transparent;border-radius:8px;font-size:15px;font-family:var(--font);cursor:pointer;font-weight:500}
 .btn-outline:hover{background:var(--brand-50)}
 
 .auth-box{text-align:center;padding:8px 0}
 .auth-icon{font-size:52px;margin-bottom:14px}
 .auth-title{font-size:19px;font-weight:700;color:var(--gray900);margin-bottom:6px}
-.auth-sub{font-size:13px;color:var(--gray400);margin-bottom:22px;line-height:1.65}
-.auth-input{width:100%;padding:10px 15px;border:1.5px solid var(--gray200);border-radius:8px;font-size:14px;font-family:var(--font);outline:none;margin-bottom:10px;transition:border .2s}
+.auth-sub{font-size:15px;color:var(--gray400);margin-bottom:22px;line-height:1.65}
+.auth-input{width:100%;padding:10px 15px;border:1.5px solid var(--gray200);border-radius:8px;font-size:16px;font-family:var(--font);outline:none;margin-bottom:10px;transition:border .2s}
 .auth-input:focus{border-color:var(--purple)}
-.auth-btn{width:100%;padding:11px;background:var(--purple);color:#fff;border:none;border-radius:8px;font-size:14px;font-family:var(--font);font-weight:600;cursor:pointer}
+.auth-btn{width:100%;padding:11px;background:var(--purple);color:#fff;border:none;border-radius:8px;font-size:16px;font-family:var(--font);font-weight:600;cursor:pointer}
 .auth-btn:hover{background:#6d28d9}
-.auth-err{color:var(--red);font-size:12px;margin-top:8px;display:none}
-.auth-cancel{margin-top:12px;font-size:12px;color:var(--gray400);cursor:pointer;text-decoration:underline}
+.auth-err{color:var(--red);font-size:14px;margin-top:8px;display:none}
+.auth-cancel{margin-top:12px;font-size:14px;color:var(--gray400);cursor:pointer;text-decoration:underline}
 
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--brand-dark);color:#fff;padding:10px 22px;border-radius:24px;font-size:13px;font-family:var(--font);z-index:999;transition:transform .3s,opacity .3s;opacity:0;pointer-events:none;box-shadow:var(--sh-md)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--brand-dark);color:#fff;padding:10px 22px;border-radius:24px;font-size:15px;font-family:var(--font);z-index:999;transition:transform .3s,opacity .3s;opacity:0;pointer-events:none;box-shadow:var(--sh-md)}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
 .chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 140px)}
 .chat-side{background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:14px;overflow-y:auto}
-.side-h{font-size:12px;font-weight:700;color:var(--brand);letter-spacing:.08em;margin-bottom:8px}
-.suggest{padding:7px 9px;border-radius:7px;font-size:15px;color:var(--gray500);cursor:pointer;line-height:1.5;margin-bottom:2px;transition:all .15s}
+.side-h{font-size:14px;font-weight:700;color:var(--brand);letter-spacing:.08em;margin-bottom:8px}
+.suggest{padding:7px 9px;border-radius:7px;font-size:16px;color:var(--gray500);cursor:pointer;line-height:1.5;margin-bottom:2px;transition:all .15s}
 .suggest:hover{background:var(--brand-50);color:var(--brand)}
 .chat-main{background:#fff;border-radius:var(--r);border:1px solid var(--gray200);display:flex;flex-direction:column;overflow:hidden}
 .chat-hdr{padding:12px 17px;border-bottom:1px solid var(--gray100);display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,var(--brand-dark),var(--brand-mid))}
 .c-av{width:32px;height:32px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.3)}
 .c-av svg{width:15px;height:15px;fill:#fff}
-.c-name{font-size:20px;font-weight:700;color:#fff}.c-status{font-size:13px;color:rgba(255,255,255,.7)}
+.c-name{font-size:20px;font-weight:700;color:#fff}.c-status{font-size:15px;color:rgba(255,255,255,.7)}
 .chat-msgs{flex:1;overflow-y:auto;padding:15px;display:flex;flex-direction:column;gap:12px}
 .msg{display:flex;gap:8px;max-width:85%}
 .msg.user{align-self:flex-end;flex-direction:row-reverse}
-.m-av{width:27px;height:27px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.m-av{width:27px;height:27px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
 .msg.bot .m-av{background:var(--brand-50);color:var(--brand)}
 .msg.user .m-av{background:var(--brand);color:#fff}
 .m-bub{padding:9px 13px;border-radius:11px;font-size:17px;line-height:1.65}
 .msg.bot .m-bub{background:var(--gray100);color:var(--gray900);border-radius:3px 11px 11px 11px}
 .msg.user .m-bub{background:var(--brand);color:#fff;border-radius:11px 3px 11px 11px}
-.m-time{font-size:10px;color:var(--gray400);margin-top:3px;text-align:right}
+.m-time{font-size:12px;color:var(--gray400);margin-top:3px;text-align:right}
 .t-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--brand-light);animation:blink 1.2s infinite;margin:0 2px}
 .t-dot:nth-child(2){animation-delay:.2s}.t-dot:nth-child(3){animation-delay:.4s}
 @keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
@@ -154,17 +154,17 @@ main{flex:1;padding:22px 28px;max-width:1180px;width:100%;margin:0 auto}
 .vc-header{display:flex;align-items:center;gap:11px;margin-bottom:10px}
 .vc-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
 .vc-icon.green{background:var(--brand-pale)}.vc-icon.blue{background:var(--bluebg)}.vc-icon.amber{background:var(--accent-pale)}.vc-icon.pink{background:#fce4ec}
-.vc-title{font-size:20px;font-weight:700;color:var(--gray900)}.vc-sub{font-size:13px;color:var(--gray400);margin-top:2px}
+.vc-title{font-size:20px;font-weight:700;color:var(--gray900)}.vc-sub{font-size:15px;color:var(--gray400);margin-top:2px}
 .vc-desc{font-size:16px;color:var(--gray500);line-height:1.65;margin-bottom:12px}
 .vc-meta{display:flex;gap:12px;margin-bottom:10px}
-.vc-tag{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--gray400)}
+.vc-tag{display:flex;align-items:center;gap:4px;font-size:13px;color:var(--gray400)}
 .vc-player{background:var(--gray50);border-radius:8px;padding:10px;display:flex;align-items:center;gap:9px}
 .play-btn{width:34px;height:34px;background:var(--brand);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .18s}
 .play-btn:hover{background:var(--brand-dark)}.play-btn svg{width:13px;height:13px;fill:#fff;margin-left:2px}
 .play-btn.playing{background:var(--accent)}.play-btn.playing svg{margin-left:0}
 .prog-bar{flex:1;height:4px;background:var(--gray200);border-radius:2px;cursor:pointer;position:relative}
 .prog-fill{height:100%;background:var(--brand);border-radius:2px;width:0%;transition:width .1s}
-.prog-time{font-size:11px;color:var(--gray400);white-space:nowrap}
+.prog-time{font-size:13px;color:var(--gray400);white-space:nowrap}
 
 .quiz-wrap{max-width:700px;margin:0 auto}
 .quiz-progress{background:var(--gray200);border-radius:4px;height:5px;margin-bottom:22px}
@@ -176,20 +176,20 @@ main{flex:1;padding:22px 28px;max-width:1180px;width:100%;margin:0 auto}
 .quiz-opt.selected{border-color:var(--brand);background:var(--brand-50);color:var(--brand);font-weight:600}
 .quiz-opt.correct{border-color:#16a34a;background:#f0fdf4;color:#15803d;font-weight:600}
 .quiz-opt.wrong{border-color:var(--red);background:var(--redbg);color:var(--red);font-weight:600}
-.btn-quiz{padding:9px 22px;border-radius:8px;font-size:13px;font-family:var(--font);font-weight:600;cursor:pointer;transition:all .18s}
+.btn-quiz{padding:9px 22px;border-radius:8px;font-size:15px;font-family:var(--font);font-weight:600;cursor:pointer;transition:all .18s}
 .btn-quiz-primary{background:var(--brand);color:#fff;border:none}
 .btn-quiz-primary:hover{background:var(--brand-dark)}
 .btn-quiz-primary:disabled{background:var(--gray300);cursor:not-allowed}
 .result-circle{width:110px;height:110px;border-radius:50%;border:6px solid var(--brand);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 18px}
 .result-score{font-size:34px;font-weight:700;color:var(--brand)}
-.result-label{font-size:11px;color:var(--gray400)}
+.result-label{font-size:13px;color:var(--gray400)}
 
 .score-table{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-xs)}
-.score-table th{background:var(--brand-dark);color:#fff;padding:11px 14px;text-align:left;font-size:15px;font-weight:600;letter-spacing:.04em}
+.score-table th{background:var(--brand-dark);color:#fff;padding:11px 14px;text-align:left;font-size:16px;font-weight:600;letter-spacing:.04em}
 .score-table td{padding:10px 14px;font-size:17px;border-bottom:1px solid var(--gray100);color:var(--gray700)}
 .score-table tr:last-child td{border-bottom:none}
 .score-table tr:hover td{background:var(--brand-50)}
-.score-badge{display:inline-block;padding:2px 9px;border-radius:8px;font-size:11px;font-weight:600}
+.score-badge{display:inline-block;padding:2px 9px;border-radius:8px;font-size:13px;font-weight:600}
 .sb-pass{background:#dcfce7;color:#15803d}.sb-fail{background:#fee2e2;color:#dc2626}
 
 .g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:13px}
@@ -199,7 +199,7 @@ main{flex:1;padding:22px 28px;max-width:1180px;width:100%;margin:0 auto}
 .g-p{font-size:16px;color:var(--gray400);line-height:1.7;margin-bottom:11px}
 .g-step{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--gray100);font-size:16px;color:var(--gray500)}
 .g-step:last-child{border:none}
-.g-sn{width:19px;height:19px;background:var(--brand-50);color:var(--brand);border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.g-sn{width:26px;height:26px;background:var(--brand-50);color:var(--brand);border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .pg-t{font-size:20px;font-weight:700;color:var(--brand-dark);margin-bottom:3px}
 .pg-s{font-size:16px;color:var(--gray400);margin-bottom:18px}
 .alert{background:var(--amberbg);border:1px solid #f5d882;border-radius:var(--rsm);padding:11px 14px;font-size:16px;color:#7a5c00;margin-bottom:18px;line-height:1.6}
@@ -222,18 +222,18 @@ table, th, td, .card, .m-bub, .msg {
 /* ===== 異議神助手 v2 ===== */
 .obj-hero{background:linear-gradient(120deg,#5b21b6 0%,#8b5cf6 100%);border-radius:16px;padding:22px 28px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .obj-hero h1{font-size:26px;font-weight:700;color:#fff;margin-bottom:4px}
-.obj-hero p{font-size:15px;color:rgba(255,255,255,.82);line-height:1.6;max-width:540px}
+.obj-hero p{font-size:16px;color:rgba(255,255,255,.82);line-height:1.6;max-width:540px}
 .obj-hero .hero-stats .stat-num{color:#fde68a}
-.obj-demo{background:var(--amberbg);border:1px solid #f5d882;border-radius:var(--rsm);padding:10px 14px;font-size:14px;color:#7a5c00;margin-bottom:14px;line-height:1.7}
+.obj-demo{background:var(--amberbg);border:1px solid #f5d882;border-radius:var(--rsm);padding:10px 14px;font-size:16px;color:#7a5c00;margin-bottom:14px;line-height:1.7}
 .obj-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .obj-tab{padding:9px 18px;border-radius:12px;border:1.5px solid #ddd6fe;background:#fff;color:#5b21b6;font-size:16px;font-family:var(--font);font-weight:600;cursor:pointer;transition:all .15s}
 .obj-tab:hover{background:var(--purple-pale)}
 .obj-tab.on{background:#6d28d9;border-color:#6d28d9;color:#fff}
-.obj-tab small{font-weight:500;opacity:.8;margin-left:4px;font-size:13px}
+.obj-tab small{font-weight:500;opacity:.8;margin-left:4px;font-size:15px}
 .obj-pillbar{background:#fff;border:1px solid var(--gray200);border-radius:var(--r);padding:12px 14px;margin-bottom:16px}
-.obj-pillbar-lbl{font-size:13px;font-weight:700;color:var(--gray500);margin-bottom:8px}
+.obj-pillbar-lbl{font-size:15px;font-weight:700;color:var(--gray500);margin-bottom:8px}
 .obj-pills{display:flex;gap:8px;flex-wrap:wrap}
-.obj-pill{padding:6px 14px;border-radius:18px;border:1.5px solid var(--gray200);background:var(--gray50);color:var(--gray700);font-size:15px;font-family:var(--font);cursor:pointer;line-height:1.4;text-align:left}
+.obj-pill{padding:6px 14px;border-radius:18px;border:1.5px solid var(--gray200);background:var(--gray50);color:var(--gray700);font-size:16px;font-family:var(--font);cursor:pointer;line-height:1.4;text-align:left}
 .obj-pill:hover{border-color:#a78bfa;background:var(--purple-pale)}
 .obj-pill.on{background:#ede9fe;border-color:#7c3aed;color:#5b21b6;font-weight:700}
 .obj-say{font-size:20px;font-weight:700;color:var(--gray900);margin-bottom:12px}
@@ -245,51 +245,51 @@ table, th, td, .card, .m-bub, .msg {
 .obj-col-hd.line{background:#ecfdf5;color:#047857;border-bottom:1px solid #a7f3d0}
 .obj-col-bd{padding:14px 16px}
 .obj-step{display:flex;gap:12px;margin-bottom:14px}
-.obj-step-n{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:#6d28d9;color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center}
+.obj-step-n{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:#6d28d9;color:#fff;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center}
 .obj-step:nth-child(2) .obj-step-n{background:#0891b2}
 .obj-step:nth-child(3) .obj-step-n{background:#059669}
 .obj-step:nth-child(4) .obj-step-n{background:#d97706}
-.obj-step-t{font-size:14px;font-weight:700;color:var(--gray500);margin-bottom:2px}
+.obj-step-t{font-size:16px;font-weight:700;color:var(--gray500);margin-bottom:2px}
 .obj-step-x{font-size:16px;line-height:1.8;color:var(--gray700);white-space:pre-line}
 .obj-tipcard{margin-top:16px;background:#fffbeb;border:1px solid #fde68a;border-left:5px solid #f59e0b;border-radius:var(--r);padding:16px 20px;box-shadow:var(--sh-xs)}
 .obj-tipcard-hd{font-size:18px;font-weight:700;color:#92400e;margin-bottom:8px}
 .obj-tipcard-bd{font-size:16px;line-height:1.9;color:#78350f;white-space:pre-line}
 .obj-branch{margin-top:8px;padding:10px 12px;background:#f5f3ff;border-radius:8px;border-left:3px solid #8b5cf6}
 .obj-branch:first-child{margin-top:2px}
-.obj-branch-tag{display:block;font-size:13px;font-weight:700;color:#5b21b6;margin-bottom:4px}
+.obj-branch-tag{display:block;font-size:15px;font-weight:700;color:#5b21b6;margin-bottom:4px}
 .obj-empty-step{color:var(--gray400);font-style:italic}
-.obj-copy{padding:6px 14px;border-radius:16px;border:none;background:#06c755;color:#fff;font-size:14px;font-family:var(--font);font-weight:700;cursor:pointer;white-space:nowrap}
+.obj-copy{padding:6px 14px;border-radius:16px;border:none;background:#06c755;color:#fff;font-size:16px;font-family:var(--font);font-weight:700;cursor:pointer;white-space:nowrap}
 .obj-copy:hover{background:#05a847}
 .obj-line-bg{background:#b7c9d9;border-radius:12px;padding:16px 14px;margin-bottom:12px}
 .obj-bubble{background:#fff;border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:16px;line-height:1.85;color:#1f2937;white-space:pre-wrap;word-break:break-word;max-width:100%;box-shadow:0 1px 2px rgba(0,0,0,.12)}
 .obj-empty{text-align:center;padding:40px 16px;color:var(--gray400);line-height:1.8;background:#fff;border:1px dashed var(--gray300);border-radius:var(--r)}
 .obj-sayrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
 .obj-sayrow .obj-say{margin-bottom:0}
-.obj-nav{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--gray500)}
-.obj-nav button{padding:5px 14px;border-radius:14px;border:1.5px solid #ddd6fe;background:#fff;color:#5b21b6;font-size:14px;font-family:var(--font);font-weight:600;cursor:pointer}
+.obj-nav{display:flex;align-items:center;gap:8px;font-size:16px;color:var(--gray500)}
+.obj-nav button{padding:5px 14px;border-radius:14px;border:1.5px solid #ddd6fe;background:#fff;color:#5b21b6;font-size:16px;font-family:var(--font);font-weight:600;cursor:pointer}
 .obj-nav button:hover:not(:disabled){background:var(--purple-pale)}
 .obj-nav button:disabled{opacity:.4;cursor:not-allowed}
 .obj-searchbar{position:relative;margin-bottom:12px}
 .obj-search-ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none}
 .obj-search-input{width:100%;padding:11px 42px 11px 44px;border:1.5px solid #ddd6fe;border-radius:24px;font-size:17px;font-family:var(--font);outline:none;background:#fff;transition:border .2s,box-shadow .2s}
 .obj-search-input:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.12)}
-.obj-search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:28px;height:28px;border:none;border-radius:50%;background:var(--gray100);color:var(--gray500);cursor:pointer;font-size:13px}
+.obj-search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:28px;height:28px;border:none;border-radius:50%;background:var(--gray100);color:var(--gray500);cursor:pointer;font-size:15px}
 .obj-search-clear:hover{background:var(--gray200)}
 .obj-tab.dim{opacity:.45}
 .obj-pill mark{background:#fde68a;color:inherit;border-radius:3px;padding:0 1px}
 .obj-col-hd.line{flex-wrap:wrap}
 .obj-mtabs{display:flex;gap:6px;flex-wrap:wrap}
-.obj-mtab{padding:5px 13px;border-radius:15px;border:1.5px solid #6ee7b7;background:transparent;color:#047857;font-size:15px;font-family:var(--font);font-weight:700;cursor:pointer;line-height:1.4;white-space:nowrap}
+.obj-mtab{padding:5px 13px;border-radius:15px;border:1.5px solid #6ee7b7;background:transparent;color:#047857;font-size:16px;font-family:var(--font);font-weight:700;cursor:pointer;line-height:1.4;white-space:nowrap}
 .obj-mtab:hover{background:#d1fae5}
 .obj-mtab.on{background:#047857;border-color:#047857;color:#fff}
 .obj-bubble{padding:16px 18px!important;line-height:1.8!important;letter-spacing:.5px;word-break:break-word}
 .obj-phone{background:#fff;border:1px solid var(--gray200);border-radius:12px;padding:18px 20px;font-size:16px;line-height:1.8;letter-spacing:.5px;color:#1f2937;word-break:break-word;margin-bottom:12px}
 .obj-phone-p{margin:0 0 12px}
 .obj-phone-p:last-child{margin-bottom:0}
-.obj-phone-p.cond{font-weight:700;color:#5b21b6;font-size:15px;margin-bottom:4px}
+.obj-phone-p.cond{font-weight:700;color:#5b21b6;font-size:16px;margin-bottom:4px}
 @media(max-width:820px){.obj-two{grid-template-columns:1fr}.obj-hero{padding:18px}.obj-hero h1{font-size:22px}}
 .qa-copy-row{display:flex;justify-content:flex-end;margin-top:8px}
-.qa-copy-btn{padding:4px 12px;border-radius:14px;border:1.5px solid var(--brand-100);background:#fff;color:var(--brand-dark);font-size:13px;font-family:var(--font);font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap}
+.qa-copy-btn{padding:4px 12px;border-radius:14px;border:1.5px solid var(--brand-100);background:#fff;color:var(--brand-dark);font-size:15px;font-family:var(--font);font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap}
 .qa-copy-btn:hover{background:var(--brand-50);border-color:var(--brand-mid)}
 .qa-copy-btn.done{background:#dcfce7;color:#15803d;border-color:#86efac}
 </style>
@@ -301,26 +301,26 @@ table, th, td, .card, .m-bub, .msg {
   <div style="background:#fff;border-radius:20px;padding:40px 36px;width:100%;max-width:400px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.35)">
     <div style="width:64px;height:64px;background:linear-gradient(135deg,#3aab6d,#2d8a56);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:28px">🌿</div>
     <div style="font-size:22px;font-weight:800;color:#1a2e1a;margin-bottom:4px">藥師健生活</div>
-    <div style="font-size:12px;color:#6b7280;letter-spacing:.1em;margin-bottom:6px">PHARGOODS+ 內部系統</div>
+    <div style="font-size:14px;color:#6b7280;letter-spacing:.1em;margin-bottom:6px">PHARGOODS+ 內部系統</div>
     <div style="width:40px;height:2px;background:linear-gradient(90deg,#3aab6d,#6dd4a0);border-radius:1px;margin:0 auto 24px"></div>
-    <div style="font-size:14px;color:#374151;margin-bottom:20px;line-height:1.6">此為公司內部專用系統<br>請輸入姓名與授權密碼以繼續</div>
+    <div style="font-size:16px;color:#374151;margin-bottom:20px;line-height:1.6">此為公司內部專用系統<br>請輸入姓名與授權密碼以繼續</div>
     <input id="entryName" type="text" placeholder="請輸入您的姓名（必填）"
-      style="width:100%;padding:12px 16px;border:2px solid #e5e7eb;border-radius:10px;font-size:15px;font-family:'Noto Sans TC',sans-serif;outline:none;margin-bottom:10px;box-sizing:border-box;transition:border .2s"
+      style="width:100%;padding:12px 16px;border:2px solid #e5e7eb;border-radius:10px;font-size:16px;font-family:'Noto Sans TC',sans-serif;outline:none;margin-bottom:10px;box-sizing:border-box;transition:border .2s"
       onfocus="this.style.borderColor='#3aab6d'" onblur="this.style.borderColor='#e5e7eb'"
       onkeydown="if(event.key==='Enter')checkEntry()">
     <input id="entryInput" type="password" placeholder="請輸入系統密碼"
-      style="width:100%;padding:12px 16px;border:2px solid #e5e7eb;border-radius:10px;font-size:15px;font-family:'Noto Sans TC',sans-serif;outline:none;margin-bottom:12px;box-sizing:border-box;transition:border .2s;text-align:center;letter-spacing:.2em"
+      style="width:100%;padding:12px 16px;border:2px solid #e5e7eb;border-radius:10px;font-size:16px;font-family:'Noto Sans TC',sans-serif;outline:none;margin-bottom:12px;box-sizing:border-box;transition:border .2s;text-align:center;letter-spacing:.2em"
       onkeydown="if(event.key==='Enter')checkEntry()"
       onfocus="this.style.borderColor='#3aab6d'"
       onblur="this.style.borderColor='#e5e7eb'">
     <button onclick="checkEntry()"
-      style="width:100%;padding:13px;background:linear-gradient(135deg,#3aab6d,#2d8a56);color:#fff;border:none;border-radius:10px;font-size:15px;font-family:'Noto Sans TC',sans-serif;font-weight:700;cursor:pointer;letter-spacing:.05em"
+      style="width:100%;padding:13px;background:linear-gradient(135deg,#3aab6d,#2d8a56);color:#fff;border:none;border-radius:10px;font-size:16px;font-family:'Noto Sans TC',sans-serif;font-weight:700;cursor:pointer;letter-spacing:.05em"
       onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
       🔓 進入系統
     </button>
-    <div id="entryErr" style="display:none;margin-top:12px;color:#dc2626;font-size:13px">❌ 密碼錯誤，請重新輸入</div>
-    <div id="entryNameErr" style="display:none;margin-top:6px;color:#dc2626;font-size:13px">❌ 請先輸入您的姓名</div>
-    <div style="margin-top:20px;font-size:11px;color:#9ca3af">僅供授權同仁使用 · 藥師健生活</div>
+    <div id="entryErr" style="display:none;margin-top:12px;color:#dc2626;font-size:15px">❌ 密碼錯誤，請重新輸入</div>
+    <div id="entryNameErr" style="display:none;margin-top:6px;color:#dc2626;font-size:15px">❌ 請先輸入您的姓名</div>
+    <div style="margin-top:20px;font-size:13px;color:#9ca3af">僅供授權同仁使用 · 藥師健生活</div>
   </div>
 </div>
 <script>
@@ -387,8 +387,8 @@ window.addEventListener('load',function(){
     <div class="logo-tag">內部保健品查詢系統</div>
   </div>
   <div style="display:flex;align-items:center;gap:8px;margin-right:8px;flex-shrink:0">
-    <span id="userGreeting" style="display:none;font-size:13px;color:rgba(255,255,255,.9);font-family:'Noto Sans TC',sans-serif;white-space:nowrap"></span>
-    <button id="logoutBtn" onclick="doLogout()" style="display:none;padding:3px 10px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:10px;color:#fff;font-size:12px;font-family:'Noto Sans TC',sans-serif;cursor:pointer;white-space:nowrap" onmouseover="this.style.background='rgba(255,255,255,.28)'" onmouseout="this.style.background='rgba(255,255,255,.15)'">登出</button>
+    <span id="userGreeting" style="display:none;font-size:15px;color:rgba(255,255,255,.9);font-family:'Noto Sans TC',sans-serif;white-space:nowrap"></span>
+    <button id="logoutBtn" onclick="doLogout()" style="display:none;padding:3px 10px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:10px;color:#fff;font-size:14px;font-family:'Noto Sans TC',sans-serif;cursor:pointer;white-space:nowrap" onmouseover="this.style.background='rgba(255,255,255,.28)'" onmouseout="this.style.background='rgba(255,255,255,.15)'">登出</button>
   </div>
   <nav>
     <button class="nav-btn active" onclick="switchPage('search')">🔍 產品查詢</button>
@@ -459,11 +459,11 @@ window.addEventListener('load',function(){
   <!-- 雙軌頁籤 -->
   <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
     <button onclick="switchChatMode('pharbot')" id="tab-pharbot"
-      style="padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-size:14px;font-family:var(--font);font-weight:700;background:var(--brand);color:#fff;transition:all .2s">
+      style="padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-size:16px;font-family:var(--font);font-weight:700;background:var(--brand);color:#fff;transition:all .2s">
       🤖 PharBot 問答
     </button>
     <button onclick="switchChatMode('qa')" id="tab-qa"
-      style="padding:8px 18px;border-radius:20px;border:2px solid var(--brand-100);cursor:pointer;font-size:14px;font-family:var(--font);font-weight:700;background:#fff;color:var(--brand);transition:all .2s">
+      style="padding:8px 18px;border-radius:20px;border:2px solid var(--brand-100);cursor:pointer;font-size:16px;font-family:var(--font);font-weight:700;background:#fff;color:var(--brand);transition:all .2s">
       📚 產品QA查詢
     </button>
   </div>
@@ -481,7 +481,7 @@ window.addEventListener('load',function(){
       </div>
     </div>
     <div class="chat-in-area" style="flex-shrink:0;padding:12px 16px;border-top:1px solid var(--gray100);display:flex;gap:8px;align-items:flex-end;background:#fafafa">
-      <textarea class="chat-in" id="chatInput" rows="1" placeholder="輸入問題，按 Enter 送出..." onkeydown="handleKey(event)" style="flex:1;padding:10px 14px;border:1.5px solid var(--brand-100);border-radius:20px;font-size:14px;font-family:var(--font);outline:none;resize:none;max-height:100px;background:#fff"></textarea>
+      <textarea class="chat-in" id="chatInput" rows="1" placeholder="輸入問題，按 Enter 送出..." onkeydown="handleKey(event)" style="flex:1;padding:10px 14px;border:1.5px solid var(--brand-100);border-radius:20px;font-size:16px;font-family:var(--font);outline:none;resize:none;max-height:100px;background:#fff"></textarea>
       <button class="btn-send" id="sendBtn" onclick="sendMessage()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
     </div>
   </div>
@@ -492,29 +492,29 @@ window.addEventListener('load',function(){
     <div style="padding:14px 16px;border-bottom:1px solid var(--gray100);background:#f9fafb">
       <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
         <button onclick="filterQACat('general')" id="qa-cat-general"
-          style="padding:5px 14px;border-radius:14px;border:none;cursor:pointer;font-size:13px;font-family:var(--font);font-weight:700;background:var(--brand);color:#fff">通用QA</button>
+          style="padding:5px 14px;border-radius:14px;border:none;cursor:pointer;font-size:15px;font-family:var(--font);font-weight:700;background:var(--brand);color:#fff">通用QA</button>
         <button onclick="filterQACat('adult')" id="qa-cat-adult"
-          style="padding:5px 14px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand)">成人系列</button>
+          style="padding:5px 14px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand)">成人系列</button>
         <button onclick="filterQACat('kids')" id="qa-cat-kids"
-          style="padding:5px 14px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand)">兒童系列</button>
+          style="padding:5px 14px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand)">兒童系列</button>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
         <input id="qaSearch" type="text" placeholder="搜尋問題或關鍵字..."
           oninput="qaOnSearchInput()"
-          style="flex:1;padding:8px 14px;border:1.5px solid var(--brand-100);border-radius:20px;font-size:14px;font-family:var(--font);outline:none">
+          style="flex:1;padding:8px 14px;border:1.5px solid var(--brand-100);border-radius:20px;font-size:16px;font-family:var(--font);outline:none">
         <button onclick="qaClearSearch()"
-          style="padding:7px 14px;background:var(--gray100);border:none;border-radius:14px;cursor:pointer;font-size:13px;font-family:var(--font)">清除</button>
+          style="padding:7px 14px;background:var(--gray100);border:none;border-radius:14px;cursor:pointer;font-size:15px;font-family:var(--font)">清除</button>
       </div>
     </div>
     <!-- 產品選單 -->
     <!-- 第二層分類 -->
     <div id="qa-sub-row" style="display:flex;gap:6px;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--gray100)">
       <button onclick="filterSubCat('general')" id="qa-sub-general"
-        style="padding:5px 13px;border-radius:14px;border:none;cursor:pointer;font-size:13px;font-family:var(--font);font-weight:700;background:var(--brand);color:#fff;white-space:nowrap">通用QA</button>
+        style="padding:5px 13px;border-radius:14px;border:none;cursor:pointer;font-size:15px;font-family:var(--font);font-weight:700;background:var(--brand);color:#fff;white-space:nowrap">通用QA</button>
       <button onclick="filterSubCat('symptom')" id="qa-sub-symptom"
-        style="padding:5px 13px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🩺 常見症狀與配方</button>
+        style="padding:5px 13px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🩺 常見症狀與配方</button>
       <button onclick="filterSubCat('ingredient')" id="qa-sub-ingredient"
-        style="padding:5px 13px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🔬 常見成分解析</button>
+        style="padding:5px 13px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🔬 常見成分解析</button>
     </div>
     <div id="qaSheetTabs" style="display:flex;gap:6px;padding:8px 16px 10px;overflow-x:auto;border-bottom:1px solid var(--gray100);background:#f9fafb;flex-wrap:wrap"></div>
     <!-- QA 列表 -->
@@ -566,12 +566,12 @@ window.addEventListener('load',function(){
   <div class="quiz-wrap" id="quizContent">
     <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:30px;text-align:center">
       <div style="font-size:46px;margin-bottom:14px">📋</div>
-      <div style="font-size:15px;font-weight:700;color:var(--gray900);margin-bottom:7px">準備好了嗎？</div>
-      <div style="font-size:13px;color:var(--gray400);line-height:1.7;margin-bottom:18px">測驗共 10 題，涵蓋各系列產品知識<br>每題作答後即顯示解析，完成後記錄成績</div>
+      <div style="font-size:16px;font-weight:700;color:var(--gray900);margin-bottom:7px">準備好了嗎？</div>
+      <div style="font-size:15px;color:var(--gray400);line-height:1.7;margin-bottom:18px">測驗共 10 題，涵蓋各系列產品知識<br>每題作答後即顯示解析，完成後記錄成績</div>
       <div style="display:flex;gap:24px;justify-content:center">
-        <div><div style="font-size:22px;font-weight:700;color:var(--brand)">10</div><div style="font-size:11px;color:var(--gray400)">題目數</div></div>
-        <div><div style="font-size:22px;font-weight:700;color:var(--accent)">無限制</div><div style="font-size:11px;color:var(--gray400)">作答時間</div></div>
-        <div><div style="font-size:22px;font-weight:700;color:var(--purple)">70分</div><div style="font-size:11px;color:var(--gray400)">及格標準</div></div>
+        <div><div style="font-size:22px;font-weight:700;color:var(--brand)">10</div><div style="font-size:13px;color:var(--gray400)">題目數</div></div>
+        <div><div style="font-size:22px;font-weight:700;color:var(--accent)">無限制</div><div style="font-size:13px;color:var(--gray400)">作答時間</div></div>
+        <div><div style="font-size:22px;font-weight:700;color:var(--purple)">70分</div><div style="font-size:13px;color:var(--gray400)">及格標準</div></div>
       </div>
     </div>
   </div>
@@ -582,12 +582,12 @@ window.addEventListener('load',function(){
   <div style="margin-bottom:18px"><div class="pg-t">🎯 正式考核</div><div class="pg-s">季度產品知識正式考核，成績計入個人檔案</div></div>
   <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:28px">
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px">
-      <div style="background:var(--brand-50);border-radius:10px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:var(--brand)">Q2</div><div style="font-size:12px;color:var(--gray500);margin-top:3px">2025 第二季考核</div></div>
-      <div style="background:var(--accent-pale);border-radius:10px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:var(--accent)">25題</div><div style="font-size:12px;color:var(--gray500);margin-top:3px">考題數量</div></div>
-      <div style="background:var(--purple-pale);border-radius:10px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:var(--purple)">45分鐘</div><div style="font-size:12px;color:var(--gray500);margin-top:3px">限時作答</div></div>
+      <div style="background:var(--brand-50);border-radius:10px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:var(--brand)">Q2</div><div style="font-size:14px;color:var(--gray500);margin-top:3px">2025 第二季考核</div></div>
+      <div style="background:var(--accent-pale);border-radius:10px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:var(--accent)">25題</div><div style="font-size:14px;color:var(--gray500);margin-top:3px">考題數量</div></div>
+      <div style="background:var(--purple-pale);border-radius:10px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:var(--purple)">45分鐘</div><div style="font-size:14px;color:var(--gray500);margin-top:3px">限時作答</div></div>
     </div>
-    <div style="background:var(--amberbg);border:1px solid #f5d882;border-radius:8px;padding:13px;font-size:13px;color:#7a5c00;margin-bottom:18px;line-height:1.7">⚠️ <strong>注意：</strong>考核每季僅限一次機會，作答中途不可離開頁面，結束後成績立即計入個人紀錄。及格分數 80 分。</div>
-    <button onclick="startExam()" style="padding:11px 28px;background:var(--purple);color:#fff;border:none;border-radius:24px;font-size:14px;font-family:var(--font);font-weight:600;cursor:pointer">🎯 開始本季考核</button>
+    <div style="background:var(--amberbg);border:1px solid #f5d882;border-radius:8px;padding:13px;font-size:15px;color:#7a5c00;margin-bottom:18px;line-height:1.7">⚠️ <strong>注意：</strong>考核每季僅限一次機會，作答中途不可離開頁面，結束後成績立即計入個人紀錄。及格分數 80 分。</div>
+    <button onclick="startExam()" style="padding:11px 28px;background:var(--purple);color:#fff;border:none;border-radius:24px;font-size:16px;font-family:var(--font);font-weight:600;cursor:pointer">🎯 開始本季考核</button>
   </div>
 </div>
 
@@ -595,15 +595,15 @@ window.addEventListener('load',function(){
 <div class="page" id="page-score">
   <div style="margin-bottom:18px;display:flex;align-items:center;justify-content:space-between">
     <div><div class="pg-t">📊 個人成績記錄</div><div class="pg-s">查看歷次測驗與考核成績</div></div>
-    <select id="scoreFilter" onchange="renderScores()" style="padding:6px 12px;border:1.5px solid var(--gray200);border-radius:8px;font-size:12px;font-family:var(--font);color:var(--gray700);outline:none;cursor:pointer">
+    <select id="scoreFilter" onchange="renderScores()" style="padding:6px 12px;border:1.5px solid var(--gray200);border-radius:8px;font-size:14px;font-family:var(--font);color:var(--gray700);outline:none;cursor:pointer">
       <option value="all">全部紀錄</option><option value="quiz">測驗</option><option value="exam">考核</option>
     </select>
   </div>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:18px">
-    <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:16px;text-align:center"><div style="font-size:24px;font-weight:700;color:var(--brand)">87</div><div style="font-size:11px;color:var(--gray400);margin-top:2px">平均分數</div></div>
-    <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:16px;text-align:center"><div style="font-size:24px;font-weight:700;color:var(--accent)">12</div><div style="font-size:11px;color:var(--gray400);margin-top:2px">總測驗次數</div></div>
-    <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:16px;text-align:center"><div style="font-size:24px;font-weight:700;color:var(--purple)">3</div><div style="font-size:11px;color:var(--gray400);margin-top:2px">正式考核次數</div></div>
-    <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:16px;text-align:center"><div style="font-size:24px;font-weight:700;color:#16a34a">96%</div><div style="font-size:11px;color:var(--gray400);margin-top:2px">及格率</div></div>
+    <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:16px;text-align:center"><div style="font-size:24px;font-weight:700;color:var(--brand)">87</div><div style="font-size:13px;color:var(--gray400);margin-top:2px">平均分數</div></div>
+    <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:16px;text-align:center"><div style="font-size:24px;font-weight:700;color:var(--accent)">12</div><div style="font-size:13px;color:var(--gray400);margin-top:2px">總測驗次數</div></div>
+    <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:16px;text-align:center"><div style="font-size:24px;font-weight:700;color:var(--purple)">3</div><div style="font-size:13px;color:var(--gray400);margin-top:2px">正式考核次數</div></div>
+    <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:16px;text-align:center"><div style="font-size:24px;font-weight:700;color:#16a34a">96%</div><div style="font-size:13px;color:var(--gray400);margin-top:2px">及格率</div></div>
   </div>
   <table class="score-table"><thead><tr><th>日期</th><th>類型</th><th>測驗名稱</th><th>分數</th><th>狀態</th><th>耗時</th></tr></thead><tbody id="scoreBody"></tbody></table>
 </div>
@@ -984,7 +984,7 @@ function renderProducts(list){
   list=list.filter(function(p){return p&&p.name&&p.id;});
   const g=document.getElementById('productsGrid');
   if(!list.length){g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--gray400)">找不到符合的產品，請嘗試其他關鍵字</div>';return}
-  g.innerHTML=list.map(p=>`<div class="card${p.soldOut?' card-sold-out':''}" style="${p.soldOut?'position:relative':''}" onclick="openModal(${p.id})"><div class="card-series">PHARGOODS+ · ${p.series||''}系列</div><div class="card-name">${p.name||''}</div><div class="card-sub">${p.sub||''}</div><div class="card-desc">${p.desc||''}</div><div class="card-foot"><div style="display:flex;gap:6px;align-items:center">${seriesBadge(p)}${p.soldOut?`<div style="position:absolute;top:8px;right:8px;background:#ef4444;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px;z-index:2">售完停賣</div>`:""}${p.veg?'<span style="font-size:11px">🌱</span>':''}</div><span class="card-more">查看詳情 →</span></div></div>`).join('');
+  g.innerHTML=list.map(p=>`<div class="card${p.soldOut?' card-sold-out':''}" style="${p.soldOut?'position:relative':''}" onclick="openModal(${p.id})"><div class="card-series">PHARGOODS+ · ${p.series||''}系列</div><div class="card-name">${p.name||''}</div><div class="card-sub">${p.sub||''}</div><div class="card-desc">${p.desc||''}</div><div class="card-foot"><div style="display:flex;gap:6px;align-items:center">${seriesBadge(p)}${p.soldOut?`<div style="position:absolute;top:8px;right:8px;background:#ef4444;color:#fff;font-size:13px;font-weight:700;padding:3px 8px;border-radius:10px;z-index:2">售完停賣</div>`:""}${p.veg?'<span style="font-size:13px">🌱</span>':''}</div><span class="card-more">查看詳情 →</span></div></div>`).join('');
 }
 
 function setSeries(cat,el){
@@ -1021,21 +1021,21 @@ function openModal(id){
       priceHtml='<div style="margin-bottom:12px">';
       for(var vi=0;vi<p.variants.length;vi++){
         var v=p.variants[vi];
-        priceHtml+='<div style="display:inline-block;margin-right:8px;margin-bottom:6px;padding:6px 14px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:#1b5e20;border-radius:20px;font-size:13px;font-weight:700;border:1px solid #a5d6a7">';
+        priceHtml+='<div style="display:inline-block;margin-right:8px;margin-bottom:6px;padding:6px 14px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:#1b5e20;border-radius:20px;font-size:15px;font-weight:700;border:1px solid #a5d6a7">';
         priceHtml+='💰 '+v.name+' <span style="color:#2d8a56">'+v.price+'</span>';
-        if(v.note)priceHtml+=' <span style="font-size:11px;font-weight:400;color:#3d7a4a">（'+v.note+'）</span>';
+        if(v.note)priceHtml+=' <span style="font-size:13px;font-weight:400;color:#3d7a4a">（'+v.note+'）</span>';
         priceHtml+='</div>';
       }
       priceHtml+='</div>';
     } else {
-      priceHtml='<div style="display:inline-block;margin-bottom:12px;padding:4px 14px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:#1b5e20;border-radius:20px;font-size:14px;font-weight:700;border:1px solid #a5d6a7">💰 官網售價 '+p.price+' / 瓶</div>';
+      priceHtml='<div style="display:inline-block;margin-bottom:12px;padding:4px 14px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:#1b5e20;border-radius:20px;font-size:16px;font-weight:700;border:1px solid #a5d6a7">💰 官網售價 '+p.price+' / 瓶</div>';
     }
   }
-  const qaHtml=p.qa?`<div class="info-block"><div class="info-lbl">常見問答 Q&A</div>${p.qa.map(item=>`<div style="margin-bottom:10px;padding:11px 13px;background:var(--gray50);border-radius:8px;border-left:3px solid var(--brand-mid)"><div style="font-size:13px;font-weight:700;color:var(--brand-dark);margin-bottom:5px">Q：${item.q}</div><div style="font-size:13px;color:var(--gray700);line-height:1.7">A：${item.a}</div>${qaCopyBtnHtml(item.a)}</div>`).join('')}</div>`:'';
-  const salesHtml=p.sales?`<div class="info-block"><div class="info-lbl">📞 電話銷售話術</div>${p.sales.map(s=>`<div style="margin-bottom:12px;border-radius:8px;overflow:hidden;border:1px solid #e5e7eb"><div style="padding:8px 14px;background:linear-gradient(135deg,#bfdbfe,#93c5fd);color:#1e3a5f;font-size:12px;font-weight:700">${s.section}</div><div style="padding:10px 14px;background:#f0f7ff;font-size:12.5px;color:#374151;line-height:1.9;white-space:pre-line">${s.content}</div></div>`).join('')}</div>`:'';
-  const hlHtml=p.highlights?`<div class="info-block"><div class="info-lbl">產品亮點</div><div style="display:flex;flex-wrap:wrap;gap:7px">${p.highlights.map(h=>`<span style="padding:5px 13px;background:linear-gradient(135deg,var(--brand-50),var(--brand-pale));color:var(--brand-dark);border-radius:20px;font-size:13px;font-weight:600;border:1px solid var(--brand-100)">✦ ${h}</span>`).join('')}</div></div>`:'';
+  const qaHtml=p.qa?`<div class="info-block"><div class="info-lbl">常見問答 Q&A</div>${p.qa.map(item=>`<div style="margin-bottom:10px;padding:11px 13px;background:var(--gray50);border-radius:8px;border-left:3px solid var(--brand-mid)"><div style="font-size:15px;font-weight:700;color:var(--brand-dark);margin-bottom:5px">Q：${item.q}</div><div style="font-size:15px;color:var(--gray700);line-height:1.7">A：${item.a}</div>${qaCopyBtnHtml(item.a)}</div>`).join('')}</div>`:'';
+  const salesHtml=p.sales?`<div class="info-block"><div class="info-lbl">📞 電話銷售話術</div>${p.sales.map(s=>`<div style="margin-bottom:12px;border-radius:8px;overflow:hidden;border:1px solid #e5e7eb"><div style="padding:8px 14px;background:linear-gradient(135deg,#bfdbfe,#93c5fd);color:#1e3a5f;font-size:14px;font-weight:700">${s.section}</div><div style="padding:10px 14px;background:#f0f7ff;font-size:14px;color:#374151;line-height:1.9;white-space:pre-line">${s.content}</div></div>`).join('')}</div>`:'';
+  const hlHtml=p.highlights?`<div class="info-block"><div class="info-lbl">產品亮點</div><div style="display:flex;flex-wrap:wrap;gap:7px">${p.highlights.map(h=>`<span style="padding:5px 13px;background:linear-gradient(135deg,var(--brand-50),var(--brand-pale));color:var(--brand-dark);border-radius:20px;font-size:15px;font-weight:600;border:1px solid var(--brand-100)">✦ ${h}</span>`).join('')}</div></div>`:'';
   document.getElementById('modalBody').innerHTML=`
-    <div style="font-size:10px;color:var(--gray400);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">PHARGOODS+ · ${p.series}系列</div>
+    <div style="font-size:12px;color:var(--gray400);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">PHARGOODS+ · ${p.series}系列</div>
     <div class="modal-title">${p.name}</div><div class="modal-sub">${p.sub}</div>
     ${priceHtml}
     <div class="modal-desc">${p.desc}</div>
@@ -1047,7 +1047,7 @@ function openModal(id){
     ${qaHtml}
     ${salesHtml}
     <div class="info-block"><div class="info-lbl">產品標籤</div><div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>
-    <div class="info-block"><div class="info-lbl">官網連結</div><a href="${p.link}" target="_blank" style="font-size:13px;color:var(--brand);text-decoration:underline">${p.link}</a></div>
+    <div class="info-block"><div class="info-lbl">官網連結</div><a href="${p.link}" target="_blank" style="font-size:15px;color:var(--brand);text-decoration:underline">${p.link}</a></div>
     <div class="modal-actions"><button class="btn-outline" onclick="closeModal();switchPage('chat');setTimeout(()=>ss('請詳細介紹${p.name}的功效與注意事項'),300)">詢問 PharBot AI 更多問題 →</button></div>`;
   document.getElementById('overlay').classList.add('open');
 }
@@ -1342,8 +1342,8 @@ async function sendMessage(){
       html='<div style="font-weight:700;color:#2d8a56;margin-bottom:10px">\ud83d\udcda \u627e\u5230 '+qaStrong.length+' \u689d\u5c08\u5c6c\u89e3\u7b54</div>';
       for(var qs=0;qs<qaStrong.length;qs++){
         html+='<div style="background:#f4fbf7;border-radius:8px;padding:12px;margin-bottom:10px;border:1px solid #b8ecd4">';
-        html+='<div style="font-weight:700;color:#1a5c38;margin-bottom:6px;font-size:13px">Q\uff1a'+escH(qaStrong[qs].q)+'</div>';
-        html+='<div style="color:#3c4043;font-size:13px">'+formatAnswer(qaStrong[qs].a)+qaCopyBtnHtml(qaStrong[qs].a)+'</div>';
+        html+='<div style="font-weight:700;color:#1a5c38;margin-bottom:6px;font-size:15px">Q\uff1a'+escH(qaStrong[qs].q)+'</div>';
+        html+='<div style="color:#3c4043;font-size:15px">'+formatAnswer(qaStrong[qs].a)+qaCopyBtnHtml(qaStrong[qs].a)+'</div>';
         html+='</div>';
       }
     } else if(isQuestionForm&&qaMatched.length>0){
@@ -1351,8 +1351,8 @@ async function sendMessage(){
       for(var qi0=0;qi0<qaMatched.length;qi0++){
         var qa0=qaMatched[qi0];
         html+='<div style="background:#f4fbf7;border-radius:8px;padding:12px;margin-bottom:10px;border:1px solid #b8ecd4">';
-        html+='<div style="font-weight:700;color:#1a5c38;margin-bottom:6px;font-size:13px">Q\uff1a'+escH(qa0.q)+'</div>';
-        html+='<div style="color:#3c4043;font-size:13px">'+formatAnswer(qa0.a)+qaCopyBtnHtml(qa0.a)+'</div>';
+        html+='<div style="font-weight:700;color:#1a5c38;margin-bottom:6px;font-size:15px">Q\uff1a'+escH(qa0.q)+'</div>';
+        html+='<div style="color:#3c4043;font-size:15px">'+formatAnswer(qa0.a)+qaCopyBtnHtml(qa0.a)+'</div>';
         html+='</div>';
       }
     } else if(nameMatch.length>0){
@@ -1361,22 +1361,22 @@ async function sendMessage(){
       for(var ni=0;ni<nameMatch.length;ni++){
         var p=nameMatch[ni];
         html+='<div style="background:#f4fbf7;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #b8ecd4">';
-        html+='<div style="font-weight:700;color:#1a5c38;font-size:15px;margin-bottom:2px">\u3010'+escH(p.name)+'\u3011'+(p.veg?'<span style="margin-left:6px;font-size:11px;background:#dcfce7;color:#15803d;padding:2px 7px;border-radius:10px">\ud83c\udf31 \u7d20\u98df\u53ef</span>':'')+'</div>';
-        html+='<div style="font-size:12px;color:#6c757d;margin-bottom:10px">'+escH(p.sub)+'</div>';
+        html+='<div style="font-weight:700;color:#1a5c38;font-size:16px;margin-bottom:2px">\u3010'+escH(p.name)+'\u3011'+(p.veg?'<span style="margin-left:6px;font-size:13px;background:#dcfce7;color:#15803d;padding:2px 7px;border-radius:10px">\ud83c\udf31 \u7d20\u98df\u53ef</span>':'')+'</div>';
+        html+='<div style="font-size:14px;color:#6c757d;margin-bottom:10px">'+escH(p.sub)+'</div>';
         html+='<div style="display:grid;gap:8px">';
-        html+='<div><span style="font-weight:700;color:#2d8a56">\ud83d\udd2c \u4e3b\u8981\u6210\u5206</span><br><span style="font-size:13px">'+escH(p.ing)+'</span></div>';
-        html+='<div><span style="font-weight:700;color:#2d8a56">\ud83d\udcca \u5efa\u8b70\u7528\u91cf</span><br><span style="font-size:13px">'+escH(p.dose)+'</span></div>';
-        html+='<div><span style="font-weight:700;color:#2d8a56">\ud83d\udc65 \u9069\u5408\u65cf\u7fa4</span><br><span style="font-size:13px">'+escH(p.fit)+'</span></div>';
-        html+='<div style="padding:8px 12px;background:#fff8ec;border-left:3px solid #f5a623;border-radius:6px"><span style="font-weight:700;color:#92400e">\u26a0\ufe0f \u6ce8\u610f\u4e8b\u9805</span><br><span style="font-size:12px;color:#7a5c00">'+escH(p.warn)+'</span></div>';
+        html+='<div><span style="font-weight:700;color:#2d8a56">\ud83d\udd2c \u4e3b\u8981\u6210\u5206</span><br><span style="font-size:15px">'+escH(p.ing)+'</span></div>';
+        html+='<div><span style="font-weight:700;color:#2d8a56">\ud83d\udcca \u5efa\u8b70\u7528\u91cf</span><br><span style="font-size:15px">'+escH(p.dose)+'</span></div>';
+        html+='<div><span style="font-weight:700;color:#2d8a56">\ud83d\udc65 \u9069\u5408\u65cf\u7fa4</span><br><span style="font-size:15px">'+escH(p.fit)+'</span></div>';
+        html+='<div style="padding:8px 12px;background:#fff8ec;border-left:3px solid #f5a623;border-radius:6px"><span style="font-weight:700;color:#92400e">\u26a0\ufe0f \u6ce8\u610f\u4e8b\u9805</span><br><span style="font-size:14px;color:#7a5c00">'+escH(p.warn)+'</span></div>';
         html+='</div>';
         // Show product-specific QA if any
         if(p.qa&&p.qa.length>0){
           html+='<div style="margin-top:10px;border-top:1px solid #e5e7eb;padding-top:10px">';
-          html+='<div style="font-weight:700;color:#2d8a56;margin-bottom:6px;font-size:12px">\u2753 \u5e38\u898b\u554f\u7b54</div>';
+          html+='<div style="font-weight:700;color:#2d8a56;margin-bottom:6px;font-size:14px">\u2753 \u5e38\u898b\u554f\u7b54</div>';
           for(var qi=0;qi<p.qa.length;qi++){
             html+='<div style="margin-bottom:8px;padding:8px;background:#fff;border-radius:6px;border:1px solid #e5e7eb">';
-            html+='<div style="font-size:12px;font-weight:600;color:#1a5c38">Q\uff1a'+escH(p.qa[qi].q)+'</div>';
-            html+='<div style="font-size:12px;color:#3c4043;margin-top:3px">A\uff1a'+escH(p.qa[qi].a)+qaCopyBtnHtml(p.qa[qi].a)+'</div>';
+            html+='<div style="font-size:14px;font-weight:600;color:#1a5c38">Q\uff1a'+escH(p.qa[qi].q)+'</div>';
+            html+='<div style="font-size:14px;color:#3c4043;margin-top:3px">A\uff1a'+escH(p.qa[qi].a)+qaCopyBtnHtml(p.qa[qi].a)+'</div>';
             html+='</div>';
           }
           html+='</div>';
@@ -1392,10 +1392,10 @@ async function sendMessage(){
         for(var fi=0;fi<filtered.length;fi++){
           var pf=filtered[fi];
           html+='<div style="background:#f4fbf7;border-radius:8px;padding:12px;margin-bottom:8px;border:1px solid #b8ecd4">';
-          html+='<div style="font-weight:700;color:#1a5c38;margin-bottom:4px">\u3010'+escH(pf.name)+'\u3011'+(pf.veg?'<span style="margin-left:6px;font-size:11px;background:#dcfce7;color:#15803d;padding:2px 7px;border-radius:10px">\ud83c\udf31 \u7d20\u98df\u53ef</span>':'')+'</div>';
-          html+='<div style="font-size:12px;color:#6c757d;margin-bottom:4px">'+escH(pf.sub)+'</div>';
-          html+='<div style="font-size:13px;margin-bottom:4px"><span style="font-weight:600">\u9069\u5408\uff1a</span>'+escH(pf.fit)+'</div>';
-          html+='<div style="font-size:12px;padding:6px 10px;background:#fff8ec;border-left:3px solid #f5a623;border-radius:4px;color:#7a5c00">\u26a0\ufe0f '+escH(pf.warn)+'</div>';
+          html+='<div style="font-weight:700;color:#1a5c38;margin-bottom:4px">\u3010'+escH(pf.name)+'\u3011'+(pf.veg?'<span style="margin-left:6px;font-size:13px;background:#dcfce7;color:#15803d;padding:2px 7px;border-radius:10px">\ud83c\udf31 \u7d20\u98df\u53ef</span>':'')+'</div>';
+          html+='<div style="font-size:14px;color:#6c757d;margin-bottom:4px">'+escH(pf.sub)+'</div>';
+          html+='<div style="font-size:15px;margin-bottom:4px"><span style="font-weight:600">\u9069\u5408\uff1a</span>'+escH(pf.fit)+'</div>';
+          html+='<div style="font-size:14px;padding:6px 10px;background:#fff8ec;border-left:3px solid #f5a623;border-radius:4px;color:#7a5c00">\u26a0\ufe0f '+escH(pf.warn)+'</div>';
           html+='</div>';
         }
       } else {
@@ -1406,8 +1406,8 @@ async function sendMessage(){
       for(var i=0;i<qaMatched.length;i++){
         var qa=qaMatched[i];
         html+='<div style="background:#f4fbf7;border-radius:8px;padding:12px;margin-bottom:10px;border:1px solid #b8ecd4">';
-        html+='<div style="font-weight:700;color:#1a5c38;margin-bottom:6px;font-size:13px">Q\uff1a'+escH(qa.q)+'</div>';
-        html+='<div style="color:#3c4043;font-size:13px">'+formatAnswer(qa.a)+qaCopyBtnHtml(qa.a)+'</div>';
+        html+='<div style="font-weight:700;color:#1a5c38;margin-bottom:6px;font-size:15px">Q\uff1a'+escH(qa.q)+'</div>';
+        html+='<div style="color:#3c4043;font-size:15px">'+formatAnswer(qa.a)+qaCopyBtnHtml(qa.a)+'</div>';
         html+='</div>';
       }
     } else {
@@ -1428,13 +1428,13 @@ function renderVoice(){
     return `<div class="voice-card" style="max-width:100%">
       <div class="vc-header">
         <div class="vc-icon ${v.iconClass}" style="width:48px;height:48px;font-size:22px;flex-shrink:0">${v.icon}</div>
-        <div><div class="vc-title" style="font-size:14px">${v.title}</div><div class="vc-sub">${v.sub}</div></div>
+        <div><div class="vc-title" style="font-size:16px">${v.title}</div><div class="vc-sub">${v.sub}</div></div>
       </div>
       <div class="vc-desc">${v.desc}</div>
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
-        ${v.topics.map(t=>`<span style="padding:3px 10px;background:var(--brand-pale);color:var(--brand-dark);border-radius:20px;font-size:11px;font-weight:600;border:1px solid var(--brand-100)">📌 ${t}</span>`).join('')}
+        ${v.topics.map(t=>`<span style="padding:3px 10px;background:var(--brand-pale);color:var(--brand-dark);border-radius:20px;font-size:13px;font-weight:600;border:1px solid var(--brand-100)">📌 ${t}</span>`).join('')}
       </div>
-      ${v.videoEmbed?`<div style="border-radius:10px;overflow:hidden;box-shadow:var(--sh-md);background:#000;position:relative;padding-top:56.25%"><iframe src="${v.videoEmbed}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" allow="autoplay" allowfullscreen></iframe></div><div style="margin-top:8px;padding:8px 12px;background:var(--brand-50);border-radius:8px;font-size:11px;color:var(--gray500);display:flex;align-items:center;gap:6px"><span>🎬</span><span>Google 雲端硬碟影片　｜　建議全螢幕觀看以獲得最佳效果</span></div>`:`<div style="padding:32px;background:var(--gray50);border-radius:10px;text-align:center;border:2px dashed var(--gray200)"><div style="font-size:28px;margin-bottom:8px">🎬</div><div style="font-size:13px;color:var(--gray400)">影片準備中，敬請期待</div></div>`}
+      ${v.videoEmbed?`<div style="border-radius:10px;overflow:hidden;box-shadow:var(--sh-md);background:#000;position:relative;padding-top:56.25%"><iframe src="${v.videoEmbed}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" allow="autoplay" allowfullscreen></iframe></div><div style="margin-top:8px;padding:8px 12px;background:var(--brand-50);border-radius:8px;font-size:13px;color:var(--gray500);display:flex;align-items:center;gap:6px"><span>🎬</span><span>Google 雲端硬碟影片　｜　建議全螢幕觀看以獲得最佳效果</span></div>`:`<div style="padding:32px;background:var(--gray50);border-radius:10px;text-align:center;border:2px dashed var(--gray200)"><div style="font-size:28px;margin-bottom:8px">🎬</div><div style="font-size:15px;color:var(--gray400)">影片準備中，敬請期待</div></div>`}
     </div>`;
   }
   const kidsHtml=VOICE_LESSONS.kids.map(videoCard).join('');
@@ -1443,16 +1443,16 @@ function renderVoice(){
     <div style="margin-bottom:24px">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
         <div style="width:4px;height:22px;background:var(--brand);border-radius:2px"></div>
-        <div style="font-size:15px;font-weight:700;color:var(--brand-dark)">👶 兒童系列</div>
-        <span style="padding:2px 10px;background:var(--brand-pale);color:var(--brand);border-radius:10px;font-size:11px;font-weight:600">${VOICE_LESSONS.kids.length} 支影片</span>
+        <div style="font-size:16px;font-weight:700;color:var(--brand-dark)">👶 兒童系列</div>
+        <span style="padding:2px 10px;background:var(--brand-pale);color:var(--brand);border-radius:10px;font-size:13px;font-weight:600">${VOICE_LESSONS.kids.length} 支影片</span>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(560px,1fr));gap:14px">${kidsHtml}</div>
     </div>
     <div>
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
         <div style="width:4px;height:22px;background:var(--accent);border-radius:2px"></div>
-        <div style="font-size:15px;font-weight:700;color:var(--brand-dark)">💊 成人系列</div>
-        <span style="padding:2px 10px;background:var(--accent-pale);color:var(--accent);border-radius:10px;font-size:11px;font-weight:600">${VOICE_LESSONS.adults.length} 支影片</span>
+        <div style="font-size:16px;font-weight:700;color:var(--brand-dark)">💊 成人系列</div>
+        <span style="padding:2px 10px;background:var(--accent-pale);color:var(--accent);border-radius:10px;font-size:13px;font-weight:600">${VOICE_LESSONS.adults.length} 支影片</span>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(560px,1fr));gap:14px">${adultsHtml}</div>
     </div>`;
@@ -1465,15 +1465,15 @@ function renderQuestion(){
   document.getElementById('quizContent').innerHTML=`
     <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:26px">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-        <div style="font-size:12px;color:var(--gray400)">第 ${quizState.idx+1} 題 / 共 ${QUIZ_QUESTIONS.length} 題</div>
-        <div style="font-size:12px;color:var(--brand);font-weight:600">${quizState.answers.filter(Boolean).length} 題答對</div>
+        <div style="font-size:14px;color:var(--gray400)">第 ${quizState.idx+1} 題 / 共 ${QUIZ_QUESTIONS.length} 題</div>
+        <div style="font-size:14px;color:var(--brand);font-weight:600">${quizState.answers.filter(Boolean).length} 題答對</div>
       </div>
       <div class="quiz-progress"><div class="quiz-prog-fill" style="width:${quizState.idx/QUIZ_QUESTIONS.length*100}%"></div></div>
       <div class="quiz-q">${q.q}</div>
       <div class="quiz-opts" id="quizOpts">${q.opts.map((o,i)=>`<button class="quiz-opt" onclick="selectOpt(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div>
-      <div id="quizExp" style="display:none;padding:11px;background:var(--brand-50);border-radius:8px;border-left:3px solid var(--brand);font-size:13px;color:var(--gray700);margin-bottom:14px;line-height:1.7"></div>
+      <div id="quizExp" style="display:none;padding:11px;background:var(--brand-50);border-radius:8px;border-left:3px solid var(--brand);font-size:15px;color:var(--gray700);margin-bottom:14px;line-height:1.7"></div>
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <div style="font-size:12px;color:var(--gray400)">點選選項後確認答案</div>
+        <div style="font-size:14px;color:var(--gray400)">點選選項後確認答案</div>
         <button class="btn-quiz btn-quiz-primary" onclick="nextQuestion()" id="nextBtn" disabled>${quizState.idx===QUIZ_QUESTIONS.length-1?'查看結果 🎉':'下一題 →'}</button>
       </div>
     </div>`;
@@ -1496,8 +1496,8 @@ function showQuizResult(){
   document.getElementById('quizContent').innerHTML=`
     <div style="background:#fff;border-radius:var(--r);border:1px solid var(--gray200);padding:30px;text-align:center">
       <div class="result-circle" style="border-color:${pass?'var(--brand)':'var(--red)'}"><div class="result-score" style="color:${pass?'var(--brand)':'var(--red)'}">${score}</div><div class="result-label">分</div></div>
-      <div style="font-size:15px;font-weight:700;color:var(--gray900);margin-bottom:6px">${pass?'🎉 恭喜通過測驗！':'📚 繼續加油！'}</div>
-      <div style="font-size:13px;color:var(--gray500);margin-bottom:20px">${correct} / ${QUIZ_QUESTIONS.length} 題答對・${pass?'已達及格標準 70 分':'未達及格標準，建議複習後再次測驗'}</div>
+      <div style="font-size:16px;font-weight:700;color:var(--gray900);margin-bottom:6px">${pass?'🎉 恭喜通過測驗！':'📚 繼續加油！'}</div>
+      <div style="font-size:15px;color:var(--gray500);margin-bottom:20px">${correct} / ${QUIZ_QUESTIONS.length} 題答對・${pass?'已達及格標準 70 分':'未達及格標準，建議複習後再次測驗'}</div>
       <button class="btn-quiz btn-quiz-primary" onclick="startQuiz()">🔄 再測一次</button>
     </div>`;
   document.getElementById('startQuizBtn').style.display='';document.getElementById('startQuizBtn').textContent='重新測驗';
@@ -1530,7 +1530,7 @@ renderScores();
     <div id="chartHeader" style="padding:18px 24px 14px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between">
       <div>
         <div id="chartTitle" style="font-size:18px;font-weight:700;color:#1a2e1a"></div>
-        <div style="font-size:12px;color:#6b7280;margin-top:2px">藥師健生活 PHARGOODS+</div>
+        <div style="font-size:14px;color:#6b7280;margin-top:2px">藥師健生活 PHARGOODS+</div>
       </div>
       <button onclick="closeChartModal()" style="border:none;background:#f3f4f6;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:16px;color:#374151;display:flex;align-items:center;justify-content:center;flex-shrink:0">✕</button>
     </div>
@@ -1576,22 +1576,22 @@ function openChartModal(type){
   const toHtml=s=>s.replace(/\n/g,'<br>');
   const rows=data.map((r,i)=>`
     <tr style="background:${i%2===0?'#fff':'#f8faff'}">
-      <td style="padding:10px 12px;font-weight:700;color:${nameColor};min-width:130px;border-bottom:1px solid #e5e7eb;vertical-align:top;font-size:12.5px;line-height:1.65">${toHtml(r.name)}</td>
-      <td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;vertical-align:top;font-size:12px;line-height:1.75;color:#374151;min-width:170px">${toHtml(r.ing)}</td>
-      <td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;vertical-align:top;font-size:12px;line-height:1.75;color:#374151;min-width:170px">${toHtml(r.dose)}</td>
-      <td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;vertical-align:top;font-size:12px;line-height:1.75;color:#92400e;min-width:160px">${toHtml(r.note)}</td>
+      <td style="padding:10px 12px;font-weight:700;color:${nameColor};min-width:130px;border-bottom:1px solid #e5e7eb;vertical-align:top;font-size:14px;line-height:1.65">${toHtml(r.name)}</td>
+      <td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;vertical-align:top;font-size:14px;line-height:1.75;color:#374151;min-width:170px">${toHtml(r.ing)}</td>
+      <td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;vertical-align:top;font-size:14px;line-height:1.75;color:#374151;min-width:170px">${toHtml(r.dose)}</td>
+      <td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;vertical-align:top;font-size:14px;line-height:1.75;color:#92400e;min-width:160px">${toHtml(r.note)}</td>
     </tr>`).join('');
   document.getElementById('chartContent').innerHTML=`
     <table style="width:100%;border-collapse:collapse;min-width:680px">
       <thead><tr style="background:${thBg};color:#fff">
-        <th style="padding:10px 12px;text-align:left;font-size:13px;font-weight:700">產品名稱</th>
-        <th style="padding:10px 12px;text-align:left;font-size:13px;font-weight:700">商品成分／劑量</th>
-        <th style="padding:10px 12px;text-align:left;font-size:13px;font-weight:700">建議吃法</th>
-        <th style="padding:10px 12px;text-align:left;font-size:13px;font-weight:700">注意事項</th>
+        <th style="padding:10px 12px;text-align:left;font-size:15px;font-weight:700">產品名稱</th>
+        <th style="padding:10px 12px;text-align:left;font-size:15px;font-weight:700">商品成分／劑量</th>
+        <th style="padding:10px 12px;text-align:left;font-size:15px;font-weight:700">建議吃法</th>
+        <th style="padding:10px 12px;text-align:left;font-size:15px;font-weight:700">注意事項</th>
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>
-    <div style="margin-top:12px;padding:10px 14px;background:#f8fafc;border-radius:8px;font-size:11px;color:#6b7280;display:flex;align-items:center;gap:6px">
+    <div style="margin-top:12px;padding:10px 14px;background:#f8fafc;border-radius:8px;font-size:13px;color:#6b7280;display:flex;align-items:center;gap:6px">
       <span>📌</span><span>資料來源：藥師健生活官方圖表文件。如需列印，請使用瀏覽器列印功能（Ctrl+P / Cmd+P）。</span>
     </div>`;
   document.getElementById('chartOverlay').style.display='block';
@@ -1751,12 +1751,12 @@ else show=((sheet.cat===currentQACat||sheet.cat==='both')&&sheet.cat!=='general'
     var active=(currentQASheet===key);
     var btn=document.createElement('button');
     btn.textContent=sheet.label;
-    btn.style.cssText='padding:5px 13px;border-radius:14px;cursor:pointer;font-size:13px;font-family:var(--font);white-space:nowrap;'+(active?'border:none;background:var(--brand-dark);color:#fff;font-weight:700':'border:2px solid var(--brand-100);background:#fff;color:var(--brand);font-weight:400');
+    btn.style.cssText='padding:5px 13px;border-radius:14px;cursor:pointer;font-size:15px;font-family:var(--font);white-space:nowrap;'+(active?'border:none;background:var(--brand-dark);color:#fff;font-weight:700':'border:2px solid var(--brand-100);background:#fff;color:var(--brand);font-weight:400');
     btn.setAttribute('data-sheet-key',key);
     btn.onclick=function(){selectQASheet(this.getAttribute('data-sheet-key'));};
     c.appendChild(btn);
   });
-  if(!found){var sp=document.createElement('span');sp.style.cssText='color:var(--gray400);font-size:13px';sp.textContent='此分類暫無資料';c.appendChild(sp);}
+  if(!found){var sp=document.createElement('span');sp.style.cssText='color:var(--gray400);font-size:15px';sp.textContent='此分類暫無資料';c.appendChild(sp);}
 }
 function selectQASheet(key){qaExitSearchForNav();currentQASheet=key;renderQASheetTabs();renderQAList();}
 
@@ -1795,14 +1795,14 @@ else catOk=((sheet.cat===currentQACat||sheet.cat==='both')&&sheet.cat!=='general
     var wrapper=document.createElement('div');
     wrapper.style.marginBottom='16px';
     var hdr=document.createElement('div');
-    hdr.style.cssText='font-weight:800;font-size:15px;color:var(--brand-dark);margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid var(--brand-pale)';
+    hdr.style.cssText='font-weight:800;font-size:16px;color:var(--brand-dark);margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid var(--brand-pale)';
     hdr.textContent=sheet.label;
     wrapper.appendChild(hdr);
     var lastGroup=null;
     items.forEach(function(item,idx){
       if(item.group&&item.group!==lastGroup){
         var grpEl=document.createElement('div');
-        grpEl.style.cssText='font-weight:700;font-size:13px;color:var(--brand);margin:8px 0 4px;padding:3px 10px;background:var(--brand-pale);border-radius:8px';
+        grpEl.style.cssText='font-weight:700;font-size:15px;color:var(--brand);margin:8px 0 4px;padding:3px 10px;background:var(--brand-pale);border-radius:8px';
         grpEl.textContent=item.group;
         wrapper.appendChild(grpEl);
         lastGroup=item.group;
@@ -1812,7 +1812,7 @@ else catOk=((sheet.cat===currentQACat||sheet.cat==='both')&&sheet.cat!=='general
       var qRow=document.createElement('div');
       qRow.style.cssText='padding:11px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;background:#fafafa';
       var qText=document.createElement('div');
-      qText.style.cssText='font-size:14px;font-weight:600;color:var(--gray900);line-height:1.5';
+      qText.style.cssText='font-size:16px;font-weight:600;color:var(--gray900);line-height:1.5';
       qText.textContent='Q：'+String(item.q||'');
       var ico=document.createElement('span');
       ico.style.cssText='flex-shrink:0;color:var(--brand);font-size:16px;margin-top:2px';
@@ -1821,7 +1821,7 @@ else catOk=((sheet.cat===currentQACat||sheet.cat==='both')&&sheet.cat!=='general
       var aPanel=document.createElement('div');
       aPanel.style.cssText='display:none;padding:12px 14px;background:#fff;border-top:1px solid var(--gray100)';
       var aText=document.createElement('div');
-      aText.style.cssText='font-size:14px;color:var(--gray700);line-height:1.8;white-space:pre-wrap';
+      aText.style.cssText='font-size:16px;color:var(--gray700);line-height:1.8;white-space:pre-wrap';
       aText.innerHTML=linkify(escH(String(item.a||'')));
       aPanel.appendChild(aText);
       aPanel.insertAdjacentHTML('beforeend',qaCopyBtnHtml(item.a));
@@ -1837,7 +1837,7 @@ else catOk=((sheet.cat===currentQACat||sheet.cat==='both')&&sheet.cat!=='general
   });
   if(!total){
     var empty=document.createElement('div');
-    empty.style.cssText='text-align:center;color:var(--gray400);padding:40px;font-size:14px';
+    empty.style.cssText='text-align:center;color:var(--gray400);padding:40px;font-size:16px';
     empty.textContent=srch?'找不到相關QA':'請選擇上方產品分類';
     c.appendChild(empty);
   }
@@ -1886,10 +1886,10 @@ function showUpdateBanner(newVer,note){
   reloadBtn.style.cssText='flex:1;padding:7px;background:#fff;color:#1a5c38;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-family:var(--font)';
   reloadBtn.onclick=function(){location.reload(true);};
   var title=document.createElement('div');
-  title.style.cssText='font-weight:700;font-size:14px;margin-bottom:6px';
+  title.style.cssText='font-weight:700;font-size:16px;margin-bottom:6px';
   title.textContent='\ud83d\udd04 \u767c\u73fe\u7cfb\u7d71\u65b0\u7248\u672c v'+newVer;
   var desc=document.createElement('div');
-  desc.style.cssText='font-size:12px;opacity:.85;margin-bottom:10px';
+  desc.style.cssText='font-size:14px;opacity:.85;margin-bottom:10px';
   desc.textContent='\u8acb\u91cd\u65b0\u8f09\u5165\u4ee5\u53d6\u5f97\u6700\u65b0\u8cc7\u6599'+(note?'\uff1a'+note:'');
   var btns=document.createElement('div');
   btns.style.cssText='display:flex;gap:8px';
@@ -1911,14 +1911,14 @@ function showChangelog(){
   title.style.cssText='font-size:20px;font-weight:800;color:#1a5c38;margin-bottom:4px';
   title.textContent='\ud83c\udf89 \u7cfb\u7d71\u5df2\u66f4\u65b0 v'+CURRENT_VERSION;
   var sub=document.createElement('div');
-  sub.style.cssText='font-size:13px;color:#6b7280;margin-bottom:16px';
+  sub.style.cssText='font-size:15px;color:#6b7280;margin-bottom:16px';
   sub.textContent='\u672c\u6b21\u66f4\u65b0\u4eae\u9ede\uff1a';
   var ul=document.createElement('ul');
-  ul.style.cssText='margin:0;padding-left:18px;font-size:13px;color:#374151;line-height:2';
+  ul.style.cssText='margin:0;padding-left:18px;font-size:15px;color:#374151;line-height:2';
   CHANGELOG.forEach(function(c){var li=document.createElement('li');li.textContent=c;ul.appendChild(li);});
   var okBtn=document.createElement('button');
   okBtn.textContent='\u77e5\u9053\u4e86\uff0c\u958b\u59cb\u4f7f\u7528';
-  okBtn.style.cssText='margin-top:18px;width:100%;padding:11px;background:linear-gradient(135deg,#3aab6d,#2d8a56);color:#fff;border:none;border-radius:10px;font-size:14px;font-family:var(--font);font-weight:700;cursor:pointer';
+  okBtn.style.cssText='margin-top:18px;width:100%;padding:11px;background:linear-gradient(135deg,#3aab6d,#2d8a56);color:#fff;border:none;border-radius:10px;font-size:16px;font-family:var(--font);font-weight:700;cursor:pointer';
   okBtn.onclick=function(){localStorage.setItem('lastSeenVersion',CURRENT_VERSION);overlay.remove();};
   box.appendChild(title);box.appendChild(sub);box.appendChild(ul);box.appendChild(okBtn);
   overlay.appendChild(box);
@@ -2041,7 +2041,7 @@ function qaSearchCard(item,toks,open){
   var qRow=document.createElement('div');
   qRow.style.cssText='padding:11px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;background:#fafafa';
   var qText=document.createElement('div');
-  qText.style.cssText='font-size:14px;font-weight:600;color:var(--gray900);line-height:1.5';
+  qText.style.cssText='font-size:16px;font-weight:600;color:var(--gray900);line-height:1.5';
   qText.innerHTML='Q：'+qaHl(item.q,toks);
   var ico=document.createElement('span');
   ico.style.cssText='flex-shrink:0;color:var(--brand);font-size:16px;margin-top:2px';
@@ -2050,7 +2050,7 @@ function qaSearchCard(item,toks,open){
   var aPanel=document.createElement('div');
   aPanel.style.cssText='display:'+(open?'block':'none')+';padding:12px 14px;background:#fff;border-top:1px solid var(--gray100)';
   var aText=document.createElement('div');
-  aText.style.cssText='font-size:14px;color:var(--gray700);line-height:1.8;white-space:pre-wrap';
+  aText.style.cssText='font-size:16px;color:var(--gray700);line-height:1.8;white-space:pre-wrap';
   var rawA=String(item.a||'');
   var cleanA=rawA.replace(/\[BTN(\d+):([^:]+):([^\]]+)\]/g,'').replace(/\n+$/,'').trim();
   aText.innerHTML=linkify(escH(cleanA));
@@ -2064,10 +2064,10 @@ function qaSearchCard(item,toks,open){
     btns.forEach(function(b){
       var w=document.createElement('div');w.style.cssText='width:100%';
       var bb=document.createElement('button');
-      bb.style.cssText='padding:6px 14px;background:var(--brand-pale);color:var(--brand);border:1.5px solid var(--brand-100);border-radius:10px;cursor:pointer;font-size:13px;font-family:var(--font);font-weight:600;text-align:left;width:auto';
+      bb.style.cssText='padding:6px 14px;background:var(--brand-pale);color:var(--brand);border:1.5px solid var(--brand-100);border-radius:10px;cursor:pointer;font-size:15px;font-family:var(--font);font-weight:600;text-align:left;width:auto';
       bb.textContent='▶ '+b.label;
       var bc=document.createElement('div');
-      bc.style.cssText='display:none;background:#f0faf4;border-radius:8px;padding:12px 14px;margin-top:8px;font-size:13px;color:#374151;line-height:1.8;white-space:pre-wrap;border:1px solid var(--brand-100)';
+      bc.style.cssText='display:none;background:#f0faf4;border-radius:8px;padding:12px 14px;margin-top:8px;font-size:15px;color:#374151;line-height:1.8;white-space:pre-wrap;border:1px solid var(--brand-100)';
       bc.textContent=b.content;
       bb.onclick=function(e){e.stopPropagation();var o=bc.style.display!=='none';bc.style.display=o?'none':'block';bb.textContent=(o?'▶ ':'▼ ')+b.label;};
       w.appendChild(bb);w.appendChild(bc);row.appendChild(w);
@@ -2105,13 +2105,13 @@ function renderQASearchResults(q){
   var bar=document.createElement('div');
   bar.style.cssText='display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--gray100)';
   var lbl=document.createElement('span');
-  lbl.style.cssText='font-size:13px;color:var(--gray500);margin-right:4px';
+  lbl.style.cssText='font-size:15px;color:var(--gray500);margin-right:4px';
   lbl.textContent='搜尋「'+q+'」共 '+total+' 則：';
   bar.appendChild(lbl);
   function chip(label,key,n){
     var on=(QA_SEARCH_FILTER===key);
     var b=document.createElement('button');
-    b.style.cssText='padding:4px 12px;border-radius:14px;cursor:pointer;font-size:13px;font-family:var(--font);'+(on?'border:none;background:var(--brand);color:#fff;font-weight:700':'border:2px solid var(--brand-100);background:#fff;color:var(--brand);font-weight:500');
+    b.style.cssText='padding:4px 12px;border-radius:14px;cursor:pointer;font-size:15px;font-family:var(--font);'+(on?'border:none;background:var(--brand);color:#fff;font-weight:700':'border:2px solid var(--brand-100);background:#fff;color:var(--brand);font-weight:500');
     b.textContent=label+'（'+n+'）';
     b.onclick=function(){QA_SEARCH_FILTER=key;renderQASearchResults(q);};
     bar.appendChild(b);
@@ -2123,7 +2123,7 @@ function renderQASearchResults(q){
   c.appendChild(bar);
   if(!total){
     var empty=document.createElement('div');
-    empty.style.cssText='text-align:center;color:var(--gray400);padding:40px;font-size:14px;line-height:1.8';
+    empty.style.cssText='text-align:center;color:var(--gray400);padding:40px;font-size:16px;line-height:1.8';
     empty.innerHTML='找不到「'+escH(q)+'」相關的QA<br>已搜尋：通用QA、成人系列、兒童系列、常見症狀與配方、常見成分解析';
     c.appendChild(empty);return;
   }
@@ -2133,12 +2133,12 @@ function renderQASearchResults(q){
     if(QA_SEARCH_FILTER&&QA_SEARCH_FILTER!==key)return;
     if(!counts[key])return;
     var head=document.createElement('div');
-    head.style.cssText='font-weight:800;font-size:15px;color:#fff;background:var(--brand-dark);border-radius:8px;padding:6px 12px;margin:14px 0 8px';
+    head.style.cssText='font-weight:800;font-size:16px;color:#fff;background:var(--brand-dark);border-radius:8px;padding:6px 12px;margin:14px 0 8px';
     head.textContent=s[1]+'（'+counts[key]+' 則）';
     c.appendChild(head);
     if(key==='ingredient'){
       var card=document.createElement('div');
-      card.style.cssText='border:1px solid var(--brand-100);background:var(--brand-50);border-radius:10px;padding:12px 14px;cursor:pointer;font-size:14px;color:var(--brand-dark);font-weight:600';
+      card.style.cssText='border:1px solid var(--brand-100);background:var(--brand-50);border-radius:10px;padding:12px 14px;cursor:pointer;font-size:16px;color:var(--brand-dark);font-weight:600';
       card.textContent='「常見成分解析」裡有相符的內容，點此前往查看 →';
       card.onclick=qaGoIngredient;
       c.appendChild(card);return;
@@ -2147,7 +2147,7 @@ function renderQASearchResults(q){
     groups[key].forEach(function(g){
       if(g.sheet!==lastSheet){
         var sh=document.createElement('div');
-        sh.style.cssText='font-weight:700;font-size:13px;color:var(--brand);margin:8px 0 4px;padding:3px 10px;background:var(--brand-pale);border-radius:8px';
+        sh.style.cssText='font-weight:700;font-size:15px;color:var(--brand);margin:8px 0 4px;padding:3px 10px;background:var(--brand-pale);border-radius:8px';
         sh.textContent=g.sheet.label;
         c.appendChild(sh);lastSheet=g.sheet;
       }
@@ -2280,7 +2280,7 @@ function renderQAList2(){
   if(currentSubCat === 'ingredient'){
     var plain = ING_MODULE_HTML.replace(/<[^>]+>/g,'').replace(/\s+/g,'').toLowerCase();
     if(srch && plain.indexOf(srch.replace(/\s+/g,'')) < 0){
-      c.innerHTML = '<div style="text-align:center;color:var(--gray400);padding:40px;font-size:14px">找不到相關內容</div>';
+      c.innerHTML = '<div style="text-align:center;color:var(--gray400);padding:40px;font-size:16px">找不到相關內容</div>';
     } else {
       c.innerHTML = ING_MODULE_HTML;
     }
@@ -2304,7 +2304,7 @@ function renderQAList2(){
     var wrapper = document.createElement('div');
     wrapper.style.marginBottom = '16px';
     var hdr = document.createElement('div');
-    hdr.style.cssText = 'font-weight:800;font-size:15px;color:var(--brand-dark);margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid var(--brand-pale)';
+    hdr.style.cssText = 'font-weight:800;font-size:16px;color:var(--brand-dark);margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid var(--brand-pale)';
     hdr.textContent = sheet.label;
     wrapper.appendChild(hdr);
     items.forEach(function(item){
@@ -2313,7 +2313,7 @@ function renderQAList2(){
       var qRow = document.createElement('div');
       qRow.style.cssText = 'padding:11px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;background:#fafafa';
       var qText = document.createElement('div');
-      qText.style.cssText = 'font-size:14px;font-weight:600;color:var(--gray900);line-height:1.5';
+      qText.style.cssText = 'font-size:16px;font-weight:600;color:var(--gray900);line-height:1.5';
       qText.textContent = 'Q：' + String(item.q||'');
       var ico = document.createElement('span');
       ico.style.cssText = 'flex-shrink:0;color:var(--brand);font-size:16px;margin-top:2px';
@@ -2322,7 +2322,7 @@ function renderQAList2(){
       var aPanel = document.createElement('div');
       aPanel.style.cssText = 'display:none;padding:12px 14px;background:#fff;border-top:1px solid var(--gray100)';
       var aText = document.createElement('div');
-      aText.style.cssText = 'font-size:14px;color:var(--gray700);line-height:1.8;white-space:pre-wrap';
+      aText.style.cssText = 'font-size:16px;color:var(--gray700);line-height:1.8;white-space:pre-wrap';
       var rawA = String(item.a||'');
       // Parse button markers [BTNn:label:content]
       var btnRegex = /\[BTN(\d+):([^:]+):([^\]]+)\]/g;
@@ -2345,10 +2345,10 @@ function renderQAList2(){
           var bWrap = document.createElement('div');
           bWrap.style.cssText = 'width:100%';
           var bBtn = document.createElement('button');
-          bBtn.style.cssText = 'padding:6px 14px;background:var(--brand-pale);color:var(--brand);border:1.5px solid var(--brand-100);border-radius:10px;cursor:pointer;font-size:13px;font-family:var(--font);font-weight:600;text-align:left;width:auto';
+          bBtn.style.cssText = 'padding:6px 14px;background:var(--brand-pale);color:var(--brand);border:1.5px solid var(--brand-100);border-radius:10px;cursor:pointer;font-size:15px;font-family:var(--font);font-weight:600;text-align:left;width:auto';
           bBtn.textContent = '▶ ' + btn.label;
           var bContent = document.createElement('div');
-          bContent.style.cssText = 'display:none;background:#f0faf4;border-radius:8px;padding:12px 14px;margin-top:8px;font-size:13px;color:#374151;line-height:1.8;white-space:pre-wrap;border:1px solid var(--brand-100)';
+          bContent.style.cssText = 'display:none;background:#f0faf4;border-radius:8px;padding:12px 14px;margin-top:8px;font-size:15px;color:#374151;line-height:1.8;white-space:pre-wrap;border:1px solid var(--brand-100)';
           bContent.textContent = btn.content;
           bBtn.onclick = function(e){
             e.stopPropagation();
@@ -2377,7 +2377,7 @@ function renderQAList2(){
   });
   if(!total){
     var empty = document.createElement('div');
-    empty.style.cssText = 'text-align:center;color:var(--gray400);padding:40px;font-size:14px';
+    empty.style.cssText = 'text-align:center;color:var(--gray400);padding:40px;font-size:16px';
     empty.textContent = currentSubCat === 'symptom' ? '常見症狀與配方 QA 建置中' : (srch ? '找不到相關QA' : '');
     c.appendChild(empty);
   }
@@ -3449,10 +3449,10 @@ function objRenderPills(){
   box.innerHTML='';
   var items=objList(OBJ_CUR_CAT),hits=objHits(OBJ_CUR_CAT);
   lbl.textContent=OBJ_Q?'符合「'+OBJ_Q+'」的拒絕詞（'+hits.length+' 個）':'客戶可能這樣說（點選拒絕詞）';
-  if(!items.length){box.innerHTML='<span style="color:var(--gray400);font-size:14px">此分類尚未匯入話術</span>';return;}
+  if(!items.length){box.innerHTML='<span style="color:var(--gray400);font-size:16px">此分類尚未匯入話術</span>';return;}
   if(!hits.length){
     var any=OBJ_CAT_ORDER.some(function(c){return objHits(c).length>0;});
-    box.innerHTML='<span style="color:var(--gray400);font-size:14px">'+(any?'此分類沒有符合的拒絕詞，請看上方有數字的其他分類':'找不到符合「'+escH(OBJ_Q)+'」的拒絕詞，換個關鍵字試試')+'</span>';
+    box.innerHTML='<span style="color:var(--gray400);font-size:16px">'+(any?'此分類沒有符合的拒絕詞，請看上方有數字的其他分類':'找不到符合「'+escH(OBJ_Q)+'」的拒絕詞，換個關鍵字試試')+'</span>';
     return;
   }
   hits.forEach(function(n){
@@ -3723,10 +3723,10 @@ function showUpdateNotice(hash,lastModified){
   ov.innerHTML='<div style="background:#fff;border-radius:20px;padding:28px;width:100%;max-width:420px;box-shadow:0 24px 64px rgba(0,0,0,.3);font-family:var(--font);text-align:center">'
     +'<div style="font-size:40px;margin-bottom:8px">\ud83c\udf89</div>'
     +'<div style="font-size:20px;font-weight:800;color:#1a5c38;margin-bottom:8px">\u7cfb\u7d71\u5df2\u66f4\u65b0\u70ba\u6700\u65b0\u7248\u672c</div>'
-    +'<div style="font-size:14px;color:#374151;line-height:1.8;margin-bottom:6px">\u7522\u54c1\u8cc7\u6599\u3001\u8a71\u8853\u6216\u529f\u80fd\u5df2\u6709\u66f4\u65b0\uff0c<br>\u8acb\u6309\u4e0b\u65b9\u6309\u9215\u8f09\u5165\u6700\u65b0\u5167\u5bb9\u3002</div>'
-    +(when?'<div style="font-size:12px;color:#9ca3af;margin-bottom:6px">\u66f4\u65b0\u6642\u9593\uff1a'+when+'</div>':'')
-    +'<button id="updReloadBtn" style="margin-top:14px;width:100%;padding:12px;background:linear-gradient(135deg,#3aab6d,#2d8a56);color:#fff;border:none;border-radius:10px;font-size:15px;font-family:var(--font);font-weight:700;cursor:pointer">\ud83d\udd04 \u91cd\u65b0\u8f09\u5165\uff0c\u4f7f\u7528\u6700\u65b0\u7248\u672c</button>'
-    +'<div id="updLaterBtn" style="margin-top:12px;font-size:13px;color:#9ca3af;cursor:pointer;text-decoration:underline">\u7a0d\u5f8c\u518d\u8aaa</div></div>';
+    +'<div style="font-size:16px;color:#374151;line-height:1.8;margin-bottom:6px">\u7522\u54c1\u8cc7\u6599\u3001\u8a71\u8853\u6216\u529f\u80fd\u5df2\u6709\u66f4\u65b0\uff0c<br>\u8acb\u6309\u4e0b\u65b9\u6309\u9215\u8f09\u5165\u6700\u65b0\u5167\u5bb9\u3002</div>'
+    +(when?'<div style="font-size:14px;color:#9ca3af;margin-bottom:6px">\u66f4\u65b0\u6642\u9593\uff1a'+when+'</div>':'')
+    +'<button id="updReloadBtn" style="margin-top:14px;width:100%;padding:12px;background:linear-gradient(135deg,#3aab6d,#2d8a56);color:#fff;border:none;border-radius:10px;font-size:16px;font-family:var(--font);font-weight:700;cursor:pointer">\ud83d\udd04 \u91cd\u65b0\u8f09\u5165\uff0c\u4f7f\u7528\u6700\u65b0\u7248\u672c</button>'
+    +'<div id="updLaterBtn" style="margin-top:12px;font-size:15px;color:#9ca3af;cursor:pointer;text-decoration:underline">\u7a0d\u5f8c\u518d\u8aaa</div></div>';
   document.body.appendChild(ov);
   document.getElementById('updReloadBtn').onclick=function(){
     try{
@@ -3749,22 +3749,22 @@ window.addEventListener('focus',function(){
   <div style="background:#fff;border-radius:20px;padding:36px;width:100%;max-width:420px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.35)">
     <div style="font-size:36px;margin-bottom:12px">🤖</div>
     <div style="font-size:18px;font-weight:800;color:#1a2e1a;margin-bottom:6px">設定 AI 問答金鑰</div>
-    <div style="font-size:12px;color:#6b7280;margin-bottom:16px;line-height:1.7">請輸入 Gemini API 金鑰以啟用 PharBot 問答功能<br>金鑰只會儲存在您的瀏覽器中，不會上傳</div>
-    <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#0369a1;text-align:left">
+    <div style="font-size:14px;color:#6b7280;margin-bottom:16px;line-height:1.7">請輸入 Gemini API 金鑰以啟用 PharBot 問答功能<br>金鑰只會儲存在您的瀏覽器中，不會上傳</div>
+    <div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:14px;color:#0369a1;text-align:left">
       📌 取得免費金鑰：前往 <a href="https://console.groq.com/keys" target="_blank" style="color:#0369a1;font-weight:700">console.groq.com/keys</a> 註冊並申請（完全免費）
     </div>
     <input id="apiKeyInput" type="text" placeholder="貼上 Groq API 金鑰（gsk_...）"
-      style="width:100%;padding:11px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:13px;font-family:'Noto Sans TC',sans-serif;outline:none;margin-bottom:10px;box-sizing:border-box;transition:border .2s"
+      style="width:100%;padding:11px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:15px;font-family:'Noto Sans TC',sans-serif;outline:none;margin-bottom:10px;box-sizing:border-box;transition:border .2s"
       onkeydown="if(event.key==='Enter')saveApiKey()"
       onfocus="this.style.borderColor='#3aab6d'"
       onblur="this.style.borderColor='#e5e7eb'">
-    <div id="apiKeyErr" style="display:none;color:#dc2626;font-size:12px;margin-bottom:8px">❌ 請輸入有效的 API 金鑰</div>
+    <div id="apiKeyErr" style="display:none;color:#dc2626;font-size:14px;margin-bottom:8px">❌ 請輸入有效的 API 金鑰</div>
     <button onclick="saveApiKey()"
-      style="width:100%;padding:12px;background:linear-gradient(135deg,#3aab6d,#2d8a56);color:#fff;border:none;border-radius:10px;font-size:14px;font-family:'Noto Sans TC',sans-serif;font-weight:700;cursor:pointer;margin-bottom:10px"
+      style="width:100%;padding:12px;background:linear-gradient(135deg,#3aab6d,#2d8a56);color:#fff;border:none;border-radius:10px;font-size:16px;font-family:'Noto Sans TC',sans-serif;font-weight:700;cursor:pointer;margin-bottom:10px"
       onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
       ✅ 儲存並啟用 PharBot
     </button>
-    <div onclick="document.getElementById('apiKeyOverlay').style.display='none'" style="font-size:12px;color:#9ca3af;cursor:pointer;text-decoration:underline">跳過（AI 問答功能將無法使用）</div>
+    <div onclick="document.getElementById('apiKeyOverlay').style.display='none'" style="font-size:14px;color:#9ca3af;cursor:pointer;text-decoration:underline">跳過（AI 問答功能將無法使用）</div>
   </div>
 </div>
 
@@ -3780,32 +3780,32 @@ window.addEventListener('focus',function(){
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
       <div>
         <div style="font-size:20px;font-weight:800;color:#1a2e1a">&#128172; 問題回饋</div>
-        <div style="font-size:13px;color:#6b7280;margin-top:2px">您的建議是我們進步的動力！</div>
+        <div style="font-size:15px;color:#6b7280;margin-top:2px">您的建議是我們進步的動力！</div>
       </div>
       <button onclick="closeFeedback()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#9ca3af;padding:4px">&#10005;</button>
     </div>
     <div style="margin-bottom:14px">
-      <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px">您的稱呼／姓名 <span style="color:#6b7280;font-weight:400;font-size:12px">（自動帶入登入姓名）</span></label>
+      <label style="font-size:15px;font-weight:600;color:#374151;display:block;margin-bottom:6px">您的稱呼／姓名 <span style="color:#6b7280;font-weight:400;font-size:14px">（自動帶入登入姓名）</span></label>
       <input id="fbName" type="text" readonly
         style="background:#f3f4f6;color:#6b7280;cursor:default;"
-        style="width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:'Noto Sans TC',sans-serif;outline:none;box-sizing:border-box"
+        style="width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:16px;font-family:'Noto Sans TC',sans-serif;outline:none;box-sizing:border-box"
         onfocus="this.style.borderColor='#3aab6d'" onblur="this.style.borderColor='#e5e7eb'">
     </div>
     <div style="margin-bottom:14px">
-      <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px">遇到了什麼問題或優化建議？<span style="color:#dc2626"> *</span></label>
+      <label style="font-size:15px;font-weight:600;color:#374151;display:block;margin-bottom:6px">遇到了什麼問題或優化建議？<span style="color:#dc2626"> *</span></label>
       <textarea id="fbContent" rows="4" placeholder="請描述您遇到的問題或想法..."
-        style="width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:'Noto Sans TC',sans-serif;outline:none;resize:vertical;box-sizing:border-box"
+        style="width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:16px;font-family:'Noto Sans TC',sans-serif;outline:none;resize:vertical;box-sizing:border-box"
         onfocus="this.style.borderColor='#3aab6d'" onblur="this.style.borderColor='#e5e7eb'"></textarea>
-      <div id="fbErr" style="display:none;color:#dc2626;font-size:12px;margin-top:4px">請填寫問題或建議內容</div>
+      <div id="fbErr" style="display:none;color:#dc2626;font-size:14px;margin-top:4px">請填寫問題或建議內容</div>
     </div>
     <div style="margin-bottom:20px">
-      <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px">當時系統的狀況 <span style="color:#9ca3af;font-weight:400">（選填）</span></label>
+      <label style="font-size:15px;font-weight:600;color:#374151;display:block;margin-bottom:6px">當時系統的狀況 <span style="color:#9ca3af;font-weight:400">（選填）</span></label>
       <input id="fbStatus" type="text" placeholder="例如：點擊產品後沒有反應、AI回答錯誤..."
-        style="width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:'Noto Sans TC',sans-serif;outline:none;box-sizing:border-box"
+        style="width:100%;padding:10px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:16px;font-family:'Noto Sans TC',sans-serif;outline:none;box-sizing:border-box"
         onfocus="this.style.borderColor='#3aab6d'" onblur="this.style.borderColor='#e5e7eb'">
     </div>
     <button onclick="submitFeedback()"
-      style="width:100%;padding:13px;background:linear-gradient(135deg,#3aab6d,#2d8a56);color:#fff;border:none;border-radius:12px;font-size:15px;font-family:'Noto Sans TC',sans-serif;font-weight:700;cursor:pointer"
+      style="width:100%;padding:13px;background:linear-gradient(135deg,#3aab6d,#2d8a56);color:#fff;border:none;border-radius:12px;font-size:16px;font-family:'Noto Sans TC',sans-serif;font-weight:700;cursor:pointer"
       onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
       送出回饋
     </button>
@@ -3818,29 +3818,29 @@ window.addEventListener('focus',function(){
     <div style="padding:20px 24px;border-bottom:1px solid var(--gray100);display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#f3e5f5,#e1bee7);border-radius:20px 20px 0 0">
       <div>
         <div style="font-size:20px;font-weight:800;color:#4a148c">🧪 營養素建議量 / 上限量</div>
-        <div style="font-size:13px;color:#7b1fa2;margin-top:2px">Dietary Reference Intakes</div>
+        <div style="font-size:15px;color:#7b1fa2;margin-top:2px">Dietary Reference Intakes</div>
       </div>
       <button onclick="closeNutrientModal()" style="background:rgba(255,255,255,.5);border:none;border-radius:50%;width:36px;height:36px;font-size:18px;cursor:pointer;color:#4a148c">✕</button>
     </div>
     <div style="padding:0 0 8px 0">
       <!-- 頁籤 -->
       <div id="nutrientTabs" style="display:flex;gap:4px;padding:12px 16px;overflow-x:auto;border-bottom:1px solid var(--gray100);background:#f9fafb;flex-wrap:wrap">
-        <button onclick="switchNutrient('zn');trackUsage('營養素建議量/上限量','鋅')" id="ntab-zn" style="padding:6px 14px;border-radius:12px;border:none;cursor:pointer;font-size:13px;font-family:var(--font);font-weight:700;background:var(--brand);color:#fff;white-space:nowrap">🔬 鋅 (Zn)</button>
-        <button onclick="switchNutrient('vitc');trackUsage('營養素建議量/上限量','維生素C')" id="ntab-vitc" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🍊 維生素 C</button>
-        <button onclick="switchNutrient('vitb');trackUsage('營養素建議量/上限量','維生素B群')" id="ntab-vitb" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">💊 維生素 B 群</button>
-        <button onclick="switchNutrient('ca');trackUsage('營養素建議量/上限量','鈣')" id="ntab-ca" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🦴 鈣 (Ca)</button>
-        <button onclick="switchNutrient('se');trackUsage('營養素建議量/上限量','硒')" id="ntab-se" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🔬 硒 (Se)</button>
-        <button onclick="switchNutrient('vitd');trackUsage('營養素建議量/上限量','維生素D3')" id="ntab-vitd" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">☀️ 維生素 D3</button>
-        <button onclick="switchNutrient('fish');trackUsage('營養素建議量/上限量','魚油')" id="ntab-fish" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🐟 魚油</button>
-        <button onclick="switchNutrient('lutein');trackUsage('營養素建議量/上限量','葉黃素')" id="ntab-lutein" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:13px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🌿 葉黃素</button>
+        <button onclick="switchNutrient('zn');trackUsage('營養素建議量/上限量','鋅')" id="ntab-zn" style="padding:6px 14px;border-radius:12px;border:none;cursor:pointer;font-size:15px;font-family:var(--font);font-weight:700;background:var(--brand);color:#fff;white-space:nowrap">🔬 鋅 (Zn)</button>
+        <button onclick="switchNutrient('vitc');trackUsage('營養素建議量/上限量','維生素C')" id="ntab-vitc" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🍊 維生素 C</button>
+        <button onclick="switchNutrient('vitb');trackUsage('營養素建議量/上限量','維生素B群')" id="ntab-vitb" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">💊 維生素 B 群</button>
+        <button onclick="switchNutrient('ca');trackUsage('營養素建議量/上限量','鈣')" id="ntab-ca" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🦴 鈣 (Ca)</button>
+        <button onclick="switchNutrient('se');trackUsage('營養素建議量/上限量','硒')" id="ntab-se" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🔬 硒 (Se)</button>
+        <button onclick="switchNutrient('vitd');trackUsage('營養素建議量/上限量','維生素D3')" id="ntab-vitd" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">☀️ 維生素 D3</button>
+        <button onclick="switchNutrient('fish');trackUsage('營養素建議量/上限量','魚油')" id="ntab-fish" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🐟 魚油</button>
+        <button onclick="switchNutrient('lutein');trackUsage('營養素建議量/上限量','葉黃素')" id="ntab-lutein" style="padding:6px 14px;border-radius:12px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🌿 葉黃素</button>
       </div>
       <!-- 表格內容區 -->
       <div id="nutrientContent" style="padding:16px 20px;overflow-x:auto;max-height:65vh;overflow-y:auto">
         <!-- 鋅 -->
         <div id="ntable-zn">
-          <div style="font-size:13px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
-          <div style="background:#fff3e0;border-radius:8px;padding:8px 12px;font-size:12px;color:#e65100;margin-bottom:12px">AI=足夠攝取量｜RDA=建議攝取量｜UL=上限攝取量</div>
-          <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <div style="font-size:15px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
+          <div style="background:#fff3e0;border-radius:8px;padding:8px 12px;font-size:14px;color:#e65100;margin-bottom:12px">AI=足夠攝取量｜RDA=建議攝取量｜UL=上限攝取量</div>
+          <table style="width:100%;border-collapse:collapse;font-size:15px">
             <thead><tr style="background:#4a148c;color:#fff">
               <th style="padding:8px 10px;text-align:left;white-space:nowrap">年齡/族群</th>
               <th style="padding:8px 10px;text-align:center">AI (mg/天)</th>
@@ -3852,8 +3852,8 @@ window.addEventListener('focus',function(){
         </div>
         <!-- 維生素C -->
         <div id="ntable-vitc" style="display:none">
-          <div style="font-size:13px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
-          <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <div style="font-size:15px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
+          <table style="width:100%;border-collapse:collapse;font-size:15px">
             <thead><tr style="background:#4a148c;color:#fff">
               <th style="padding:8px 10px;text-align:left;white-space:nowrap">年齡/族群</th>
               <th style="padding:8px 10px;text-align:center">AI (mg/天)</th>
@@ -3865,10 +3865,10 @@ window.addEventListener('focus',function(){
         </div>
         <!-- 維生素B群 -->
         <div id="ntable-vitb" style="display:none">
-          <div style="font-size:13px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
-          <div style="background:#fff3e0;border-radius:8px;padding:8px 12px;font-size:12px;color:#e65100;margin-bottom:12px">AI=足夠攝取量｜RDA=建議攝取量（無標註者）<br>B1、B2、泛酸(B5)、生物素(B7)、B12 目前未訂定 UL</div>
-          <div style="font-weight:700;color:#4a148c;font-size:14px;margin-bottom:8px">📋 每日建議攝取量（RDA / AI）</div>
-          <div style="overflow-x:auto;margin-bottom:20px"><table style="width:100%;border-collapse:collapse;font-size:12px;min-width:700px">
+          <div style="font-size:15px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
+          <div style="background:#fff3e0;border-radius:8px;padding:8px 12px;font-size:14px;color:#e65100;margin-bottom:12px">AI=足夠攝取量｜RDA=建議攝取量（無標註者）<br>B1、B2、泛酸(B5)、生物素(B7)、B12 目前未訂定 UL</div>
+          <div style="font-weight:700;color:#4a148c;font-size:16px;margin-bottom:8px">📋 每日建議攝取量（RDA / AI）</div>
+          <div style="overflow-x:auto;margin-bottom:20px"><table style="width:100%;border-collapse:collapse;font-size:14px;min-width:700px">
             <thead><tr style="background:#4a148c;color:#fff">
               <th style="padding:8px;text-align:left;white-space:nowrap">年齡/族群</th>
               <th style="padding:8px 6px;text-align:center">性別</th>
@@ -3883,8 +3883,8 @@ window.addEventListener('focus',function(){
             </tr></thead>
             <tbody id="vitb-tbody"><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0–6 個月</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.3 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.3 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.7 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.1 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">5.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">70 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.4 (AI)</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">7–12 個月</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">男女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.3 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.4 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">4 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.8 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.3 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">6.5 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">85 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.6 (AI)</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1–3 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.6</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.7</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.5</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">9.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">170</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.9</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">4–6 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.9/0.8</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.0/0.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">12/11</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">2.5 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.6</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">12.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">200</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.2</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">7–9 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.0/0.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.2/1.0</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">14/12</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">3.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">0.8</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">16.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">250</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.5</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">10–12 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.1/1.1</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.3/1.2</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">15/15</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">4.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.3</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">20.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">300</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">2.0/2.2</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">13–15 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.3/1.1</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.5/1.3</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">18/15</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">4.5 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.4/1.3</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">25.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">400</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.4</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">16–18 歲</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.4/1.1</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.6/1.2</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">18/15</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">5.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.5/1.3</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">27.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">400</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">2.4</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">19歲以上</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">男/女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.2/0.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.3/1.0</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">16/14</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">5.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.5/1.5</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">30.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">400</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.4</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">懷孕（第一期）</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">0.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.0</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">14</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">5.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.5</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">30.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">600</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">2.6</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">懷孕（第二、三期）</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.1</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.2</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">16</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">6.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">1.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">30.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">600</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;background:#f9f5ff;">2.6</td></tr><tr><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">哺乳期</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">女</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.2</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.4</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">18</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">7.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">1.9</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">35.0 (AI)</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">500</td><td style="padding:7px 8px;border-bottom:1px solid #e5e7eb;">2.8</td></tr></tbody>
           </table></div>
-          <div style="font-weight:700;color:#b71c1c;font-size:14px;margin-bottom:8px">⚠️ 上限攝取量（UL）— 有訂定者</div>
-          <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px;min-width:400px">
+          <div style="font-weight:700;color:#b71c1c;font-size:16px;margin-bottom:8px">⚠️ 上限攝取量（UL）— 有訂定者</div>
+          <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:15px;min-width:400px">
             <thead><tr style="background:#b71c1c;color:#fff">
               <th style="padding:8px 10px;text-align:left;white-space:nowrap">年齡/族群</th>
               <th style="padding:8px 10px;text-align:center">B6 UL</th>
@@ -3896,8 +3896,8 @@ window.addEventListener('focus',function(){
         </div>
         <!-- 鈣 -->
         <div id="ntable-ca" style="display:none">
-          <div style="font-size:13px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
-          <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <div style="font-size:15px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
+          <table style="width:100%;border-collapse:collapse;font-size:15px">
             <thead><tr style="background:#4a148c;color:#fff">
               <th style="padding:8px 10px;text-align:left;white-space:nowrap">年齡/族群</th>
               <th style="padding:8px 10px;text-align:center">AI (mg/天)</th>
@@ -3908,8 +3908,8 @@ window.addEventListener('focus',function(){
         </div>
         <!-- 硒 -->
         <div id="ntable-se" style="display:none">
-          <div style="font-size:13px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
-          <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <div style="font-size:15px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
+          <table style="width:100%;border-collapse:collapse;font-size:15px">
             <thead><tr style="background:#4a148c;color:#fff">
               <th style="padding:8px 10px;text-align:left;white-space:nowrap">年齡/族群</th>
               <th style="padding:8px 10px;text-align:center">AI (μg/天)</th>
@@ -3921,8 +3921,8 @@ window.addEventListener('focus',function(){
         </div>
         <!-- 維生素D3 -->
         <div id="ntable-vitd" style="display:none">
-          <div style="font-size:13px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
-          <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <div style="font-size:15px;color:#6b7280;margin-bottom:10px">資料來源：衛生福利部國人膳食營養素參考攝取量（第八版）</div>
+          <table style="width:100%;border-collapse:collapse;font-size:15px">
             <thead><tr style="background:#4a148c;color:#fff">
               <th style="padding:8px 10px;text-align:left;white-space:nowrap">年齡/族群</th>
               <th style="padding:8px 10px;text-align:center">AI (IU/天)</th>
@@ -3933,42 +3933,42 @@ window.addEventListener('focus',function(){
         </div>
         <!-- 魚油 -->
         <div id="ntable-fish" style="display:none">
-          <div style="font-size:13px;color:#6b7280;margin-bottom:12px">資料來源：WHO、美國心臟協會、台灣食品藥物管理局</div>
+          <div style="font-size:15px;color:#6b7280;margin-bottom:12px">資料來源：WHO、美國心臟協會、台灣食品藥物管理局</div>
           <div style="background:#e3f2fd;border-radius:12px;padding:16px 20px;margin-bottom:16px;border-left:4px solid #1976d2">
-            <div style="font-weight:700;color:#0d47a1;font-size:15px;margin-bottom:10px">🐟 魚油 Omega-3 建議量 / 上限量</div>
+            <div style="font-weight:700;color:#0d47a1;font-size:16px;margin-bottom:10px">🐟 魚油 Omega-3 建議量 / 上限量</div>
             <div style="display:flex;flex-direction:column;gap:10px">
               <div style="background:#fff;border-radius:8px;padding:12px 16px;border:1px solid #bbdefb">
                 <div style="font-weight:700;color:#1565c0;margin-bottom:4px">🌍 WHO（世界衛生組織）</div>
-                <div style="font-size:14px;color:#374151">建議每日攝取 <strong>300 - 500 mg</strong> 的 Omega-3 魚油</div>
+                <div style="font-size:16px;color:#374151">建議每日攝取 <strong>300 - 500 mg</strong> 的 Omega-3 魚油</div>
               </div>
               <div style="background:#fff;border-radius:8px;padding:12px 16px;border:1px solid #bbdefb">
                 <div style="font-weight:700;color:#1565c0;margin-bottom:4px">🫀 美國心臟協會（AHA）</div>
-                <div style="font-size:14px;color:#374151">建議每日可補充 <strong>1,000 mg</strong> 魚油</div>
+                <div style="font-size:16px;color:#374151">建議每日可補充 <strong>1,000 mg</strong> 魚油</div>
               </div>
               <div style="background:#fff;border-radius:8px;padding:12px 16px;border:1px solid #bbdefb">
                 <div style="font-weight:700;color:#1565c0;margin-bottom:4px">🇹🇼 台灣食品藥物管理局（TFDA）</div>
-                <div style="font-size:14px;color:#374151">建議每日魚油 Omega-3 不超過 <strong>2,000 mg</strong></div>
+                <div style="font-size:16px;color:#374151">建議每日魚油 Omega-3 不超過 <strong>2,000 mg</strong></div>
               </div>
             </div>
           </div>
         </div>
         <!-- 葉黃素 -->
         <div id="ntable-lutein" style="display:none">
-          <div style="font-size:13px;color:#6b7280;margin-bottom:12px">資料來源：台灣衛生福利部、國際保健研究建議</div>
+          <div style="font-size:15px;color:#6b7280;margin-bottom:12px">資料來源：台灣衛生福利部、國際保健研究建議</div>
           <div style="background:#f3e5f5;border-radius:12px;padding:16px 20px;margin-bottom:16px;border-left:4px solid #7b1fa2">
-            <div style="font-weight:700;color:#4a148c;font-size:15px;margin-bottom:10px">🌿 葉黃素建議量 / 上限量</div>
+            <div style="font-weight:700;color:#4a148c;font-size:16px;margin-bottom:10px">🌿 葉黃素建議量 / 上限量</div>
             <div style="display:flex;flex-direction:column;gap:10px">
               <div style="background:#fff;border-radius:8px;padding:12px 16px;border:1px solid #e1bee7">
                 <div style="font-weight:700;color:#6a1b9a;margin-bottom:4px">📌 日常保養用途</div>
-                <div style="font-size:14px;color:#374151">一般建議每天補充 <strong>6 ～ 10 mg</strong> 的葉黃素，即可滿足身體需求。</div>
+                <div style="font-size:16px;color:#374151">一般建議每天補充 <strong>6 ～ 10 mg</strong> 的葉黃素，即可滿足身體需求。</div>
               </div>
               <div style="background:#fff;border-radius:8px;padding:12px 16px;border:1px solid #e1bee7">
                 <div style="font-weight:700;color:#6a1b9a;margin-bottom:4px">⏱ 長期累積效果</div>
-                <div style="font-size:14px;color:#374151">建議長期且規律地每天補充 <strong>6 ～ 10 mg</strong>，持續約 <strong>3 ～ 6 個月</strong>，通常能有更好的保養效果。</div>
+                <div style="font-size:16px;color:#374151">建議長期且規律地每天補充 <strong>6 ～ 10 mg</strong>，持續約 <strong>3 ～ 6 個月</strong>，通常能有更好的保養效果。</div>
               </div>
               <div style="background:#fff;border-radius:8px;padding:12px 16px;border:1px solid #e1bee7">
                 <div style="font-weight:700;color:#6a1b9a;margin-bottom:4px">🇹🇼 台灣衛生福利部建議上限</div>
-                <div style="font-size:14px;color:#374151">葉黃素每日攝取量不宜超過 <strong>30 mg</strong>。</div>
+                <div style="font-size:16px;color:#374151">葉黃素每日攝取量不宜超過 <strong>30 mg</strong>。</div>
               </div>
             </div>
           </div>
