@@ -313,6 +313,15 @@ table, th, td, .card, .m-bub, .msg {
 .exam-chips{display:flex;gap:8px;flex-wrap:wrap}
 .exam-chip{padding:5px 14px;border-radius:16px;background:var(--brand-pale);border:1px solid var(--brand-100);color:var(--brand-dark);font-size:16px;font-weight:600}
 @media(max-width:900px){.exam-grid{grid-template-columns:1fr}}
+/* ===== 症狀/成分/疾病 ===== */
+.hl-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.hl-tab{padding:10px 18px;border-radius:12px;border:1.5px solid var(--brand-100);background:#fff;color:var(--brand-dark);font-size:16px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .15s;line-height:1.4}
+.hl-tab:hover{background:var(--brand-50);border-color:var(--brand-mid)}
+.hl-tab.on{background:var(--brand-dark);border-color:var(--brand-dark);color:#fff}
+.hl-box{background:#fff;border:1px solid var(--gray200);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh-xs)}
+.hl-box-hd{font-weight:800;font-size:17px;color:var(--brand-dark);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--brand-pale)}
+.hl-empty{text-align:center;padding:56px 16px;color:var(--gray400);font-size:16px;line-height:1.9}
+.hl-empty b{display:block;font-size:20px;color:var(--gray500);margin-bottom:6px}
 </style>
 </head>
 <body>
@@ -416,6 +425,7 @@ window.addEventListener('load',function(){
     <button class="nav-btn" onclick="switchPage('chat')">🤖 AI 問答</button>
     <button class="nav-btn" onclick="switchPage('voice')">🎬 影音教案</button>
     <button class="nav-btn" onclick="switchPage('objection')">🛡️ 異議神助手</button>
+    <button class="nav-btn" id="nav-health" onclick="switchTab('health')">🩺 症狀/成分/疾病</button>
     <button class="nav-btn locked" onclick="requireAuth('quiz')">🔒 測驗</button>
     <button class="nav-btn" id="nav-exam" onclick="switchTab('exam')">📋 考核</button>
     <button class="nav-btn locked" onclick="requireAuth('score')">🔒 成績</button>
@@ -529,14 +539,6 @@ window.addEventListener('load',function(){
     </div>
     <!-- 產品選單 -->
     <!-- 第二層分類 -->
-    <div id="qa-sub-row" style="display:flex;gap:6px;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--gray100)">
-      <button onclick="filterSubCat('general')" id="qa-sub-general"
-        style="padding:5px 13px;border-radius:14px;border:none;cursor:pointer;font-size:15px;font-family:var(--font);font-weight:700;background:var(--brand);color:#fff;white-space:nowrap">通用QA</button>
-      <button onclick="filterSubCat('symptom')" id="qa-sub-symptom"
-        style="padding:5px 13px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🩺 常見症狀與配方</button>
-      <button onclick="filterSubCat('ingredient')" id="qa-sub-ingredient"
-        style="padding:5px 13px;border-radius:14px;border:2px solid var(--brand-100);cursor:pointer;font-size:15px;font-family:var(--font);background:#fff;color:var(--brand);white-space:nowrap">🔬 常見成分解析</button>
-    </div>
     <div id="qaSheetTabs" style="display:flex;gap:6px;padding:8px 16px 10px;overflow-x:auto;border-bottom:1px solid var(--gray100);background:#f9fafb;flex-wrap:wrap"></div>
     <!-- QA 列表 -->
     <div id="qaListArea" style="padding:14px 16px;max-height:calc(100vh - 340px);overflow-y:auto"></div>
@@ -576,6 +578,13 @@ window.addEventListener('load',function(){
   </div>
   <div id="objMain"></div>
   <div class="alert" style="margin-top:18px">⚠ 話術僅供內部同仁參考，請依客戶實際狀況靈活調整。</div>
+</div>
+
+<!-- HEALTH -->
+<div class="page" id="page-health">
+  <div style="margin-bottom:16px"><div class="pg-t">🩺 症狀/成分/疾病</div><div class="pg-s">常見症狀與配方、成分解析、疾病與補充教材</div></div>
+  <div class="hl-tabs" id="healthTabs"></div>
+  <div id="healthContent"></div>
 </div>
 
 <!-- QUIZ -->
@@ -627,7 +636,7 @@ window.addEventListener('load',function(){
 <!-- GUIDE -->
 <div class="page" id="page-guide">
   <div class="pg-t">使用說明</div>
-  <div class="pg-s">藥師健生活內部查詢系統 — 七大功能模組完整說明</div>
+  <div class="pg-s">藥師健生活內部查詢系統 — 八大功能模組完整說明</div>
   <div class="alert">⚠ <strong>免責聲明：</strong>本系統資訊僅供內部同仁參考使用。若有特殊健康狀況，仍建議諮詢專業醫療人員或藥師。</div>
   <div class="g-grid">
     <div class="g-card"><div class="g-n">01</div><div class="g-t">產品查詢</div><div class="g-p">搜尋全系列保健品，支援關鍵字、系列與需求篩選</div><div class="g-step"><div class="g-sn">1</div><span>選擇系列標籤（成人/兒童/女性/運動/素食）</span></div><div class="g-step"><div class="g-sn">2</div><span>依需求標籤進一步篩選</span></div><div class="g-step"><div class="g-sn">3</div><span>點擊卡片查看完整資訊</span></div></div>
@@ -637,6 +646,7 @@ window.addEventListener('load',function(){
     <div class="g-card"><div class="g-n">05</div><div class="g-t">考核</div><div class="g-p">查看藥師健生活考核標準與各梯次的考核品項</div><div class="g-step"><div class="g-sn">1</div><span>點選上方「考核」分頁</span></div><div class="g-step"><div class="g-sn">2</div><span>左右兩張表為考核標準 1、2（手機自動上下排列）</span></div><div class="g-step"><div class="g-sn">3</div><span>★ 為各分數需考核的題目，下方列出考核品項</span></div></div>
     <div class="g-card"><div class="g-n">06</div><div class="g-t">成績 🔒</div><div class="g-p">查看個人歷次測驗與考核成績紀錄</div><div class="g-step"><div class="g-sn">🔑</div><span>需輸入授權密碼才可存取</span></div><div class="g-step"><div class="g-sn">1</div><span>顯示平均分數、次數統計</span></div><div class="g-step"><div class="g-sn">2</div><span>可篩選測驗或考核記錄</span></div></div>
     <div class="g-card"><div class="g-n">07</div><div class="g-t">異議神助手</div><div class="g-p">客戶提出異議時，快速查詢四步對話與 LINE 話術</div><div class="g-step"><div class="g-sn">1</div><span>選擇異議分類，再點選客戶的拒絕詞</span></div><div class="g-step"><div class="g-sn">2</div><span>左欄看口語四步對話與心法</span></div><div class="g-step"><div class="g-sn">3</div><span>右欄按「一鍵複製」貼到 LINE</span></div></div>
+    <div class="g-card"><div class="g-n">08</div><div class="g-t">症狀/成分/疾病</div><div class="g-p">查詢常見症狀與配方、成分解析，疾病與補充教材陸續建置中</div><div class="g-step"><div class="g-sn">1</div><span>點選上方「🩺 症狀/成分/疾病」分頁</span></div><div class="g-step"><div class="g-sn">2</div><span>切換 4 個子分頁：症狀與配方、成分解析、疾病、補充教材</span></div><div class="g-step"><div class="g-sn">3</div><span>點選標題即可展開內容</span></div></div>
   </div>
 </div>
 </main>
@@ -943,7 +953,7 @@ const QUIZ_QUESTIONS=[
 let curFilter='全部',curSeries='全部',authed=false;
 let quizState={active:false,idx:0,answers:[],answered:false};
 const AUTH_PASS='phargoods2025';
-const pageIds=['search','chat','voice','objection','quiz','exam','score','guide'];
+const pageIds=['search','chat','voice','objection','health','quiz','exam','score','guide'];
 
 const SCORES=[
   {date:'2025-06-10',type:'quiz',name:'產品知識測驗 #12',score:90,pass:true,time:'8分22秒'},
@@ -962,12 +972,15 @@ function switchPage(id){
   if(idx>=0) document.querySelectorAll('.nav-btn')[idx].classList.add('active');
   if(id==='score') renderScores();
   if(id==='objection') initObjection();
+  if(id==='health') initHealth();
 }
 // 導覽按鈕使用的切換函式；切到「考核」時，用系統原本的 trackUsage 送出紀錄到統計表單
 // （欄位：動作類型＝考核、目標內容＝藥師健生活考核標準、姓名＝登入同仁；trackUsage 同時會在 Console 印出 [track] 考核 藥師健生活考核標準）
 function switchTab(id){
   switchPage(id);
   if(id==='exam'){ try{ trackUsage('考核','藥師健生活考核標準'); }catch(e){} }
+  // 點「🩺 症狀/成分/疾病」主選單：動作類型＝症狀/成分/疾病、目標內容＝主選單
+  if(id==='health'){ try{ trackUsage('症狀/成分/疾病','主選單'); }catch(e){} }
 }
 
 function requireAuth(page){
@@ -1221,10 +1234,21 @@ function findQAStrong(question,tokens){
   PRODUCTS.forEach(function(p){(p.qa||[]).forEach(function(i){pool.push({q:i.q,a:i.a});});});
   var tok=(tokens||[]).map(clean).filter(Boolean),tokG={};
   tok.forEach(function(t){for(var j=0;j<t.length-1;j++)tokG[t.substr(j,2)]=1;});
+  // 「產品 + 味道改變（藥味／怪味／味道不一樣）」→ 對應各產品「味道跟之前不一樣」的 QA，且味道相關的 QA 優先
+  var flavor=/藥味|怪味|苦味|變味|變難吃|味道(?:不一樣|不同|變|怪|跟之前)|口味(?:不同|變)|風味(?:不同|變)/.test(String(question||''));
+  if(flavor)tok.forEach(function(t){variants.push(clean(t+'味道跟之前不一樣'));});
+  // 產品名稱與 QA 問題相關：完整名稱，或名稱裡 3 個字以上的片段（例如「兒童葡聚醣」≈「葡聚醣」）
+  function tokHit(qt){
+    return tok.some(function(t){
+      if(qt.indexOf(t)>=0)return true;
+      for(var L=Math.min(t.length-1,4);L>=3;L--){for(var j=0;j+L<=t.length;j++){if(qt.indexOf(t.substr(j,L))>=0)return true;}}
+      return false;
+    });
+  }
   var res=[],seen={};
   for(var i=0;i<pool.length;i++){
     var item=pool[i],qt=clean(item.q),best=0;
-    var nameHit=tok.some(function(t){return qt.indexOf(t)>=0;});
+    var nameHit=tokHit(qt);
     variants.forEach(function(q){
       var G=grams(q);if(G.n<4)return;
       var hit=0,nonName=0;
@@ -1234,6 +1258,7 @@ function findQAStrong(question,tokens){
       var ok=(hit>=3&&ratio>=0.6)||(nameHit&&hit>=3&&nonName>=1&&ratio>=0.45);
       if(ok&&ratio>best)best=ratio;
     });
+    if(best>0&&flavor&&/味道|藥味|風味|口味|苦味|怪味|變味/.test(item.q))best+=0.25;
     var key=qt+'|'+clean(item.a).substring(0,40);
     if(best>0&&!seen[key]){seen[key]=1;res.push({qa:item,ratio:best});}
   }
@@ -2059,7 +2084,7 @@ function qaExitSearchForNav(){
 function qaGoIngredient(){
   var el=document.getElementById('qaSearch');if(el)el.value='';
   QA_SEARCH_ACTIVE=false;QA_SAVED=null;QA_SEARCH_FILTER='';
-  filterQACat('general');filterSubCat('ingredient');
+  switchPage('health');healthSelectTab('ingredient');
 }
 function qaSearchCard(item,toks,open){
   var card=document.createElement('div');
@@ -2183,6 +2208,41 @@ function renderQASearchResults(q){
   });
 }
 
+// ==================== 症狀/成分/疾病 頁面 ====================
+var HEALTH_TABS=[['symptom','🩹 常見症狀與配方'],['ingredient','🔬 常見成分解析'],['disease','🏥 常見疾病'],['material','📚 補充教材']];
+var HEALTH_TAB='symptom';
+function initHealth(){healthRender();}
+function healthSelectTab(key){HEALTH_TAB=key;healthRender();}
+function healthRender(){
+  var tabs=document.getElementById('healthTabs'),box=document.getElementById('healthContent');
+  if(!tabs||!box)return;
+  tabs.innerHTML='';
+  HEALTH_TABS.forEach(function(t){
+    var b=document.createElement('button');
+    b.className='hl-tab'+(t[0]===HEALTH_TAB?' on':'');
+    b.textContent=t[1];
+    b.onclick=function(){healthSelectTab(t[0]);};
+    tabs.appendChild(b);
+  });
+  box.innerHTML='';
+  if(HEALTH_TAB==='symptom'){
+    var sheet=EXCEL_QA['常見症狀'],items=(sheet&&sheet.items)||[];
+    var wrap=document.createElement('div');wrap.className='hl-box';
+    var hd=document.createElement('div');hd.className='hl-box-hd';hd.textContent='常見症狀與配方';
+    wrap.appendChild(hd);
+    if(!items.length){
+      wrap.innerHTML+='<div class="hl-empty"><b>內容建置中</b>敬請期待</div>';
+    }else{
+      items.forEach(function(item){wrap.appendChild(qaSearchCard(item,[],false));});
+    }
+    box.appendChild(wrap);
+  }else if(HEALTH_TAB==='ingredient'){
+    box.innerHTML=ING_MODULE_HTML;
+  }else{
+    var name=(HEALTH_TAB==='disease')?'🏥 常見疾病':'📚 補充教材';
+    box.innerHTML='<div class="hl-box"><div class="hl-empty"><b>'+name+'</b>內容建置中，敬請期待</div></div>';
+  }
+}
 // ==================== 常見成分解析模組 ====================
 var ING_MODULE_HTML=`<!-- 常見成分解析 模組開始 -->
 <div id="ingredient-section" style="word-break: break-word; overflow-wrap: break-word; padding: 20px; background-color: #ffffff; border-radius: 12px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
