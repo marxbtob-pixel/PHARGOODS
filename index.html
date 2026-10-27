@@ -986,8 +986,8 @@ function switchPage(id){
 function switchTab(id){
   switchPage(id);
   if(id==='exam'){ try{ trackUsage('考核','藥師健生活考核標準'); }catch(e){} }
-  // 點「🩺 症狀/成分/疾病」主選單：動作類型＝症狀/成分/疾病、目標內容＝主選單
-  if(id==='health'){ try{ trackUsage('症狀/成分/疾病','主選單'); }catch(e){} }
+  // 點「🩺 症狀/成分/疾病」主選單：動作類型＝症狀/成分/疾病、目標內容＝指定的問題文字
+  if(id==='health'){ try{ trackUsage('症狀/成分/疾病','Q：我的皮膚乾敏、乾癢，但不至於會抓癢到破皮，請問可以吃什麼保健品來改善嗎？'); }catch(e){} }
 }
 
 function requireAuth(page){
