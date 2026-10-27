@@ -322,6 +322,13 @@ table, th, td, .card, .m-bub, .msg {
 .hl-box-hd{font-weight:800;font-size:17px;color:var(--brand-dark);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--brand-pale)}
 .hl-empty{text-align:center;padding:56px 16px;color:var(--gray400);font-size:16px;line-height:1.9}
 .hl-empty b{display:block;font-size:20px;color:var(--gray500);margin-bottom:6px}
+.hl-acc-hd{width:100%;padding:12px 16px;border:1.5px solid var(--brand-100);background:var(--brand-50);color:var(--brand-dark);border-radius:10px;font-size:17px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;text-align:left;font-family:var(--font);transition:all .15s}
+.hl-acc-hd:hover{border-color:var(--brand-mid)}
+.hl-acc-hd.on{background:#e8f8f2;border-color:#00a86b;color:#006644}
+.hl-arrow{font-size:13px;flex-shrink:0}
+.hl-link{width:100%;padding:14px 16px;border:1px solid var(--gray200);background:#fff;color:var(--gray700);border-radius:10px;font-size:17px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;text-align:left;font-family:var(--font);margin-bottom:10px;box-shadow:var(--sh-xs);transition:all .15s}
+.hl-link:hover{border-color:var(--brand-mid);background:var(--brand-50);color:var(--brand-dark)}
+.hl-link small{font-size:14px;font-weight:500;color:var(--gray400);display:block;margin-top:2px}
 </style>
 </head>
 <body>
@@ -646,7 +653,7 @@ window.addEventListener('load',function(){
     <div class="g-card"><div class="g-n">05</div><div class="g-t">考核</div><div class="g-p">查看藥師健生活考核標準與各梯次的考核品項</div><div class="g-step"><div class="g-sn">1</div><span>點選上方「考核」分頁</span></div><div class="g-step"><div class="g-sn">2</div><span>左右兩張表為考核標準 1、2（手機自動上下排列）</span></div><div class="g-step"><div class="g-sn">3</div><span>★ 為各分數需考核的題目，下方列出考核品項</span></div></div>
     <div class="g-card"><div class="g-n">06</div><div class="g-t">成績 🔒</div><div class="g-p">查看個人歷次測驗與考核成績紀錄</div><div class="g-step"><div class="g-sn">🔑</div><span>需輸入授權密碼才可存取</span></div><div class="g-step"><div class="g-sn">1</div><span>顯示平均分數、次數統計</span></div><div class="g-step"><div class="g-sn">2</div><span>可篩選測驗或考核記錄</span></div></div>
     <div class="g-card"><div class="g-n">07</div><div class="g-t">異議神助手</div><div class="g-p">客戶提出異議時，快速查詢四步對話與 LINE 話術</div><div class="g-step"><div class="g-sn">1</div><span>選擇異議分類，再點選客戶的拒絕詞</span></div><div class="g-step"><div class="g-sn">2</div><span>左欄看口語四步對話與心法</span></div><div class="g-step"><div class="g-sn">3</div><span>右欄按「一鍵複製」貼到 LINE</span></div></div>
-    <div class="g-card"><div class="g-n">08</div><div class="g-t">症狀/成分/疾病</div><div class="g-p">查詢常見症狀與配方、成分解析，疾病與補充教材陸續建置中</div><div class="g-step"><div class="g-sn">1</div><span>點選上方「🩺 症狀/成分/疾病」分頁</span></div><div class="g-step"><div class="g-sn">2</div><span>切換 4 個子分頁：症狀與配方、成分解析、疾病、補充教材</span></div><div class="g-step"><div class="g-sn">3</div><span>點選標題即可展開內容</span></div></div>
+    <div class="g-card"><div class="g-n">08</div><div class="g-t">症狀/成分/疾病</div><div class="g-p">查詢常見症狀與配方、成分解析、常見疾病與補充教材</div><div class="g-step"><div class="g-sn">1</div><span>點選上方「🩺 症狀/成分/疾病」分頁</span></div><div class="g-step"><div class="g-sn">2</div><span>切換 4 個子分頁：症狀與配方、成分解析、疾病、補充教材</span></div><div class="g-step"><div class="g-sn">3</div><span>點選標題即可展開內容</span></div></div>
   </div>
 </div>
 </main>
@@ -2213,6 +2220,48 @@ var HEALTH_TABS=[['symptom','🩹 常見症狀與配方'],['ingredient','🔬 �
 var HEALTH_TAB='symptom';
 function initHealth(){healthRender();}
 function healthSelectTab(key){HEALTH_TAB=key;healthRender();}
+// 可展開的標題區塊：點標題展開／收合；每次點擊都送出紀錄（動作類型＝症狀/成分/疾病、目標內容＝trackName）
+function healthAcc(title,trackName,open,buildBody){
+  var wrap=document.createElement('div');
+  wrap.style.marginBottom='12px';
+  var hd=document.createElement('button');
+  hd.type='button';
+  hd.className='hl-acc-hd'+(open?' on':'');
+  var t=document.createElement('span');t.textContent=title;
+  var ar=document.createElement('span');ar.className='hl-arrow';ar.textContent=open?'▼':'▶';
+  hd.appendChild(t);hd.appendChild(ar);
+  var body=document.createElement('div');
+  body.style.cssText='display:'+(open?'block':'none')+';margin-top:12px';
+  buildBody(body);
+  hd.onclick=function(){
+    var o=body.style.display!=='none';
+    body.style.display=o?'none':'block';
+    ar.textContent=o?'▶':'▼';
+    hd.className='hl-acc-hd'+(o?'':' on');
+    try{trackUsage('症狀/成分/疾病',trackName);}catch(e){}
+  };
+  wrap.appendChild(hd);wrap.appendChild(body);
+  return wrap;
+}
+// 常見疾病：每個疾病一張卡片，內容取自「問題中含該疾病關鍵字」的現有 QA（之後新增相關 QA 會自動出現）
+var HEALTH_DISEASES=[{name:'蠶豆症',keys:['蠶豆症']}];
+function healthDiseaseItems(keys){
+  var out=[],seen={};
+  Object.keys(EXCEL_QA).forEach(function(k){
+    var sh=EXCEL_QA[k];if(!sh||!sh.items)return;
+    sh.items.forEach(function(it){
+      var q=String(it.q||'');
+      if(keys.some(function(w){return q.indexOf(w)>=0;})&&!seen[q]){seen[q]=1;out.push(it);}
+    });
+  });
+  return out;
+}
+// 補充教材：點擊直接開啟對應的教材內容（沿用產品查詢頁既有的表格）
+var HEALTH_MATERIALS=[
+  {title:'營養素建議量/上限量',icon:'🧪',desc:'鋅、維生素C、B群、鈣、硒、D3、魚油、葉黃素',fn:function(){openNutrientModal();}},
+  {title:'兒童版表格',icon:'📋',desc:'兒童系列產品成分、建議吃法與注意事項',fn:function(){openChartModal('kids');}},
+  {title:'成人版表格',icon:'📊',desc:'成人系列產品成分、建議吃法與注意事項',fn:function(){openChartModal('adults');}}
+];
 function healthRender(){
   var tabs=document.getElementById('healthTabs'),box=document.getElementById('healthContent');
   if(!tabs||!box)return;
@@ -2230,19 +2279,40 @@ function healthRender(){
     var wrap=document.createElement('div');wrap.className='hl-box';
     var hd=document.createElement('div');hd.className='hl-box-hd';hd.textContent='常見症狀與配方';
     wrap.appendChild(hd);
-    if(!items.length){
-      wrap.innerHTML+='<div class="hl-empty"><b>內容建置中</b>敬請期待</div>';
-    }else{
-      items.forEach(function(item){wrap.appendChild(qaSearchCard(item,[],false,'症狀/成分/疾病'));});
-    }
+    items.forEach(function(item){
+      // 預設直接展開「有異位性皮膚炎(異膚)的兒童…」這則；其餘維持收合，點擊展開
+      var open=String(item.q||'').indexOf('有異位性皮膚炎(異膚)的兒童')>=0;
+      wrap.appendChild(qaSearchCard(item,[],open,'症狀/成分/疾病'));
+    });
     box.appendChild(wrap);
   }else if(HEALTH_TAB==='ingredient'){
     box.innerHTML=ING_MODULE_HTML;
+  }else if(HEALTH_TAB==='disease'){
+    HEALTH_DISEASES.forEach(function(d,i){
+      // 預設展開第一個疾病（蠶豆症）
+      box.appendChild(healthAcc(d.name,d.name,i===0,function(body){
+        healthDiseaseItems(d.keys).forEach(function(item){
+          body.appendChild(qaSearchCard(item,[],true,'症狀/成分/疾病'));
+        });
+      }));
+    });
   }else{
-    var name=(HEALTH_TAB==='disease')?'🏥 常見疾病':'📚 補充教材';
-    box.innerHTML='<div class="hl-box"><div class="hl-empty"><b>'+name+'</b>內容建置中，敬請期待</div></div>';
+    HEALTH_MATERIALS.forEach(function(m){
+      var b=document.createElement('button');
+      b.type='button';b.className='hl-link';
+      var left=document.createElement('span');
+      left.innerHTML=escH(m.icon+' '+m.title)+'<small>'+escH(m.desc)+'</small>';
+      var ar=document.createElement('span');ar.className='hl-arrow';ar.textContent='▶';
+      b.appendChild(left);b.appendChild(ar);
+      b.onclick=function(){
+        try{trackUsage('症狀/成分/疾病',m.title);}catch(e){}
+        m.fn();
+      };
+      box.appendChild(b);
+    });
   }
 }
+
 // ==================== 常見成分解析模組 ====================
 var ING_MODULE_HTML=`<!-- 常見成分解析 模組開始 -->
 <div id="ingredient-section" style="word-break: break-word; overflow-wrap: break-word; padding: 20px; background-color: #ffffff; border-radius: 12px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
