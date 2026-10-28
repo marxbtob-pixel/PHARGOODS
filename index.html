@@ -329,6 +329,60 @@ table, th, td, .card, .m-bub, .msg {
 .hl-link{width:100%;padding:14px 16px;border:1px solid var(--gray200);background:#fff;color:var(--gray700);border-radius:10px;font-size:17px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;text-align:left;font-family:var(--font);margin-bottom:10px;box-shadow:var(--sh-xs);transition:all .15s}
 .hl-link:hover{border-color:var(--brand-mid);background:var(--brand-50);color:var(--brand-dark)}
 .hl-link small{font-size:14px;font-weight:500;color:var(--gray400);display:block;margin-top:2px}
+/* ===== 銷售問診指南 ===== */
+.cs-tabs{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.cs-tab{padding:10px 20px;border-radius:12px;border:1.5px solid var(--brand-100);background:#fff;color:var(--brand-dark);font-size:17px;font-weight:700;cursor:pointer;font-family:var(--font);line-height:1.4}
+.cs-tab:hover{background:var(--brand-50)}
+.cs-tab.on{background:var(--brand-dark);border-color:var(--brand-dark);color:#fff}
+.cs-tab.adult.on{background:#1d4ed8;border-color:#1d4ed8}
+.cs-reset{margin-left:auto;padding:7px 14px;border-radius:16px;border:1.5px solid var(--gray300);background:#fff;color:var(--gray500);font-size:14px;cursor:pointer;font-family:var(--font)}
+.cs-reset:hover{background:var(--gray100)}
+.cs-sec{background:#fff;border:1px solid var(--gray200);border-radius:var(--r);box-shadow:var(--sh-xs);margin-bottom:14px;overflow:hidden}
+.cs-sec-hd{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;border:none;background:#f0fdf4;color:#14532d;font-size:18px;font-weight:800;cursor:pointer;font-family:var(--font);text-align:left}
+.cs-sec.adult .cs-sec-hd{background:#eff6ff;color:#1e3a8a}
+.cs-sec-no{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--brand-dark);color:#fff;font-size:15px;margin-right:10px;flex-shrink:0}
+.cs-sec.adult .cs-sec-no{background:#1d4ed8}
+.cs-arrow{font-size:13px;flex-shrink:0}
+.cs-sec-bd{padding:14px 18px 6px}
+.cs-sub{font-size:15px;font-weight:700;color:var(--gray500);margin:2px 0 8px}
+.cs-check{display:flex;gap:10px;align-items:flex-start;padding:11px 14px;border:1.5px solid var(--gray200);border-radius:10px;margin-bottom:10px;cursor:pointer;background:#fff;font-size:17px;line-height:1.7;color:var(--gray700);transition:all .15s}
+.cs-check:hover{border-color:var(--brand-mid);background:var(--brand-50)}
+.cs-check.on{background:#ecfdf5;border-color:#34d399}
+.cs-box{flex-shrink:0;font-size:20px;line-height:1.5;color:var(--gray400)}
+.cs-check.on .cs-box{color:#059669}
+.cs-need-ttl{font-weight:800;color:var(--gray900);font-size:18px}
+.cs-need-desc{color:var(--gray500);font-size:16px}
+.cs-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.cs-badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:15px;font-weight:700;background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.cs-badge.b1{background:#dbeafe;color:#1e40af;border-color:#bfdbfe}
+.cs-badge.b2{background:#fce7f3;color:#9d174d;border-color:#fbcfe8}
+.cs-badge.b3{background:#ede9fe;color:#5b21b6;border-color:#ddd6fe}
+.cs-badge.b4{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+.cs-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.cs-chip{padding:7px 16px;border-radius:18px;border:1.5px solid var(--gray300);background:#fff;color:var(--gray700);font-size:16px;font-weight:600;cursor:pointer;font-family:var(--font);line-height:1.4}
+.cs-chip:hover{border-color:var(--brand-mid)}
+.cs-chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.cs-sec.adult .cs-chip.on{background:#2563eb;border-color:#2563eb}
+.cs-formula{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 12px;font-size:17px;font-weight:700}
+.cs-formula span{padding:8px 14px;border-radius:10px;background:#fff7ed;border:1.5px solid #fdba74;color:#9a3412}
+.cs-formula i{font-style:normal;color:var(--gray400);font-size:20px}
+.cs-formula span.res{background:#ecfdf5;border-color:#34d399;color:#065f46}
+.cs-more{font-size:15px;color:var(--gray400);margin:-4px 0 10px}
+/* ===== 常見疾病：衛教文章 ===== */
+.dz-art{background:#fff;border:1px solid var(--gray200);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.dz-title{font-size:21px;font-weight:800;color:#7c2d12;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #fed7aa}
+.dz-sec{margin-bottom:16px}
+.dz-sec-hd{display:inline-block;font-size:18px;font-weight:800;color:#9a3412;background:#fff7ed;border-left:4px solid #f97316;border-radius:0 8px 8px 0;padding:5px 14px;margin-bottom:8px}
+.dz-p{font-size:17px;line-height:1.9;color:var(--gray700);margin:0 0 8px}
+.dz-list{margin:6px 0 10px;padding-left:0;list-style:none}
+.dz-list li{display:flex;gap:10px;align-items:flex-start;font-size:17px;line-height:1.8;color:var(--gray700);padding:6px 0;border-bottom:1px dashed var(--gray200)}
+.dz-list li:last-child{border-bottom:none}
+.dz-no{flex-shrink:0;min-width:26px;height:26px;border-radius:50%;background:#ffedd5;color:#9a3412;font-weight:800;font-size:15px;display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+.dz-list li.warn{background:#fef2f2;border-radius:8px;padding:8px 10px}
+.dz-list li.warn .dz-no{background:#dc2626;color:#fff}
+.dz-list li.warn b{color:#b91c1c}
+.dz-alert{background:#fef2f2;border:1px solid #fecaca;border-left:5px solid #dc2626;border-radius:8px;padding:10px 14px;font-size:17px;line-height:1.8;color:#7f1d1d;margin-top:8px}
+.dz-sub{font-size:17px;font-weight:800;color:var(--brand-dark);margin:6px 0 10px}
 </style>
 </head>
 <body>
@@ -431,6 +485,7 @@ window.addEventListener('load',function(){
     <button class="nav-btn active" onclick="switchPage('search')">🔍 產品查詢</button>
     <button class="nav-btn" onclick="switchPage('chat')">🤖 AI 問答</button>
     <button class="nav-btn" onclick="switchPage('voice')">🎬 影音教案</button>
+    <button class="nav-btn" id="nav-consult" onclick="switchTab('consult')">📞 銷售問診指南</button>
     <button class="nav-btn" onclick="switchPage('objection')">🛡️ 異議神助手</button>
     <button class="nav-btn" id="nav-health" onclick="switchTab('health')">🩺 症狀/成分/疾病</button>
     <button class="nav-btn locked" onclick="requireAuth('quiz')">🔒 測驗</button>
@@ -560,6 +615,13 @@ window.addEventListener('load',function(){
   <div id="voiceGrid"></div>
 </div>
 
+<!-- CONSULT -->
+<div class="page" id="page-consult">
+  <div style="margin-bottom:14px"><div class="pg-t">📞 銷售問診指南</div><div class="pg-s">依問診清單逐項詢問、逐項勾選，協助你挖出客戶真正的需求</div></div>
+  <div class="cs-tabs" id="consultTabs"></div>
+  <div id="consultBody"></div>
+</div>
+
 <!-- OBJECTION -->
 <div class="page" id="page-objection">
   <div class="obj-hero">
@@ -643,7 +705,7 @@ window.addEventListener('load',function(){
 <!-- GUIDE -->
 <div class="page" id="page-guide">
   <div class="pg-t">使用說明</div>
-  <div class="pg-s">藥師健生活內部查詢系統 — 八大功能模組完整說明</div>
+  <div class="pg-s">藥師健生活內部查詢系統 — 九大功能模組完整說明</div>
   <div class="alert">⚠ <strong>免責聲明：</strong>本系統資訊僅供內部同仁參考使用。若有特殊健康狀況，仍建議諮詢專業醫療人員或藥師。</div>
   <div class="g-grid">
     <div class="g-card"><div class="g-n">01</div><div class="g-t">產品查詢</div><div class="g-p">搜尋全系列保健品，支援關鍵字、系列與需求篩選</div><div class="g-step"><div class="g-sn">1</div><span>選擇系列標籤（成人/兒童/女性/運動/素食）</span></div><div class="g-step"><div class="g-sn">2</div><span>依需求標籤進一步篩選</span></div><div class="g-step"><div class="g-sn">3</div><span>點擊卡片查看完整資訊</span></div></div>
@@ -654,6 +716,7 @@ window.addEventListener('load',function(){
     <div class="g-card"><div class="g-n">06</div><div class="g-t">成績 🔒</div><div class="g-p">查看個人歷次測驗與考核成績紀錄</div><div class="g-step"><div class="g-sn">🔑</div><span>需輸入授權密碼才可存取</span></div><div class="g-step"><div class="g-sn">1</div><span>顯示平均分數、次數統計</span></div><div class="g-step"><div class="g-sn">2</div><span>可篩選測驗或考核記錄</span></div></div>
     <div class="g-card"><div class="g-n">07</div><div class="g-t">異議神助手</div><div class="g-p">客戶提出異議時，快速查詢四步對話與 LINE 話術</div><div class="g-step"><div class="g-sn">1</div><span>選擇異議分類，再點選客戶的拒絕詞</span></div><div class="g-step"><div class="g-sn">2</div><span>左欄看口語四步對話與心法</span></div><div class="g-step"><div class="g-sn">3</div><span>右欄按「一鍵複製」貼到 LINE</span></div></div>
     <div class="g-card"><div class="g-n">08</div><div class="g-t">症狀/成分/疾病</div><div class="g-p">查詢常見症狀與配方、成分解析、常見疾病與補充教材</div><div class="g-step"><div class="g-sn">1</div><span>點選上方「🩺 症狀/成分/疾病」分頁</span></div><div class="g-step"><div class="g-sn">2</div><span>切換 4 個子分頁：症狀與配方、成分解析、疾病、補充教材</span></div><div class="g-step"><div class="g-sn">3</div><span>點選標題即可展開內容</span></div></div>
+    <div class="g-card"><div class="g-n">09</div><div class="g-t">銷售問診指南</div><div class="g-p">電話問診的檢查清單，逐項詢問客戶的背景與需求</div><div class="g-step"><div class="g-sn">1</div><span>點選上方「📞 銷售問診指南」，切換兒童版／成人版</span></div><div class="g-step"><div class="g-sn">2</div><span>點標題展開／收合，點項目可勾選已詢問</span></div><div class="g-step"><div class="g-sn">3</div><span>「↺ 重設勾選」可清除本次問診的勾選</span></div></div>
   </div>
 </div>
 </main>
@@ -960,7 +1023,7 @@ const QUIZ_QUESTIONS=[
 let curFilter='全部',curSeries='全部',authed=false;
 let quizState={active:false,idx:0,answers:[],answered:false};
 const AUTH_PASS='phargoods2025';
-const pageIds=['search','chat','voice','objection','health','quiz','exam','score','guide'];
+const pageIds=['search','chat','voice','consult','objection','health','quiz','exam','score','guide'];
 
 const SCORES=[
   {date:'2025-06-10',type:'quiz',name:'產品知識測驗 #12',score:90,pass:true,time:'8分22秒'},
@@ -978,6 +1041,7 @@ function switchPage(id){
   const idx=pageIds.indexOf(id);
   if(idx>=0) document.querySelectorAll('.nav-btn')[idx].classList.add('active');
   if(id==='score') renderScores();
+  if(id==='consult') initConsult();
   if(id==='objection') initObjection();
   if(id==='health') initHealth();
 }
@@ -987,6 +1051,8 @@ function switchTab(id){
   switchPage(id);
   if(id==='exam'){ try{ trackUsage('考核','藥師健生活考核標準'); }catch(e){} }
   // 點「🩺 症狀/成分/疾病」主選單：動作類型＝症狀/成分/疾病、目標內容＝指定的問題文字
+  // 點「📞 銷售問診指南」主按鈕：動作類型＝銷售問診指南、目標內容＝主選單名稱
+  if(id==='consult'){ try{ trackUsage('銷售問診指南','📞 銷售問診指南'); }catch(e){} }
   if(id==='health'){ try{ trackUsage('症狀/成分/疾病','Q：我的皮膚乾敏、乾癢，但不至於會抓癢到破皮，請問可以吃什麼保健品來改善嗎？'); }catch(e){} }
 }
 
@@ -2244,7 +2310,36 @@ function healthAcc(title,trackName,open,buildBody){
   return wrap;
 }
 // 常見疾病：每個疾病一張卡片，內容取自「問題中含該疾病關鍵字」的現有 QA（之後新增相關 QA 會自動出現）
-var HEALTH_DISEASES=[{name:'蠶豆症',keys:['蠶豆症']}];
+var G6PD_ARTICLE_HTML=`<div class="dz-art">
+<div class="dz-title">G-6-PD缺乏症(蠶豆症)</div>
+<div class="dz-sec"><div class="dz-sec-hd">一.認識蠶豆症</div>
+<p class="dz-p">G-6-PD缺乏症全名稱為「葡萄糖六磷酸鹽脫氫酵素缺乏症」，俗稱為「蠶豆症」，為台灣地區最常見的先天性代謝疾病，平均每一百個新生兒中，就有三個病例，其中男性發生率比女性高。</p></div>
+<div class="dz-sec"><div class="dz-sec-hd">二.蠶豆症的機轉</div>
+<p class="dz-p">葡萄糖六磷酸鹽脫氫酵素缺乏症（即G-6-PD）是一種酵素，它在人體內協助葡萄糖進行新陳代謝，而在此過程中產生一種保護紅血球的物質，以對抗某些特別的氧化物；患此症的小孩，因缺乏這種酵素，使紅血球容易受到某些特定物質的破壞而發生溶血，如程度嚴重即發生急性溶血性貧血。</p></div>
+<div class="dz-sec"><div class="dz-sec-hd">三.蠶豆症常見症狀</div>
+<p class="dz-p">蠶豆症患者如果食用或接觸可能會導致溶血的物質，可能會出現以下症狀：</p>
+<ul class="dz-list">
+<li><span class="dz-no">1</span><span>疲倦</span></li>
+<li><span class="dz-no">2</span><span>食慾差</span></li>
+<li><span class="dz-no">3</span><span>心律過快</span></li>
+<li><span class="dz-no">4</span><span>呼吸急促</span></li>
+<li><span class="dz-no">5</span><span>臉色蒼白</span></li>
+<li class="warn"><span class="dz-no">6</span><span><b>全身黃疸（眼白及皮膚變黃）</b></span></li>
+<li class="warn"><span class="dz-no">7</span><span><b>可樂顏色或茶色的尿液</b></span></li>
+</ul>
+<div class="dz-alert">嚴重的話會造成呼吸窘迫或是意識不清、休克等，併發嚴重情形時，就需要馬上就醫治療。</div></div>
+<div class="dz-sec"><div class="dz-sec-hd">四.蠶豆症的預防</div>
+<ul class="dz-list">
+<li><span class="dz-no">1</span><span>不隨意服藥 ( 如某些種類抗生素，阿斯匹靈等 )，所有藥物均需經由醫師處方。</span></li>
+<li><span class="dz-no">2</span><span>避免吃蠶豆或其製品 ( 蠶豆酥 )。母親若哺餵母奶，本身也不能吃蠶豆，否則小孩有可能會出現急性溶血性貧血。</span></li>
+<li><span class="dz-no">3</span><span>衣櫥及廁所不可以放奈丸 ( 臭丸 )。</span></li>
+<li><span class="dz-no">4</span><span>不要使用龍膽紫 ( 紫藥水 )。</span></li>
+<li><span class="dz-no">5</span><span>假若發現有黃疸、貧血 ( 臉色蒼白 ) 或解深茶色(或可樂色)尿的現象時，請儘速帶往醫院診治。</span></li>
+<li><span class="dz-no">6</span><span>看病時，應主動告訴醫護人員小孩患此症，並出示 G-6-PD 缺乏症備忘卡。</span></li>
+<li><span class="dz-no">7</span><span>以薄荷醇(menthol)與類似物質為主要藥理成分的產品不建議使用於葡萄糖-6-磷酸鹽去氫酶缺乏症的兒童。類似物質包括樟腦（camphor）、桉樹醇（cineole）、尤加利樹 （eucalyptus）的精油（essential oils）、側柏酮（thujone）、綠花白千層（niaouli）、野生百里香（wild thyme）、松油醇（terpineol）、萜品（terpine）、檸檬醛（citral）、松節油（turpentine）與松針（pine needle）含樟腦(camphor)之外用藥品建議不要使用。這類物質被大量運用於藥物、化妝品、菸品、酒類、茶、殺蟲劑、清潔劑、糖果、口香糖、牙膏、漱口水、洗髮精、肥皂、精油中。</span></li>
+</ul></div>
+</div>`;
+var HEALTH_DISEASES=[{name:'蠶豆症',keys:['蠶豆症'],article:G6PD_ARTICLE_HTML}];
 function healthDiseaseItems(keys){
   var out=[],seen={};
   Object.keys(EXCEL_QA).forEach(function(k){
@@ -2291,9 +2386,13 @@ function healthRender(){
     HEALTH_DISEASES.forEach(function(d,i){
       // 預設展開第一個疾病（蠶豆症）
       box.appendChild(healthAcc(d.name,d.name,i===0,function(body){
-        healthDiseaseItems(d.keys).forEach(function(item){
-          body.appendChild(qaSearchCard(item,[],true,'症狀/成分/疾病'));
-        });
+        // 衛教文章（認識、機轉、症狀、預防）＋ 相關的公司既有 QA
+        if(d.article){var art=document.createElement('div');art.innerHTML=d.article;body.appendChild(art);}
+        var qas=healthDiseaseItems(d.keys);
+        if(qas.length){
+          if(d.article){var sub=document.createElement('div');sub.className='dz-sub';sub.textContent='保健品相關問答（Q&A）';body.appendChild(sub);}
+          qas.forEach(function(item){body.appendChild(qaSearchCard(item,[],true,'症狀/成分/疾病'));});
+        }
       }));
     });
   }else{
@@ -3900,6 +3999,108 @@ window.addEventListener('focus',function(){
   var ent=document.getElementById('entryOverlay');
   if(ent&&ent.style.display==='none')checkSiteUpdate(false);   // 已登入的同仁切回頁面時也會檢查
 });
+</script>
+
+<script>
+// ==================== 銷售問診指南 ====================
+// 點擊紀錄：動作類型＝銷售問診指南；目標內容＝「分頁名稱-項目名稱」，例如 👶 兒童版問診-過敏體質、🧑 成人版問診-飲食狀況
+var CONSULT_TAB='kids',CONSULT_STATE={};
+var CONSULT_DATA={
+ kids:{label:'👶 兒童版問診',cls:'',sections:[
+  {title:'基本背景與照顧狀況',blocks:[
+    {t:'check',key:'basic',track:'基本背景',html:'<b>幾個小孩</b>？<b>各幾歲</b>？<span class="cs-badge b1">男生</span>？<span class="cs-badge b2">女生</span>？'},
+    {t:'chips',sub:'照顧狀況',key:'care',chips:['自己帶','托嬰','幼稚園','國中小/高中(未滿18歲)']}
+  ]},
+  {title:'需求與症狀挖掘',blocks:[
+    {t:'need',key:'n1',icon:'🛡️',name:'免疫力',desc:'常感冒？',tags:['常感冒']},
+    {t:'need',key:'n2',icon:'🧠',name:'聰明學習',desc:'',tags:['專注力']},
+    {t:'need',key:'n3',icon:'👁️',name:'眼睛保健',desc:'',tags:['近視','重度 3C']},
+    {t:'need',key:'n4',icon:'🤧',name:'過敏體質',desc:'',tags:['鼻子過敏','流鼻水','過敏咳','異位性皮膚炎']},
+    {t:'need',key:'n5',icon:'💩',name:'腸胃狀況',desc:'',tags:['便秘','拉肚子']},
+    {t:'need',key:'n6',icon:'🥣',name:'飲食習慣',desc:'',tags:['挑食','偏食','胃口差']},
+    {t:'need',key:'n7',icon:'📏',name:'長高發育',desc:'與同年齡小孩比較',tags:['嬌小','差不多','較高']}
+  ]},
+  {title:'搭配與教導吃法',blocks:[
+    {t:'formula',a:'手頭上的產品',b:'建議產品',res:'搭配吃出好效果'},
+    {t:'check',key:'combo',track:'搭配吃法',html:'<b>手頭上的產品</b> + <b>建議產品</b>，如何<b>搭配</b>吃出好效果？並<b>教導正確吃法</b>'}
+  ]}
+ ]},
+ adult:{label:'🧑 成人版問診',cls:' adult',sections:[
+  {icon:'💼',title:'工作型態',blocks:[
+    {t:'chips',key:'work',chips:['室內','辦公室','久站','久坐','室外工作'],more:true}
+  ]},
+  {icon:'🍱',title:'飲食狀況',blocks:[
+    {t:'chips',sub:'飲食內容',key:'diet1',chips:['三餐外食','高油','高脂','高糖','下午茶','甜點','宵夜']},
+    {t:'chips',sub:'飲水、纖維、油脂與運動',key:'diet2',chips:['水喝多少','膳食纖維','好的油脂','運動習慣']}
+  ]},
+  {icon:'🌙',title:'生活型態',blocks:[
+    {t:'chips',key:'life',chips:['輪班','熬夜','睡眠品質','壓力大','重度使用 3C','追劇'],more:true}
+  ]}
+ ]}
+};
+function consultTrack(name){try{trackUsage('銷售問診指南',name);}catch(e){}}
+function initConsult(){consultRender();}
+function consultTab(k){CONSULT_TAB=k;consultRender();}
+function consultSt(k){return CONSULT_STATE[CONSULT_TAB+':'+k];}
+function consultSec(i){
+  var k='sec'+i,cur=consultSt(k);
+  CONSULT_STATE[CONSULT_TAB+':'+k]=(cur===undefined?true:cur)?false:true;   // 預設展開
+  consultTrack(CONSULT_DATA[CONSULT_TAB].label+'-'+CONSULT_DATA[CONSULT_TAB].sections[i].title);
+  consultRender();
+}
+function consultItem(key,name){
+  CONSULT_STATE[CONSULT_TAB+':'+key]=!consultSt(key);
+  consultTrack(CONSULT_DATA[CONSULT_TAB].label+'-'+name);
+  consultRender();
+}
+function consultChip(key,label){
+  var k=key+'|'+label;
+  CONSULT_STATE[CONSULT_TAB+':'+k]=!consultSt(k);
+  consultRender();
+}
+function consultReset(){
+  Object.keys(CONSULT_STATE).forEach(function(k){
+    if(k.indexOf(CONSULT_TAB+':')===0&&k.indexOf(':sec')<0)delete CONSULT_STATE[k];
+  });
+  consultRender();
+}
+function consultRender(){
+  var tabs=document.getElementById('consultTabs'),body=document.getElementById('consultBody');
+  if(!tabs||!body)return;
+  var th='';
+  ['kids','adult'].forEach(function(k){
+    th+='<button class="cs-tab'+CONSULT_DATA[k].cls+(k===CONSULT_TAB?' on':'')+'" onclick="consultTab(\''+k+'\')">'+CONSULT_DATA[k].label+'</button>';
+  });
+  th+='<button class="cs-reset" onclick="consultReset()">↺ 重設勾選</button>';
+  tabs.innerHTML=th;
+  var D=CONSULT_DATA[CONSULT_TAB],bh='';
+  D.sections.forEach(function(s,i){
+    var open=consultSt('sec'+i);open=(open===undefined)?true:open;
+    bh+='<div class="cs-sec'+D.cls+'"><button class="cs-sec-hd" onclick="consultSec('+i+')"><span><span class="cs-sec-no">'+(s.icon?s.icon:(i+1))+'</span>'+escH(s.title)+'</span><span class="cs-arrow">'+(open?'▼':'▶')+'</span></button>';
+    bh+='<div class="cs-sec-bd" style="display:'+(open?'block':'none')+'">';
+    s.blocks.forEach(function(b){
+      if(b.t==='check'){
+        var on=consultSt(b.key);
+        bh+='<div class="cs-check'+(on?' on':'')+'" onclick="consultItem(\''+b.key+'\',\''+b.track+'\')"><span class="cs-box">'+(on?'☑':'☐')+'</span><span>'+b.html+'</span></div>';
+      }else if(b.t==='need'){
+        var on2=consultSt(b.key),cls=['b1','b2','b3','b4',''];
+        bh+='<div class="cs-check'+(on2?' on':'')+'" onclick="consultItem(\''+b.key+'\',\''+b.name+'\')"><span class="cs-box">'+(on2?'☑':'☐')+'</span><span><span class="cs-need-ttl">'+b.icon+' '+escH(b.name)+'</span>'
+          +(b.desc?'<span class="cs-need-desc">：'+escH(b.desc)+'</span>':'')
+          +'<div class="cs-badges">'+b.tags.map(function(t,j){return '<span class="cs-badge '+cls[j%4]+'">'+escH(t)+'</span>';}).join('')+'</div></span></div>';
+      }else if(b.t==='chips'){
+        if(b.sub)bh+='<div class="cs-sub">'+escH(b.sub)+'</div>';
+        bh+='<div class="cs-chips">'+b.chips.map(function(c){
+          var on3=consultSt(b.key+'|'+c);
+          return '<button class="cs-chip'+(on3?' on':'')+'" onclick="consultChip(\''+b.key+'\',\''+c.replace(/'/g,'')+'\')">'+escH(c)+'</button>';
+        }).join('')+(b.more?'<span class="cs-more">…等</span>':'')+'</div>';
+      }else if(b.t==='formula'){
+        bh+='<div class="cs-formula"><span>'+escH(b.a)+'</span><i>＋</i><span>'+escH(b.b)+'</span><i>＝</i><span class="res">'+escH(b.res)+'</span></div>';
+      }
+    });
+    bh+='</div></div>';
+  });
+  body.innerHTML=bh;
+}
 </script>
 
 <!-- API 金鑰設定頁面 -->
