@@ -1344,11 +1344,37 @@ function findQAStrong(question,tokens){
       var ok=(hit>=3&&ratio>=0.6)||(nameHit&&hit>=3&&nonName>=1&&ratio>=0.45);
       if(ok&&ratio>best)best=ratio;
     });
+    // 「主題＋問題字」的 3~4 字短詞（例如「乳清結塊」「注意事項」）：與 QA 的展開標籤相同，或兩個詞都在 QA 問題裡 → 視為命中
+    if(qOrig.length>=3&&qOrig.length<=4){
+      var labels=[],lm,lre=/\[BTN\d+:([^:]+):/g,arr=String(item.a||'');
+      while((lm=lre.exec(arr))!==null)labels.push(clean(lm[1]));
+      if(labels.some(function(lb){return lb.length>=3&&(lb.indexOf(qOrig)>=0||qOrig.indexOf(lb)>=0);}))best=Math.max(best,1);
+      if(qOrig.length===4&&/結塊|變色|變深|潮濕|受潮|異味|味道|苦味|藥味|黏住|變軟|變硬|凹陷|沉澱|分層|過期|發霉|瑕疵|腹瀉|打嗝/.test(qOrig)){
+        if(qt.indexOf(qOrig.slice(0,2))>=0&&qt.indexOf(qOrig.slice(2))>=0)best=Math.max(best,0.8);
+      }
+    }
     if(best>0&&flavor&&/味道|藥味|風味|口味|苦味|怪味|變味/.test(item.q))best+=0.25;
     var key=qt+'|'+clean(item.a).substring(0,40);
     if(best>0&&!seen[key]){seen[key]=1;res.push({qa:item,ratio:best});}
   }
   res.sort(function(a,b){return b.ratio-a.ratio;});
+  return res.slice(0,3).map(function(r){return r.qa;});
+}
+// 最後一道：問題文字（或答案、展開標籤）直接包含輸入的關鍵字，例如「結塊」「注意事項」
+function findQALoose(question){
+  var punct='？?！!。，,.、 \t()（）～~：:/／';
+  function clean(s){s=String(s||'').toLowerCase();for(var i=0;i<punct.length;i++){s=s.split(punct[i]).join('');}return s;}
+  var q=clean(question);
+  if(q.length<2)return [];
+  var pool=QA_DATABASE.slice();
+  PRODUCTS.forEach(function(p){(p.qa||[]).forEach(function(i){pool.push({q:i.q,a:i.a});});});
+  var res=[],seen={};
+  pool.forEach(function(item){
+    var qt=clean(item.q),at=clean(item.a),sc=qt.indexOf(q)>=0?2:(at.indexOf(q)>=0?1:0);
+    var key=qt+'|'+at.substring(0,40);
+    if(sc>0&&!seen[key]){seen[key]=1;res.push({qa:item,sc:sc});}
+  });
+  res.sort(function(a,b){return b.sc-a.sc;});
   return res.slice(0,3).map(function(r){return r.qa;});
 }
 let chatHist=[],loading=false;
@@ -1572,7 +1598,18 @@ async function sendMessage(){
         html+='</div>';
       }
     } else {
-      html='<div style="background:#f8f9fa;border-radius:8px;padding:16px;text-align:center;color:#6c757d">\ud83d\udcad \u6b64\u554f\u984cQA\u5c1a\u672a\u5efa\u7acb\uff0c\u8acb\u6d3d\u76f8\u95dc\u540c\u4ec1\u6216\u8521\u85e5\u5e2b\u78ba\u8a8d\u3002</div>';
+      var qaLoose=findQALoose(txt);
+      if(qaLoose.length>0){
+        html='<div style="font-weight:700;color:#2d8a56;margin-bottom:10px">\ud83d\udcda \u627e\u5230 '+qaLoose.length+' \u689d\u76f8\u95dc\u8cc7\u6599</div>';
+        for(var ql=0;ql<qaLoose.length;ql++){
+          html+='<div style="background:#f4fbf7;border-radius:8px;padding:12px;margin-bottom:10px;border:1px solid #b8ecd4">';
+          html+='<div style="font-weight:700;color:#1a5c38;margin-bottom:6px;font-size:15px">Q\uff1a'+escH(qaLoose[ql].q)+'</div>';
+          html+='<div style="color:#3c4043;font-size:15px">'+formatAnswer(qaLoose[ql].a)+qaCopyBtnHtml(qaLoose[ql].a)+'</div>';
+          html+='</div>';
+        }
+      } else {
+        html='<div style="background:#f8f9fa;border-radius:8px;padding:16px;text-align:center;color:#6c757d">\ud83d\udcad \u6b64\u554f\u984cQA\u5c1a\u672a\u5efa\u7acb\uff0c\u8acb\u6d3d\u76f8\u95dc\u540c\u4ec1\u6216\u8521\u85e5\u5e2b\u78ba\u8a8d\u3002</div>';
+      }
     }
 
     rmTyping();appendMsg('bot',html,true);
