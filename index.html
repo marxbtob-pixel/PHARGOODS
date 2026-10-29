@@ -383,6 +383,19 @@ table, th, td, .card, .m-bub, .msg {
 .dz-list li.warn b{color:#b91c1c}
 .dz-alert{background:#fef2f2;border:1px solid #fecaca;border-left:5px solid #dc2626;border-radius:8px;padding:10px 14px;font-size:17px;line-height:1.8;color:#7f1d1d;margin-top:8px}
 .dz-sub{font-size:17px;font-weight:800;color:var(--brand-dark);margin:6px 0 10px}
+/* ===== 症狀/成分/疾病：網格方框 ===== */
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.hl-card{background:#fff;border:1.5px solid var(--gray200);border-radius:14px;padding:16px 18px;cursor:pointer;display:flex;flex-direction:column;gap:8px;text-align:left;font-family:var(--font);box-shadow:var(--sh-xs);transition:all .18s;min-height:150px}
+.hl-card:hover{border-color:var(--brand-mid);box-shadow:var(--sh-md);transform:translateY(-2px)}
+.hl-card-ico{font-size:30px;line-height:1}
+.hl-card-title{font-size:19px;font-weight:800;color:var(--brand-dark);line-height:1.45;word-break:break-word}
+.hl-card-sum{font-size:16px;color:var(--gray500);line-height:1.7;flex:1;word-break:break-word}
+.hl-card-go{font-size:15px;font-weight:700;color:var(--brand);margin-top:auto}
+.hl-back{padding:8px 18px;border-radius:18px;border:1.5px solid var(--brand-100);background:#fff;color:var(--brand-dark);font-size:16px;font-weight:700;cursor:pointer;font-family:var(--font);margin-bottom:12px}
+.hl-back:hover{background:var(--brand-50);border-color:var(--brand-mid)}
+.hl-detail-bd{background:#fff;border:1px solid var(--gray200);border-radius:14px;padding:18px 20px;box-shadow:var(--sh-xs)}
+@media(max-width:980px){.hl-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.hl-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1051,8 +1064,8 @@ function switchTab(id){
   switchPage(id);
   if(id==='exam'){ try{ trackUsage('考核','藥師健生活考核標準'); }catch(e){} }
   // 點「🩺 症狀/成分/疾病」主選單：動作類型＝症狀/成分/疾病、目標內容＝指定的問題文字
-  // 點「📞 銷售問診指南」主按鈕：動作類型＝銷售問診指南、目標內容＝主選單名稱
-  if(id==='consult'){ try{ trackUsage('銷售問診指南','📞 銷售問診指南'); }catch(e){} }
+  // 點「📞 銷售問診指南」主按鈕：動作類型＝銷售問診指南、目標內容＝進入的版本（預設兒童版問診，之後記得上次看的版本）
+  if(id==='consult'){ try{ trackUsage('銷售問診指南',(typeof CONSULT_TAB!=='undefined'&&CONSULT_TAB==='adult')?'成人版問診':'兒童版問診'); }catch(e){} }
   if(id==='health'){ try{ trackUsage('症狀/成分/疾病','Q：我的皮膚乾敏、乾癢，但不至於會抓癢到破皮，請問可以吃什麼保健品來改善嗎？'); }catch(e){} }
 }
 
@@ -2284,32 +2297,9 @@ function renderQASearchResults(q){
 // ==================== 症狀/成分/疾病 頁面 ====================
 var HEALTH_TABS=[['symptom','🩹 常見症狀與配方'],['ingredient','🔬 常見成分解析'],['disease','🏥 常見疾病'],['material','📚 補充教材']];
 var HEALTH_TAB='symptom';
-function initHealth(){healthRender();}
-function healthSelectTab(key){HEALTH_TAB=key;healthRender();}
-// 可展開的標題區塊：點標題展開／收合；每次點擊都送出紀錄（動作類型＝症狀/成分/疾病、目標內容＝trackName）
-function healthAcc(title,trackName,open,buildBody){
-  var wrap=document.createElement('div');
-  wrap.style.marginBottom='12px';
-  var hd=document.createElement('button');
-  hd.type='button';
-  hd.className='hl-acc-hd'+(open?' on':'');
-  var t=document.createElement('span');t.textContent=title;
-  var ar=document.createElement('span');ar.className='hl-arrow';ar.textContent=open?'▼':'▶';
-  hd.appendChild(t);hd.appendChild(ar);
-  var body=document.createElement('div');
-  body.style.cssText='display:'+(open?'block':'none')+';margin-top:12px';
-  buildBody(body);
-  hd.onclick=function(){
-    var o=body.style.display!=='none';
-    body.style.display=o?'none':'block';
-    ar.textContent=o?'▶':'▼';
-    hd.className='hl-acc-hd'+(o?'':' on');
-    try{trackUsage('症狀/成分/疾病',trackName);}catch(e){}
-  };
-  wrap.appendChild(hd);wrap.appendChild(body);
-  return wrap;
-}
-// 常見疾病：每個疾病一張卡片，內容取自「問題中含該疾病關鍵字」的現有 QA（之後新增相關 QA 會自動出現）
+function initHealth(){HEALTH_OPEN=null;healthRender();}
+function healthSelectTab(key){HEALTH_TAB=key;HEALTH_OPEN=null;healthRender();}
+// 蠶豆症衛教文章（常見疾病）
 var G6PD_ARTICLE_HTML=`<div class="dz-art">
 <div class="dz-title">G-6-PD缺乏症(蠶豆症)</div>
 <div class="dz-sec"><div class="dz-sec-hd">一.認識蠶豆症</div>
@@ -2339,24 +2329,53 @@ var G6PD_ARTICLE_HTML=`<div class="dz-art">
 <li><span class="dz-no">7</span><span>以薄荷醇(menthol)與類似物質為主要藥理成分的產品不建議使用於葡萄糖-6-磷酸鹽去氫酶缺乏症的兒童。類似物質包括樟腦（camphor）、桉樹醇（cineole）、尤加利樹 （eucalyptus）的精油（essential oils）、側柏酮（thujone）、綠花白千層（niaouli）、野生百里香（wild thyme）、松油醇（terpineol）、萜品（terpine）、檸檬醛（citral）、松節油（turpentine）與松針（pine needle）含樟腦(camphor)之外用藥品建議不要使用。這類物質被大量運用於藥物、化妝品、菸品、酒類、茶、殺蟲劑、清潔劑、糖果、口香糖、牙膏、漱口水、洗髮精、肥皂、精油中。</span></li>
 </ul></div>
 </div>`;
-var HEALTH_DISEASES=[{name:'蠶豆症',keys:['蠶豆症'],article:G6PD_ARTICLE_HTML}];
-function healthDiseaseItems(keys){
-  var out=[],seen={};
-  Object.keys(EXCEL_QA).forEach(function(k){
-    var sh=EXCEL_QA[k];if(!sh||!sh.items)return;
-    sh.items.forEach(function(it){
-      var q=String(it.q||'');
-      if(keys.some(function(w){return q.indexOf(w)>=0;})&&!seen[q]){seen[q]=1;out.push(it);}
-    });
-  });
-  return out;
+
+// ---- 症狀/成分/疾病：網格方框 ----
+// 點擊紀錄：動作類型＝症狀/成分/疾病；目標內容＝被點卡片「標題文字」（動態抓取，之後新增項目不需改程式）
+function healthStripIcon(s){return String(s||'').replace(/^[\s\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]+/u,'').trim();}
+function healthTrackEl(el){
+  try{
+    var t=el.querySelector('.hl-card-title');
+    var s=healthStripIcon(t?t.textContent:el.textContent);
+    if(s)trackUsage('症狀/成分/疾病',s);
+  }catch(e){}
 }
-// 補充教材：點擊直接開啟對應的教材內容（沿用產品查詢頁既有的表格）
-var HEALTH_MATERIALS=[
-  {title:'營養素建議量/上限量',icon:'🧪',desc:'鋅、維生素C、B群、鈣、硒、D3、魚油、葉黃素',fn:function(){openNutrientModal();}},
-  {title:'兒童版表格',icon:'📋',desc:'兒童系列產品成分、建議吃法與注意事項',fn:function(){openChartModal('kids');}},
-  {title:'成人版表格',icon:'📊',desc:'成人系列產品成分、建議吃法與注意事項',fn:function(){openChartModal('adults');}}
-];
+// 從一段 HTML 字串裡取出指定 id 的 <div>…</div>（含巢狀）
+function healthExtractDiv(html,id){
+  var start=html.indexOf('<div id="'+id+'"');
+  if(start<0)return '';
+  var re=/<div\b|<\/div>/g,depth=0,m;
+  re.lastIndex=start;
+  while((m=re.exec(html))!==null){
+    if(m[0]==='</div>'){depth--;if(depth===0)return html.slice(start,re.lastIndex);}
+    else depth++;
+  }
+  return '';
+}
+// 各分頁的方框項目：icon／title／summary，以及內容（html 或 sel）或直接開啟的動作（action）
+// ★ 日後新增內容，只要在這裡加一筆；點擊紀錄會自動以 title 記錄
+var HEALTH_ITEMS={
+  ingredient:[
+    {icon:'📊',title:'初乳蛋白 vs 乳鐵蛋白 vs 藻精蛋白 vs β-葡聚醣',summary:'比較四種免疫保養成分的來源、主要成分、核心機轉與建議使用時機。',sel:'detail-protein-compare'},
+    {icon:'💊',title:'妙利散 & 阿德比',summary:'藥用益生菌的功效、醫師開立的情境，以及常見問答。',sel:'detail-miarisan'}
+  ],
+  disease:[
+    {icon:'🏥',title:'G-6-PD缺乏症(蠶豆症)',summary:'認識蠶豆症、發病機轉、常見症狀與日常預防。',html:G6PD_ARTICLE_HTML}
+  ],
+  material:[
+    {icon:'🧪',title:'營養素建議量/上限量',summary:'鋅、維生素C、B群、鈣、硒、D3、魚油、葉黃素的建議量與上限量。',action:function(){openNutrientModal();}},
+    {icon:'📋',title:'兒童版表格',summary:'兒童系列產品的成分、建議吃法與注意事項總表。',action:function(){openChartModal('kids');}},
+    {icon:'📊',title:'成人版表格',summary:'成人系列產品的成分、建議吃法與注意事項總表。',action:function(){openChartModal('adults');}}
+  ]
+};
+var HEALTH_OPEN=null;   // 目前展開哪一張方框（null＝顯示方框列表）
+function healthBack(){HEALTH_OPEN=null;healthRender();window.scrollTo&&window.scrollTo(0,0);}
+function healthOpen(card,i){
+  var it=HEALTH_ITEMS[HEALTH_TAB][i];
+  healthTrackEl(card);
+  if(it.action){it.action();return;}
+  HEALTH_OPEN=i;healthRender();window.scrollTo&&window.scrollTo(0,0);
+}
 function healthRender(){
   var tabs=document.getElementById('healthTabs'),box=document.getElementById('healthContent');
   if(!tabs||!box)return;
@@ -2370,46 +2389,47 @@ function healthRender(){
   });
   box.innerHTML='';
   if(HEALTH_TAB==='symptom'){
+    // 常見症狀與配方：維持單欄長條形（手風琴折疊卡）
     var sheet=EXCEL_QA['常見症狀'],items=(sheet&&sheet.items)||[];
     var wrap=document.createElement('div');wrap.className='hl-box';
     var hd=document.createElement('div');hd.className='hl-box-hd';hd.textContent='常見症狀與配方';
     wrap.appendChild(hd);
     items.forEach(function(item){
-      // 預設直接展開「有異位性皮膚炎(異膚)的兒童…」這則；其餘維持收合，點擊展開
-      var open=String(item.q||'').indexOf('有異位性皮膚炎(異膚)的兒童')>=0;
+      var open=String(item.q||'').indexOf('有異位性皮膚炎(異膚)的兒童')>=0;   // 預設展開這則
       wrap.appendChild(qaSearchCard(item,[],open,'症狀/成分/疾病'));
     });
     box.appendChild(wrap);
-  }else if(HEALTH_TAB==='ingredient'){
-    box.innerHTML=ING_MODULE_HTML;
-  }else if(HEALTH_TAB==='disease'){
-    HEALTH_DISEASES.forEach(function(d,i){
-      // 預設展開第一個疾病（蠶豆症）
-      box.appendChild(healthAcc(d.name,d.name,i===0,function(body){
-        // 衛教文章（認識、機轉、症狀、預防）＋ 相關的公司既有 QA
-        if(d.article){var art=document.createElement('div');art.innerHTML=d.article;body.appendChild(art);}
-        var qas=healthDiseaseItems(d.keys);
-        if(qas.length){
-          if(d.article){var sub=document.createElement('div');sub.className='dz-sub';sub.textContent='保健品相關問答（Q&A）';body.appendChild(sub);}
-          qas.forEach(function(item){body.appendChild(qaSearchCard(item,[],true,'症狀/成分/疾病'));});
-        }
-      }));
-    });
-  }else{
-    HEALTH_MATERIALS.forEach(function(m){
-      var b=document.createElement('button');
-      b.type='button';b.className='hl-link';
-      var left=document.createElement('span');
-      left.innerHTML=escH(m.icon+' '+m.title)+'<small>'+escH(m.desc)+'</small>';
-      var ar=document.createElement('span');ar.className='hl-arrow';ar.textContent='▶';
-      b.appendChild(left);b.appendChild(ar);
-      b.onclick=function(){
-        try{trackUsage('症狀/成分/疾病',m.title);}catch(e){}
-        m.fn();
-      };
-      box.appendChild(b);
-    });
+    return;
   }
+  var list=HEALTH_ITEMS[HEALTH_TAB]||[];
+  // 展開狀態：顯示單一項目的完整內容
+  if(HEALTH_OPEN!==null&&list[HEALTH_OPEN]&&!list[HEALTH_OPEN].action){
+    var it=list[HEALTH_OPEN],content=it.html;
+    if(!content&&it.sel){
+      content=healthExtractDiv(ING_MODULE_HTML,it.sel).replace(/style="[^"]*"/,'style="display: block;"');
+    }
+    var back=document.createElement('button');
+    back.type='button';back.className='hl-back';back.textContent='← 返回列表';
+    back.onclick=healthBack;
+    box.appendChild(back);
+    var bd=document.createElement('div');bd.className='hl-detail-bd';bd.innerHTML=content||'';
+    box.appendChild(bd);
+    return;
+  }
+  // 方框列表
+  var grid=document.createElement('div');grid.className='hl-grid';
+  list.forEach(function(it,i){
+    var card=document.createElement('button');
+    card.type='button';card.className='hl-card';
+    var ico=document.createElement('span');ico.className='hl-card-ico';ico.textContent=it.icon||'';
+    var ttl=document.createElement('span');ttl.className='hl-card-title';ttl.textContent=it.title;
+    var sum=document.createElement('span');sum.className='hl-card-sum';sum.textContent=it.summary||'';
+    var go=document.createElement('span');go.className='hl-card-go';go.textContent=it.action?'開啟 →':'查看內容 →';
+    card.appendChild(ico);card.appendChild(ttl);card.appendChild(sum);card.appendChild(go);
+    card.onclick=function(){healthOpen(card,i);};
+    grid.appendChild(card);
+  });
+  box.appendChild(grid);
 }
 
 // ==================== 常見成分解析模組 ====================
@@ -4003,7 +4023,7 @@ window.addEventListener('focus',function(){
 
 <script>
 // ==================== 銷售問診指南 ====================
-// 點擊紀錄：動作類型＝銷售問診指南；目標內容＝「分頁名稱-項目名稱」，例如 👶 兒童版問診-過敏體質、🧑 成人版問診-飲食狀況
+// 點擊紀錄：動作類型＝銷售問診指南；目標內容＝兒童版問診 或 成人版問診
 var CONSULT_TAB='kids',CONSULT_STATE={};
 var CONSULT_DATA={
  kids:{label:'👶 兒童版問診',cls:'',sections:[
@@ -4038,19 +4058,20 @@ var CONSULT_DATA={
   ]}
  ]}
 };
-function consultTrack(name){try{trackUsage('銷售問診指南',name);}catch(e){}}
+// 目標內容一律是目前所在的版本：兒童版問診／成人版問診（不帶子項目名稱）
+function consultTrack(){try{trackUsage('銷售問診指南',CONSULT_TAB==='adult'?'成人版問診':'兒童版問診');}catch(e){}}
 function initConsult(){consultRender();}
 function consultTab(k){CONSULT_TAB=k;consultRender();}
 function consultSt(k){return CONSULT_STATE[CONSULT_TAB+':'+k];}
 function consultSec(i){
   var k='sec'+i,cur=consultSt(k);
   CONSULT_STATE[CONSULT_TAB+':'+k]=(cur===undefined?true:cur)?false:true;   // 預設展開
-  consultTrack(CONSULT_DATA[CONSULT_TAB].label+'-'+CONSULT_DATA[CONSULT_TAB].sections[i].title);
+  consultTrack();
   consultRender();
 }
 function consultItem(key,name){
   CONSULT_STATE[CONSULT_TAB+':'+key]=!consultSt(key);
-  consultTrack(CONSULT_DATA[CONSULT_TAB].label+'-'+name);
+  consultTrack();
   consultRender();
 }
 function consultChip(key,label){
