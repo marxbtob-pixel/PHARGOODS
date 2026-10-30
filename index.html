@@ -1063,10 +1063,9 @@ function switchPage(id){
 function switchTab(id){
   switchPage(id);
   if(id==='exam'){ try{ trackUsage('考核','藥師健生活考核標準'); }catch(e){} }
-  // 點「🩺 症狀/成分/疾病」主選單：動作類型＝症狀/成分/疾病、目標內容＝指定的問題文字
   // 點「📞 銷售問診指南」主按鈕：動作類型＝銷售問診指南、目標內容＝進入的版本（預設兒童版問診，之後記得上次看的版本）
   if(id==='consult'){ try{ trackUsage('銷售問診指南',(typeof CONSULT_TAB!=='undefined'&&CONSULT_TAB==='adult')?'成人版問診':'兒童版問診'); }catch(e){} }
-  if(id==='health'){ try{ trackUsage('症狀/成分/疾病','Q：我的皮膚乾敏、乾癢，但不至於會抓癢到破皮，請問可以吃什麼保健品來改善嗎？'); }catch(e){} }
+  // 「🩺 症狀/成分/疾病」主選單按鈕：只切換頁面，不送出任何紀錄（紀錄由頁面內被點的卡片／項目各自送出）
 }
 
 function requireAuth(page){
@@ -2249,7 +2248,8 @@ function qaSearchCard(item,toks,open,trackAction){
     });
     aPanel.appendChild(row);
   }
-  qRow.onclick=function(){
+  qRow.onclick=function(e){
+    if(e&&e.stopPropagation)e.stopPropagation();
     trackUsage(trackAction||'AI問答-產品QA','Q：'+String(item.q||'').substring(0,120));
     var o=aPanel.style.display!=='none';
     aPanel.style.display=o?'none':'block';
@@ -2372,8 +2372,8 @@ var G6PD_ARTICLE_HTML=`<div class="dz-art">
 function healthStripIcon(s){return String(s||'').replace(/^[\s\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]+/u,'').trim();}
 function healthTrackEl(el){
   try{
-    var t=el.querySelector('.hl-card-title');
-    var s=healthStripIcon(t?t.textContent:el.textContent);
+    var t=el&&el.querySelector('.hl-card-title');   // 只抓「這張卡片自己的標題」
+    var s=healthStripIcon(t?t.textContent:'');
     if(s)trackUsage('症狀/成分/疾病',s);
   }catch(e){}
 }
@@ -2421,7 +2421,7 @@ function healthRender(){
     var b=document.createElement('button');
     b.className='hl-tab'+(t[0]===HEALTH_TAB?' on':'');
     b.textContent=t[1];
-    b.onclick=function(){healthSelectTab(t[0]);};
+    b.onclick=function(e){if(e&&e.stopPropagation)e.stopPropagation();healthSelectTab(t[0]);};
     tabs.appendChild(b);
   });
   box.innerHTML='';
@@ -2447,7 +2447,7 @@ function healthRender(){
     }
     var back=document.createElement('button');
     back.type='button';back.className='hl-back';back.textContent='← 返回列表';
-    back.onclick=healthBack;
+    back.onclick=function(e){if(e&&e.stopPropagation)e.stopPropagation();healthBack();};
     box.appendChild(back);
     var bd=document.createElement('div');bd.className='hl-detail-bd';bd.innerHTML=content||'';
     box.appendChild(bd);
@@ -2463,7 +2463,7 @@ function healthRender(){
     var sum=document.createElement('span');sum.className='hl-card-sum';sum.textContent=it.summary||'';
     var go=document.createElement('span');go.className='hl-card-go';go.textContent=it.action?'開啟 →':'查看內容 →';
     card.appendChild(ico);card.appendChild(ttl);card.appendChild(sum);card.appendChild(go);
-    card.onclick=function(){healthOpen(card,i);};
+    card.onclick=function(e){if(e&&e.stopPropagation)e.stopPropagation();healthOpen(card,i);};
     grid.appendChild(card);
   });
   box.appendChild(grid);
