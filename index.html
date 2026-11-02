@@ -2250,8 +2250,10 @@ function qaSearchCard(item,toks,open,trackAction){
   }
   qRow.onclick=function(e){
     if(e&&e.stopPropagation)e.stopPropagation();
-    trackUsage(trackAction||'AI問答-產品QA','Q：'+String(item.q||'').substring(0,120));
-    var o=aPanel.style.display!=='none';
+    var o=aPanel.style.display!=='none';   // 點擊前是否已展開
+    // 「症狀/成分/疾病」的 QA（有指定 trackAction）：只有「展開」時才送出，收合不送；
+    // 其他 QA（通用／成人／兒童）維持原本每次點擊都記錄
+    if(!trackAction||!o)trackUsage(trackAction||'AI問答-產品QA','Q：'+String(item.q||'').substring(0,120));
     aPanel.style.display=o?'none':'block';
     ico.innerHTML=o?'&#9660;':'&#9650;';
   };
@@ -2432,8 +2434,8 @@ function healthRender(){
     var hd=document.createElement('div');hd.className='hl-box-hd';hd.textContent='常見症狀與配方';
     wrap.appendChild(hd);
     items.forEach(function(item){
-      var open=String(item.q||'').indexOf('有異位性皮膚炎(異膚)的兒童')>=0;   // 預設展開這則
-      wrap.appendChild(qaSearchCard(item,[],open,'症狀/成分/疾病'));
+      // 所有 QA 卡片預設收合；切換到此分頁時不送出任何紀錄，只有手動點開某一張才送出
+      wrap.appendChild(qaSearchCard(item,[],false,'症狀/成分/疾病'));
     });
     box.appendChild(wrap);
     return;
