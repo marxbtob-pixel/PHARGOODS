@@ -2251,9 +2251,8 @@ function qaSearchCard(item,toks,open,trackAction){
   qRow.onclick=function(e){
     if(e&&e.stopPropagation)e.stopPropagation();
     var o=aPanel.style.display!=='none';   // 點擊前是否已展開
-    // 「症狀/成分/疾病」的 QA（有指定 trackAction）：只有「展開」時才送出，收合不送；
-    // 其他 QA（通用／成人／兒童）維持原本每次點擊都記錄
-    if(!trackAction||!o)trackUsage(trackAction||'AI問答-產品QA','Q：'+String(item.q||'').substring(0,120));
+    // 只有「展開」時才送出 1 筆紀錄，收合不送；動作類型預設 AI問答-產品QA，目標內容＝這張卡片自己的問題標題
+    if(!o)trackUsage(trackAction||'AI問答-產品QA','Q：'+String(item.q||'').substring(0,120));
     aPanel.style.display=o?'none':'block';
     ico.innerHTML=o?'&#9660;':'&#9650;';
   };
@@ -2678,11 +2677,12 @@ function renderQAList2(){
         });
         aPanel.appendChild(btnRow);
       }
-      qRow.onclick = function(){
+      qRow.onclick = function(e){
+        if(e&&e.stopPropagation)e.stopPropagation();
         var _q = String(item.q||'');
-        console.log('QA click:', _q);
-        trackUsage('AI問答-產品QA','Q：'+_q.substring(0,120));
-        var open = aPanel.style.display !== 'none';
+        var open = aPanel.style.display !== 'none';   // 點擊前是否已展開
+        // 只有「展開」時才送出 1 筆紀錄，收合不送
+        if(!open)trackUsage('AI問答-產品QA','Q：'+_q.substring(0,120));
         aPanel.style.display = open ? 'none' : 'block';
         ico.innerHTML = open ? '&#9660;' : '&#9650;';
       };
