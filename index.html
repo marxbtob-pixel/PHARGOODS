@@ -2392,6 +2392,30 @@ function healthExtractDiv(html,id){
 }
 // 各分頁的方框項目：icon／title／summary，以及內容（html 或 sel）或直接開啟的動作（action）
 // ★ 日後新增內容，只要在這裡加一筆；點擊紀錄會自動以 title 記錄
+// 補充教材：保健食品保存小撇步
+var STORAGE_TIPS_HTML=`<div class="dz-art">
+<div class="dz-title">保健食品保存小撇步</div>
+<div class="dz-sec"><div class="dz-sec-hd">🗑️ 開罐重點（拋棄物）</div>
+<ul class="dz-list">
+<li><span class="dz-no">•</span><span><b>棉花團 / 塑膠紙 / 玻璃紙：</b><b>開罐後請立即丟棄！</b>原本用於預防運輸碰撞，開封後若重複取出再放回，易吸附空氣髒污並污染產品。</span></li>
+<li><span class="dz-no">•</span><span><b>乾燥劑：</b><b>開罐後建議取出！</b>因為開罐後乾燥劑會持續吸收空氣濕氣，反而容易造成罐內濕度上升加速氧化；若包裝不良更有滲漏風險。</span></li>
+</ul></div>
+<div class="dz-sec"><div class="dz-sec-hd">🏠 正確保存環境</div>
+<ul class="dz-list">
+<li><span class="dz-no">•</span><span>請存放於<b>陰涼、乾燥處</b>，避免陽光直射、熱源與潮濕環境。</span></li>
+<li><span class="dz-no">•</span><span>若家中配有<b>電子防潮箱</b>，可放入保存。</span></li>
+</ul></div>
+<div class="dz-sec"><div class="dz-sec-hd">🧼 衛生取用習慣</div>
+<ul class="dz-list">
+<li><span class="dz-no">•</span><span>取用時務必保持<b>手部乾燥與清潔</b>。</span></li>
+<li><span class="dz-no">•</span><span>建議倒置於<b>「瓶蓋內」</b>再取用，<b>切勿直接用手伸入瓶罐內接觸產品</b>。</span></li>
+</ul></div>
+<div class="dz-sec"><div class="dz-sec-hd">⏳ 最佳賞味/食用期限</div>
+<ul class="dz-list">
+<li><span class="dz-no">•</span><span>外包裝保存期限僅指<b>「未開封狀態」</b>。</span></li>
+<li><span class="dz-no">•</span><span>產品一經開封後會逐漸氧化，建議於<b>「開封日起 6 個月內」</b>儘速食用完畢。</span></li>
+</ul></div>
+</div>`;
 var HEALTH_ITEMS={
   ingredient:[
     {icon:'📊',title:'初乳蛋白 vs 乳鐵蛋白 vs 藻精蛋白 vs β-葡聚醣',summary:'比較四種免疫保養成分的來源、主要成分、核心機轉與建議使用時機。',sel:'detail-protein-compare'},
@@ -2401,9 +2425,7 @@ var HEALTH_ITEMS={
     {icon:'🏥',title:'G-6-PD缺乏症(蠶豆症)',summary:'認識蠶豆症、發病機轉、常見症狀與日常預防。',html:G6PD_ARTICLE_HTML}
   ],
   material:[
-    {icon:'🧪',title:'營養素建議量/上限量',summary:'鋅、維生素C、B群、鈣、硒、D3、魚油、葉黃素的建議量與上限量。',action:function(){openNutrientModal();}},
-    {icon:'📋',title:'兒童版表格',summary:'兒童系列產品的成分、建議吃法與注意事項總表。',action:function(){openChartModal('kids');}},
-    {icon:'📊',title:'成人版表格',summary:'成人系列產品的成分、建議吃法與注意事項總表。',action:function(){openChartModal('adults');}}
+    {icon:'🧴',title:'保健食品保存小撇步',summary:'開罐後的拋棄物、正確保存環境、衛生取用習慣與開封後食用期限。',html:STORAGE_TIPS_HTML}
   ]
 };
 var HEALTH_OPEN=null;   // 目前展開哪一張方框（null＝顯示方框列表）
@@ -2426,6 +2448,8 @@ function healthRender(){
     tabs.appendChild(b);
   });
   box.innerHTML='';
+  var target=box;
+  if(HEALTH_TAB==='material'){target=document.createElement('div');target.id='supplement-section';box.appendChild(target);}
   if(HEALTH_TAB==='symptom'){
     // 常見症狀與配方：維持單欄長條形（手風琴折疊卡）
     var sheet=EXCEL_QA['常見症狀'],items=(sheet&&sheet.items)||[];
@@ -2449,9 +2473,9 @@ function healthRender(){
     var back=document.createElement('button');
     back.type='button';back.className='hl-back';back.textContent='← 返回列表';
     back.onclick=function(e){if(e&&e.stopPropagation)e.stopPropagation();healthBack();};
-    box.appendChild(back);
+    target.appendChild(back);
     var bd=document.createElement('div');bd.className='hl-detail-bd';bd.innerHTML=content||'';
-    box.appendChild(bd);
+    target.appendChild(bd);
     return;
   }
   // 方框列表
@@ -2467,7 +2491,7 @@ function healthRender(){
     card.onclick=function(e){if(e&&e.stopPropagation)e.stopPropagation();healthOpen(card,i);};
     grid.appendChild(card);
   });
-  box.appendChild(grid);
+  target.appendChild(grid);
 }
 
 // ==================== 常見成分解析模組 ====================
