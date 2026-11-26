@@ -1164,8 +1164,7 @@ function switchPage(id){
 function switchTab(id){
   switchPage(id);
   if(id==='exam'){ try{ trackUsage('考核','藥師健生活考核標準'); }catch(e){} }
-  // 點「📞 銷售問診指南」主按鈕：動作類型＝銷售問診指南、目標內容＝進入的版本（預設兒童版問診，之後記得上次看的版本）
-  if(id==='consult'){ try{ trackUsage('銷售問診指南',(typeof CONSULT_TAB!=='undefined'&&CONSULT_TAB==='adult')?'成人版問診':'兒童版問診'); }catch(e){} }
+  // 主導覽列的「📞 銷售問診指南」按鈕只負責切換畫面，不發送追蹤；實際點擊問診頁內的頁籤／區塊／選項時才由 consultTrack() 記錄
   // 「🩺 症狀/成分/疾病」主選單按鈕：只切換頁面，不送出任何紀錄（紀錄由頁面內被點的卡片／項目各自送出）
 }
 
