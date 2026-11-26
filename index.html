@@ -4624,26 +4624,23 @@ var CONSULT_DATA={
   ]}
  ]}
 };
-// 目標內容一律是目前所在的版本：兒童版問診／成人版問診（不帶子項目名稱）
+// 唯一的追蹤點：點「兒童版／成人版」頁籤按鈕。其他點擊（主導覽列、區塊標題、選項標籤、勾選項目）一律不記錄
 function consultTrack(){try{trackUsage('銷售問診指南',CONSULT_TAB==='adult'?'成人版問診':'兒童版問診');}catch(e){}}
 function initConsult(){consultRender();}
-function consultTab(k){CONSULT_TAB=k;consultTrack();consultRender();}   // 切換頁籤：記錄切換後的版本
+function consultTab(k){CONSULT_TAB=k;consultTrack();consultRender();}   // 只有「兒童版／成人版」頁籤按鈕會記錄（銷售問診指南／兒童版問診 或 成人版問診）
 function consultSt(k){return CONSULT_STATE[CONSULT_TAB+':'+k];}
 function consultSec(i){
   var k='sec'+i,cur=consultSt(k);
   CONSULT_STATE[CONSULT_TAB+':'+k]=(cur===undefined?true:cur)?false:true;   // 預設展開
-  consultTrack();
   consultRender();
 }
 function consultItem(key,name){
   CONSULT_STATE[CONSULT_TAB+':'+key]=!consultSt(key);
-  consultTrack();
   consultRender();
 }
 function consultChip(key,label){
   var k=key+'|'+label;
   CONSULT_STATE[CONSULT_TAB+':'+k]=!consultSt(k);
-  consultTrack();   // 點選卡片內的選項：只記錄目前版本，不帶選項文字
   consultRender();
 }
 function consultReset(){
